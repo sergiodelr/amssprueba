@@ -1,5 +1,6 @@
 package Entidades;
 import Utils.BDUtils;
+import Utils.EntidadSerializableUtils;
 import com.sun.istack.internal.Nullable;
 import javafx.util.Pair;
 import com.thoughtworks.xstream.*;
@@ -32,7 +33,8 @@ public class Residente{
     //TODO(@adanvillarreal): Investigar si es la manera adecuada de representar salidas
 
     public Residente(String nombre, Date fechaDeNacimiento, int numCuarto, int numCama, Date fechaDefuncion, String servicioEmergencia, String numSeguro, int status) throws IOException {
-        /*try {
+        /*
+        try {
             this.image = ImageIO.read(new File(nombre + ".jpg"));
         } catch(IOException e){
             this.image = ImageIO.read(new File("generic.jpg"));
@@ -45,6 +47,16 @@ public class Residente{
         this.servicioEmergencia = servicioEmergencia;
         this.numSeguro = numSeguro;
         this.status = status;
+        insertToMap("residentes.db");
+    }
+    public Residente(){}
+
+    public void insertToMap(String file){
+        BDUtils db = new BDUtils(file);
+        if(db.getObject(this.nombre) == null){
+            db.insertObject(this.nombre, EntidadSerializableUtils.getXml(this));
+        }
+        db.closeDB();
     }
 
     public int getStatus() {

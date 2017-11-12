@@ -32,7 +32,7 @@ public class Eventualidad {
         Reporte reporte;
         try {
             String xml = (String) db.getObject(this.fechaDeEventualidad.toString());
-           // System.out.println(xml);
+            //System.out.println(xml);
             reporte = (Reporte) EntidadSerializableUtils.getEntidadFromXml(xml);
         } catch(NullPointerException e){
             reporte = new Reporte(this.fechaDeEventualidad, new ArrayList<Eventualidad>());

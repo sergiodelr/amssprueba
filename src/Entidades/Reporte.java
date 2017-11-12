@@ -36,6 +36,5 @@ public class Reporte {
 
     public void addEventualidad(Eventualidad eventualidad){
         this.eventualidades.add(eventualidad);
-
     }
 }
