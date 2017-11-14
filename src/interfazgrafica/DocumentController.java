@@ -26,27 +26,28 @@ public class DocumentController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("111111");
+        /*System.out.println("111111");
         if(!InterfazGrafica.isLoaded){
             loadSplashScreen();
         }
         
-        rootP = root;
+        rootP = root;*/
     }
     
     private void loadSplashScreen() {
-        System.out.println("111111");
-        
+        System.out.println("112111");
+
         try{
             InterfazGrafica.isLoaded = true;
             StackPane pane = FXMLLoader.load(getClass().getResource("Splash Screen.fxml"));
+            System.out.println("112888");
             root.getChildren().setAll(pane);
-            
+            System.out.println("1128000999");
             FadeTransition fadeIn = new FadeTransition(Duration.seconds(3),pane );
             fadeIn.setFromValue(0);
             fadeIn.setToValue(1);
             fadeIn.setCycleCount(1);
-            
+            System.out.println("11280009978979");
             FadeTransition fadeOut = new FadeTransition(Duration.seconds(3),pane );
             fadeOut.setFromValue(1);
             fadeOut.setToValue(0);
@@ -61,7 +62,7 @@ public class DocumentController implements Initializable{
             fadeOut.setOnFinished((e)->{
                 try {
                     AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("Interfaz General.fxml")));
-                    root.getChildren().setAll(pane);
+                    root.getChildren().setAll(parentContent);
                 } catch (IOException ex) {
                     Logger.getLogger(DocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -71,5 +72,7 @@ public class DocumentController implements Initializable{
                 Logger.getLogger(DocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
     
 }
