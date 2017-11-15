@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/residente.db" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/residentes.db" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/residentes2.db" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/main.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/Interfaz General.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" afterPath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utils/ResidenteUtils.java" afterPath="$PROJECT_DIR$/src/Utils/ResidenteUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.java" afterPath="$PROJECT_DIR$/src/main.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,186 +65,180 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.41579914">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="InterfazGrafica.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="846">
-                  <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="36">
-                  <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BDUtils.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Utils/BDUtils.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="178">
-                  <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Interfaz General.fxml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml">
-              <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-                <state />
-              </provider>
-              <provider editor-type-id="text-editor">
-                <state relative-caret-position="492">
-                  <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
-                  <folding>
-                    <marker date="1510781078871" expanded="true" signature="15947:16153" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="15998:16110" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="16264:16464" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="16315:16426" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="16575:16781" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="16626:16738" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="16896:17096" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="16947:17058" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="17206:17412" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="17257:17369" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="17501:17707" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="17552:17664" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="17823:18016" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="17874:17973" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="18105:18298" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="18156:18255" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="18436:18636" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="18487:18598" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="18747:18947" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="18798:18909" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="19065:19265" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="19116:19227" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="19489:19689" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="19540:19651" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="19944:20144" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="19995:20106" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="20495:22171" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="20520:22152" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="20619:22126" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="20651:22113" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="21027:21660" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="21064:21623" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="22215:27981" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="22240:27962" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="22339:27936" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="22371:27923" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="22672:27890" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="22718:23241" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="23284:24172" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="24210:27854" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="24399:24574" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="24450:24562" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="24689:24864" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="24740:24852" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="25097:25272" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="25148:25260" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="25388:25563" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="25439:25551" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="25678:25853" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="25729:25841" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="25974:26149" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="26025:26137" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="26771:26972" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="26822:26932" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="27102:27302" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="27153:27264" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="27524:27724" ph="..." />
-                    <marker date="1510781078871" expanded="true" signature="27575:27686" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="164">
-                  <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Recordatorio.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Entidades/Recordatorio.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Reporte.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Entidades/Reporte.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Eventualidad.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Entidades/Eventualidad.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="25" column="55" lean-forward="false" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="EntidadSerializableUtils.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Utils/EntidadSerializableUtils.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="162">
-                  <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="Eventualidad.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Entidades/Eventualidad.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="792">
-                  <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="InterfazGrafica.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="846">
+              <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="20" column="45" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Interfaz General.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="492">
+              <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+              <folding>
+                <marker date="1510781078871" expanded="true" signature="15947:16153" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="15998:16110" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="16264:16464" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="16315:16426" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="16575:16781" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="16626:16738" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="16896:17096" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="16947:17058" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="17206:17412" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="17257:17369" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="17501:17707" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="17552:17664" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="17823:18016" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="17874:17973" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="18105:18298" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="18156:18255" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="18436:18636" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="18487:18598" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="18747:18947" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="18798:18909" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="19065:19265" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="19116:19227" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="19489:19689" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="19540:19651" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="19944:20144" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="19995:20106" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="20495:22171" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="20520:22152" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="20619:22126" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="20651:22113" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="21027:21660" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="21064:21623" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="22215:27981" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="22240:27962" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="22339:27936" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="22371:27923" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="22672:27890" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="22718:23241" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="23284:24172" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="24210:27854" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="24399:24574" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="24450:24562" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="24689:24864" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="24740:24852" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="25097:25272" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="25148:25260" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="25388:25563" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="25439:25551" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="25678:25853" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="25729:25841" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="25974:26149" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="26025:26137" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="26771:26972" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="26822:26932" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="27102:27302" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="27153:27264" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="27524:27724" ph="..." />
+                <marker date="1510781078871" expanded="true" signature="27575:27686" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Residente.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entidades/Residente.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="220" column="0" lean-forward="true" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResidenteUtils.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Utils/ResidenteUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="21" column="135" lean-forward="false" selection-start-line="21" selection-start-column="135" selection-end-line="21" selection-end-column="135" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="altaMasiva.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/altaMasiva.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Recordatorio.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entidades/Recordatorio.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reporte.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entidades/Reporte.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Eventualidad.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entidades/Eventualidad.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="25" column="55" lean-forward="false" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -273,8 +269,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main.java" />
-        <option value="$PROJECT_DIR$/src/Utils/ResidenteUtils.java" />
         <option value="$PROJECT_DIR$/tests/Entidades/EventualidadTest.java" />
         <option value="$PROJECT_DIR$/tests/Entidades/ResidenteTest.java" />
         <option value="$PROJECT_DIR$/InterfazGrafica.iml" />
@@ -284,6 +278,8 @@
         <option value="$PROJECT_DIR$/src/Entidades/Eventualidad.java" />
         <option value="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" />
         <option value="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" />
+        <option value="$PROJECT_DIR$/src/main.java" />
+        <option value="$PROJECT_DIR$/src/Utils/ResidenteUtils.java" />
       </list>
     </option>
   </component>
@@ -386,6 +382,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Utils" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -401,7 +398,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.InterfazGrafica">
+  <component name="RunManager" selected="Application.main">
     <configuration name="InterfazGrafica" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -557,8 +554,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.InterfazGrafica" />
-        <item index="1" class="java.lang.String" itemvalue="Application.main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.main" />
+        <item index="1" class="java.lang.String" itemvalue="Application.InterfazGrafica" />
       </list>
     </recent_temporary>
   </component>
@@ -602,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1510779942616</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="tabla arreglada">
+      <created>1510781808340</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1510781808340</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -625,7 +629,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12767094" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24732906" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -960,16 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/ResidenteUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="110" lean-forward="false" selection-start-line="21" selection-start-column="110" selection-end-line="21" selection-end-column="110" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entidades/Salida.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-98">
@@ -994,14 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/BDUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -1017,16 +1003,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entidades/Residente.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="56" column="51" lean-forward="false" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1055,22 +1031,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entidades/Eventualidad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="25" column="55" lean-forward="false" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/altaMasiva.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1144,10 +1104,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entidades/Eventualidad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="25" column="55" lean-forward="false" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/altaMasiva.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="20" column="45" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entidades/Residente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+        <state relative-caret-position="214">
+          <caret line="220" column="0" lean-forward="true" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/ResidenteUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="21" column="135" lean-forward="false" selection-start-line="21" selection-start-column="135" selection-end-line="21" selection-end-column="135" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

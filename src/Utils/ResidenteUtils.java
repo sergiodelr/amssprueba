@@ -20,7 +20,7 @@ public class ResidenteUtils {
             }
             Date date = new Date(Integer.parseInt(row[1]), Integer.parseInt(row[2]), Integer.parseInt(row[3]));
             Residente temp = new Residente(row[0], date, Integer.parseInt(row[4]), Integer.parseInt(row[5]), null, row[6], row[7], 1 );
-            List<String> contactos = new ArrayList<>(Arrays.asList(row[8].split(" , ")));
+                List<String> contactos = new ArrayList<>(Arrays.asList(row[8].split(" , ")));
             List<String> numeros = new ArrayList<>(Arrays.asList(row[9].split(" , ")));
             for(int i = 0; i < contactos.size(); i++){
                 temp.addContacto(contactos.get(i), numeros.get(i));
