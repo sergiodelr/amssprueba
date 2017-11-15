@@ -18,7 +18,6 @@ import Utils.EntidadSerializableUtils;
 import Entidades.Recordatorio;
 
 
-
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 import org.mapdb.*;
 import com.thoughtworks.xstream.XStream;
@@ -61,15 +60,14 @@ public class InterfazGrafica extends Application {
      */
     public static void main(String[] args) throws IOException{
 
-        //BDUtils db = new BDUtils("residente.db");
-        //System.out.println((String)db.getObject("1"));
-        //Eventualidad eventualidad = new Eventualidad("Adan", "a", "Javier", new Date(8,5,5));
-        BDUtils db = new BDUtils("reportes.db");
+        BDUtils db = new BDUtils("residente.db");
+        System.out.println((String)db.getObject("1"));
+        Eventualidad eventualidad = new Eventualidad("Adan", "a", "Javier", new Date(8,5,5));
+        BDUtils dbrep = new BDUtils("reportes.db");
         String a = (String)db.getObject(new Date(8,5,5).toString());
         System.out.println(a);
         launch(args);
         db.closeDB();
-        // db.closeDB();
     }
 
 }

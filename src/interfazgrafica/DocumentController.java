@@ -3,18 +3,29 @@ package interfazgrafica;
 import static interfazgrafica.DocumentController.rootP;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
 import Entidades.Residente;
+
+import Utils.BDUtils;
 
 /**
  *
@@ -26,20 +37,33 @@ public class DocumentController implements Initializable{
     
     @FXML public static AnchorPane rootP;
 
+    //Alta de resdientes
     @FXML private  TextField nuevoResidenteNombre;
     @FXML private  TextField nuevoResidenteFdN;
     @FXML private  TextField nuevoResidenteCuarto;
     @FXML private  TextField nuevoResidenteCama;
     @FXML private  TextField nuevoResidenteSdE;
     @FXML private  TextField nuevoResidenteNumSeguro;
+
+    //Perfiles
+    @FXML private ChoiceBox choiceBoxResidentes;
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*System.out.println("111111");
         if(!InterfazGrafica.isLoaded){
             loadSplashScreen();
         }
-        
         rootP = root;*/
+        BDUtils db = new BDUtils("residente.db");
+
+        ConcurrentMap dbMap = db.getMap();
+        Set<String > sNombres = dbMap.keySet();
+        ArrayList<String> nombres = new ArrayList<String>(sNombres);
+        ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
+        choiceBoxResidentes.setItems(olNombres);
+
     }
     
     private void loadSplashScreen() {
@@ -81,6 +105,27 @@ public class DocumentController implements Initializable{
         }
     }
 
+    @FXML
+    void altaIndividual(ActionEvent event) throws ParseException, IOException {
+
+        System.out.println("click");
+        if(!nuevoResidenteNombre.getText().isEmpty() && !nuevoResidenteFdN.getText().isEmpty() &&
+                !nuevoResidenteCuarto.getText().isEmpty() &&
+                !nuevoResidenteCama.getText().isEmpty() &&
+                !nuevoResidenteSdE.getText().isEmpty() &&
+                !nuevoResidenteNumSeguro.getText().isEmpty()){
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+            Date date = format.parse(nuevoResidenteFdN.getText());
+            new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
+                    Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1);
+            nuevoResidenteNombre.clear();
+            nuevoResidenteFdN.clear();
+            nuevoResidenteCuarto.clear();
+            nuevoResidenteCama.clear();
+            nuevoResidenteSdE.clear();
+            nuevoResidenteNumSeguro.clear();
+        }
+    }
 
     
 }

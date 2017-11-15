@@ -308,41 +308,36 @@
                           </rowConstraints>
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" />
-                              <TextField GridPane.columnIndex="1">
+                              <TextField fx:id="nuevoResidenteNombre" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin></TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Identificación:" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="nuevoResidenteFdN" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin></TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cuarto:" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cuarto:" GridPane.rowIndex="2" />
+                              <TextField fx:id="nuevoResidenteCuarto" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin></TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <TextField fx:id="nuevoResidenteCama" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin></TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <TextField fx:id="nuevoResidenteSdE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin></TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <TextField fx:id="nuevoResidenteNumSeguro" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin></TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cama:" GridPane.rowIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Servicio de emergencia:" GridPane.rowIndex="5" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de nacimiento:" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                 <GridPane.margin>
-                                    <Insets right="40.0" />
-                                 </GridPane.margin></TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seguro:" GridPane.rowIndex="6" />
-                              <Button mnemonicParsing="false" text="Alta individual" GridPane.rowIndex="7">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cama:" GridPane.rowIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Servicio de emergencia:" GridPane.rowIndex="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de nacimiento:" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seguro:" GridPane.rowIndex="5" />
+                              <Button mnemonicParsing="false" onAction="#altaIndividual" text="Alta individual" GridPane.rowIndex="6">
                                  <GridPane.margin>
                                     <Insets top="10.0" />
                                  </GridPane.margin>

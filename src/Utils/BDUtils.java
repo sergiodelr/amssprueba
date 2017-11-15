@@ -24,6 +24,11 @@ public class BDUtils {
             map.put(key, object);
         }
     }
+
+    public ConcurrentMap getMap() {
+        return map;
+    }
+
     public void deleteObject(String key){
         map.remove(key) ;
     }
