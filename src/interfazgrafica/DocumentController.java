@@ -11,6 +11,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -47,7 +49,12 @@ public class DocumentController implements Initializable{
 
     //Perfiles
     @FXML private ChoiceBox choiceBoxResidentes;
-
+    @FXML private  TextField residenteNombre;
+    @FXML private  TextField residenteFdN;
+    @FXML private  TextField residenteCuarto;
+    @FXML private  TextField residenteCama;
+    @FXML private  TextField residenteSdE;
+    @FXML private  TextField residenteNumSeguro;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,11 +71,29 @@ public class DocumentController implements Initializable{
         ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
 
         choiceBoxResidentes.setItems(olNombres);
-        //choiceBoxResidentes.getItems().add("Adan v");
-        //choiceBoxResidentes.getItems().add("sergio dl");
+        choiceBoxResidentes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                mostrarInfo(choiceBoxResidentes.getItems().get((Integer) number2));
+            }
+        });
         db.closeDB();
     }
-    
+
+    private void mostrarInfo(Object nombreResidente) {
+        BDUtils db = new BDUtils("residentes2.db");
+        Object res = db.getObject((String)nombreResidente);
+        residenteNombre.setText(res.getNombre());
+        String fechaDeNacimiento = new SimpleDateFormat("dd-MM-yyyy").format(res.getFechaDeNacimiento());
+        residenteFdN.setText(fechaDeNacimiento);
+        residenteCuarto.setText(Integer.toString(res.getNumCuarto()));
+        residenteCama.setText(Integer.toString(res.getNumCama()));
+        residenteSdE.setText(res.getServicioEmergencia());
+        residenteNumSeguro.setText(res.getNumSeguro());
+        db.closeDB();
+    }
+
+
     private void loadSplashScreen() {
         System.out.println("112111");
 
