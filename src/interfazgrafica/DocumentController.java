@@ -56,14 +56,17 @@ public class DocumentController implements Initializable{
             loadSplashScreen();
         }
         rootP = root;*/
-        BDUtils db = new BDUtils("residente.db");
+        BDUtils db = new BDUtils("residentes2.db");
 
-        ConcurrentMap dbMap = db.getMap();
+        Map<String,String> dbMap = db.getMap();
         Set<String > sNombres = dbMap.keySet();
         ArrayList<String> nombres = new ArrayList<String>(sNombres);
         ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
-        choiceBoxResidentes.setItems(olNombres);
 
+        choiceBoxResidentes.setItems(olNombres);
+        //choiceBoxResidentes.getItems().add("Adan v");
+        //choiceBoxResidentes.getItems().add("sergio dl");
+        db.closeDB();
     }
     
     private void loadSplashScreen() {
