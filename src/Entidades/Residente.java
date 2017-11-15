@@ -14,7 +14,7 @@ import java.util.*;
 import javax.imageio.ImageIO;
 
 /* para incluir la libreria: https://stackoverflow.com/questions/1051640/correct-way-to-add-external-jars-lib-jar-to-an-intellij-idea-project */
-public class Residente{
+public class  Residente{
     private BufferedImage image;
     private String nombre;
     private Date fechaDeNacimiento;
