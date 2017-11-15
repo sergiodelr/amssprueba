@@ -115,17 +115,25 @@ public class DocumentController implements Initializable{
         for(Map.Entry<String,String> entry :map.entrySet()){
             System.out.println(entry.getKey());
         }
-        Reporte reporte = (Reporte)EntidadSerializableUtils.getEntidadFromXml(
-                (String)db.getObject(date.toString()));
+        Reporte reporte;
+        try {
+            reporte = (Reporte) EntidadSerializableUtils.getEntidadFromXml(
+                    (String) db.getObject(date.toString()));
+        }catch(NullPointerException e){
+            db.closeDB();
+            return;
+        }
         db.closeDB();
         ObservableList<Eventualidad> eventualidades = FXCollections.observableArrayList(reporte.getEventualidads());
         System.out.println(eventualidades.size());
+        System.out.println(eventualidades.get(0).getEncargado());
         tablaReporte.setEditable(true);
-
+        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEventualidad"));
         residente.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("residente"));
+        atendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
         descripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
         tablaReporte.setItems(eventualidades);
-       // tablaReporte.getColumns().addAll(numeroEventualidad,residente,descripcion,hora,atendidoPor);
+
     }
 
     private void mostrarInfo(Object nombreResidente) {
