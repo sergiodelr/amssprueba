@@ -44,10 +44,10 @@ import Utils.EntidadSerializableUtils;
 public class DocumentController implements Initializable{
     
     @FXML private AnchorPane root;
-    
+
     @FXML public static AnchorPane rootP;
 
-    //Alta de resdientes
+    //Alta de residentes
     @FXML private  TextField nuevoResidenteNombre;
     @FXML private  TextField nuevoResidenteFdN;
     @FXML private  TextField nuevoResidenteCuarto;
@@ -120,6 +120,7 @@ public class DocumentController implements Initializable{
             reporte = (Reporte) EntidadSerializableUtils.getEntidadFromXml(
                     (String) db.getObject(date.toString()));
         }catch(NullPointerException e){
+            tablaReporte.refresh();
             db.closeDB();
             return;
         }
@@ -209,6 +210,20 @@ public class DocumentController implements Initializable{
             nuevoResidenteSdE.clear();
             nuevoResidenteNumSeguro.clear();
         }
+    }
+
+    @FXML
+    void diaAnterior(ActionEvent event){
+        diaReporte.setValue(diaReporte.getValue().minusDays(1L));
+        tablaReporte.getItems().clear();
+        mostrarReportes(diaReporte.getValue());
+    }
+
+    @FXML
+    void diaSiguiente(ActionEvent event){
+        diaReporte.setValue(diaReporte.getValue().plusDays(1L));
+        tablaReporte.getItems().clear();
+        mostrarReportes(diaReporte.getValue());
     }
 
     
