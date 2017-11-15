@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazgrafica.DocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazgrafica.DocumentController">
    <children>
       <TabPane prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -145,15 +145,15 @@
                                                       <TableColumn prefWidth="176.0" text="Atendido por" />
                                                    </columns>
                                                 </TableView>
-                                                <Button layoutX="519.0" layoutY="318.0" mnemonicParsing="false" text="Agregar Eventualidad" />
-                                                <TextField layoutX="266.0" layoutY="271.0" prefHeight="31.0" prefWidth="222.0" />
-                                                <TextField layoutX="970.0" layoutY="272.0" prefHeight="31.0" prefWidth="176.0" />
+                                                <Button layoutX="519.0" layoutY="318.0" mnemonicParsing="false" onAction="#agregarEventualidad" text="Agregar Eventualidad" />
+                                                <TextField fx:id="descripcionEventualidad" layoutX="266.0" layoutY="271.0" prefHeight="31.0" prefWidth="222.0" />
+                                                <TextField fx:id="atendidoPorEventualidad" layoutX="970.0" layoutY="272.0" prefHeight="31.0" prefWidth="176.0" />
                                                 <Text layoutX="37.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción de la eventualidad: " />
                                                 <Text layoutX="863.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atendido por: " />
-                                                <TextField layoutX="571.0" layoutY="273.0" prefHeight="31.0" prefWidth="82.0" />
+                                                <TextField fx:id="horaEventualidad" layoutX="571.0" layoutY="273.0" prefHeight="31.0" prefWidth="82.0" />
                                                 <Text layoutX="519.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora: " />
                                                 <Text layoutX="682.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha: " />
-                                                <TextField layoutX="738.0" layoutY="272.0" prefHeight="31.0" prefWidth="108.0" />
+                                                <TextField fx:id="fechaEventualidad" layoutX="738.0" layoutY="272.0" prefHeight="31.0" prefWidth="108.0" />
                                                 <Text layoutX="555.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato - hh:mm">
                                                    <font>
                                                       <Font name="System Italic" size="15.0" />
