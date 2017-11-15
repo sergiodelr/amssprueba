@@ -47,7 +47,7 @@ public class  Residente{
         this.servicioEmergencia = servicioEmergencia;
         this.numSeguro = numSeguro;
         this.status = status;
-        insertToMap("residentes.db");
+        insertToMap("residentes2.db");
     }
     public Residente(){}
 
