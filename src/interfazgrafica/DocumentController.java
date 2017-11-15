@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
+import Entidades.Residente;
+
 /**
  *
  * @author Adrian
@@ -24,6 +26,12 @@ public class DocumentController implements Initializable{
     
     @FXML public static AnchorPane rootP;
 
+    @FXML private  TextField nuevoResidenteNombre;
+    @FXML private  TextField nuevoResidenteFdN;
+    @FXML private  TextField nuevoResidenteCuarto;
+    @FXML private  TextField nuevoResidenteCama;
+    @FXML private  TextField nuevoResidenteSdE;
+    @FXML private  TextField nuevoResidenteNumSeguro;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*System.out.println("111111");
