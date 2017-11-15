@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/Entidades/Residente.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/Entidades/Residente.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController.class" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="intento de arreglar tabla">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/Interfaz General.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/residentes2.db" afterPath="$PROJECT_DIR$/residentes2.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" afterPath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java" afterPath="$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -177,8 +170,8 @@
       <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="72" column="41" lean-forward="false" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+            <state relative-caret-position="340">
+              <caret line="127" column="28" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -284,7 +277,7 @@
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="4">
     <option name="y" value="27" />
     <option name="width" value="960" />
     <option name="height" value="1053" />
@@ -571,14 +564,21 @@
       <option name="project" value="LOCAL" />
       <updated>1510778445572</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="intento de arreglar tabla">
+      <created>1510778470231</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1510778470231</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <frame x="0" y="27" width="960" height="1053" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -594,7 +594,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1917735" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11513158" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1101,8 +1101,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="72" column="41" lean-forward="false" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+        <state relative-caret-position="340">
+          <caret line="127" column="28" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

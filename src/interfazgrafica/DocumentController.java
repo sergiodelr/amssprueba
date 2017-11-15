@@ -119,11 +119,13 @@ public class DocumentController implements Initializable{
                 (String)db.getObject(date.toString()));
         db.closeDB();
         ObservableList<Eventualidad> eventualidades = FXCollections.observableArrayList(reporte.getEventualidads());
+        System.out.println(eventualidades.size());
         tablaReporte.setEditable(true);
 
         residente.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("residente"));
+        descripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
         tablaReporte.setItems(eventualidades);
-        tablaReporte.getColumns().addAll(numeroEventualidad,residente,descripcion,hora,atendidoPor);
+       // tablaReporte.getColumns().addAll(numeroEventualidad,residente,descripcion,hora,atendidoPor);
     }
 
     private void mostrarInfo(Object nombreResidente) {
