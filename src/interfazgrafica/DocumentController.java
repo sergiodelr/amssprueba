@@ -28,6 +28,7 @@ import javafx.event.ActionEvent;
 import Entidades.Residente;
 
 import Utils.BDUtils;
+import Utils.EntidadSerializableUtils;
 
 /**
  *
@@ -56,6 +57,8 @@ public class DocumentController implements Initializable{
     @FXML private  TextField residenteSdE;
     @FXML private  TextField residenteNumSeguro;
 
+    //Reportes
+    @FXML private DatePicker diaReporte;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*System.out.println("111111");
@@ -82,7 +85,8 @@ public class DocumentController implements Initializable{
 
     private void mostrarInfo(Object nombreResidente) {
         BDUtils db = new BDUtils("residentes2.db");
-        Object res = db.getObject((String)nombreResidente);
+        String objRes = (String) db.getObject((String)nombreResidente);
+        Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
         residenteNombre.setText(res.getNombre());
         String fechaDeNacimiento = new SimpleDateFormat("dd-MM-yyyy").format(res.getFechaDeNacimiento());
         residenteFdN.setText(fechaDeNacimiento);
