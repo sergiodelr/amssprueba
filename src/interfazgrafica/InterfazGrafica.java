@@ -49,7 +49,7 @@ public class InterfazGrafica extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setTitle("Prototipo Alfa");
+        stage.setTitle("Prototipo Beta");
 
         stage.show();
         

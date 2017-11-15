@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazgrafica.DocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazgrafica.DocumentController">
    <children>
       <TabPane prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -190,7 +190,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
-                              <TextField GridPane.columnIndex="1">
+                              <TextField fx:id="residenteCuarto" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin>
@@ -200,7 +200,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="residenteCama" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin>
@@ -210,7 +210,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="residenteFdN" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin>
@@ -220,7 +220,7 @@
                                     <Insets right="40.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <TextField fx:id="residenteNumSeguro" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
@@ -251,7 +251,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField fx:id="residenteSdE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condiciones:" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
@@ -269,18 +269,18 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Text layoutX="30.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha del reporte:" wrappingWidth="113.6708984375" />
-                        <TableView layoutX="30.0" layoutY="203.0" prefHeight="200.0" prefWidth="1141.0" AnchorPane.bottomAnchor="358.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                        <TableView fx:id="tablaReporte" layoutX="30.0" layoutY="203.0" prefHeight="200.0" prefWidth="1141.0" AnchorPane.bottomAnchor="358.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
                            <columns>
                               <TableColumn editable="false" minWidth="0.0" prefWidth="168.0" text="Número de eventualidad" />
-                              <TableColumn prefWidth="188.0" text="Residente" />
-                              <TableColumn prefWidth="399.0" text="Descripción" />
-                              <TableColumn prefWidth="112.0" text="Hora" />
-                              <TableColumn prefWidth="272.0" text="Atendido por" />
+                              <TableColumn fx:id="residente" prefWidth="188.0" text="Residente" />
+                              <TableColumn fx:id="descripcion" prefWidth="399.0" text="Descripción" />
+                              <TableColumn fx:id="hora" prefWidth="112.0" text="Hora" />
+                              <TableColumn fx:id="atendidoPor" prefWidth="272.0" text="Atendido por" />
                            </columns>
                         </TableView>
                         <Button layoutX="30.0" layoutY="150.0" mnemonicParsing="false" text="Día anterior" AnchorPane.leftAnchor="30.0" />
                         <Button layoutX="1063.0" layoutY="150.0" mnemonicParsing="false" text="Día siguiente" AnchorPane.rightAnchor="30.0" />
-                        <DatePicker layoutX="144.0" layoutY="55.0" />
+                        <DatePicker fx:id="diaReporte" layoutX="144.0" layoutY="55.0" />
                      </children></AnchorPane>
                </content>
             </Tab>

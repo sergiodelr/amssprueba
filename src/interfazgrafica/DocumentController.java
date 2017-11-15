@@ -6,24 +6,31 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Entidades.Eventualidad;
+import Entidades.Reporte;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
-import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import Entidades.Residente;
 
@@ -59,6 +66,12 @@ public class DocumentController implements Initializable{
 
     //Reportes
     @FXML private DatePicker diaReporte;
+    @FXML private TableView tablaReporte;
+    @FXML private TableColumn numeroEventualidad = new TableColumn("Número de eventualidad");
+    @FXML private TableColumn residente = new TableColumn("Residente");
+    @FXML private TableColumn descripcion = new TableColumn("Descripción");
+    @FXML private TableColumn hora = new TableColumn("Hora");
+    @FXML private TableColumn atendidoPor = new TableColumn("Atendido por");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*System.out.println("111111");
@@ -81,13 +94,52 @@ public class DocumentController implements Initializable{
             }
         });
         db.closeDB();
+        diaReporte.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                LocalDate fecha = diaReporte.getValue();
+                mostrarReportes(fecha);
+            }
+        });
+
+    }
+
+    private void mostrarReportes(LocalDate fecha) {
+        BDUtils db = new BDUtils("reportes2.db");
+        System.out.println(fecha.toString());
+        Date date = Date.from(fecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        System.out.println(date.toString());
+        Map<String, String> map = db.getMap();
+        for(Map.Entry<String,String> entry :map.entrySet()){
+            System.out.println(entry.getKey());
+        }
+        Reporte reporte;
+        try {
+            reporte = (Reporte) EntidadSerializableUtils.getEntidadFromXml(
+                    (String) db.getObject(date.toString()));
+        }catch(NullPointerException e){
+            db.closeDB();
+            return;
+        }
+        db.closeDB();
+        ObservableList<Eventualidad> eventualidades = FXCollections.observableArrayList(reporte.getEventualidads());
+        System.out.println(eventualidades.size());
+        System.out.println(eventualidades.get(0).getEncargado());
+        tablaReporte.setEditable(true);
+        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEventualidad"));
+        residente.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("residente"));
+        atendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
+        descripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
+        tablaReporte.setItems(eventualidades);
+
     }
 
     private void mostrarInfo(Object nombreResidente) {
         BDUtils db = new BDUtils("residentes2.db");
         String objRes = (String) db.getObject((String)nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
-        residenteNombre.setText(res.getNombre());
         String fechaDeNacimiento = new SimpleDateFormat("dd-MM-yyyy").format(res.getFechaDeNacimiento());
         residenteFdN.setText(fechaDeNacimiento);
         residenteCuarto.setText(Integer.toString(res.getNumCuarto()));
