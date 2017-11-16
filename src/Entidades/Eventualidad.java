@@ -79,4 +79,8 @@ public class Eventualidad {
     public void setFechaDeEventualidad(LocalDate fechaDeEventualidad) {
         this.fechaDeEventualidad = fechaDeEventualidad;
     }
+
+    public String getHora(){
+        return this.hora;
+    }
 }

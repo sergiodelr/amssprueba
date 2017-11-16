@@ -117,8 +117,7 @@ public class DocumentController implements Initializable{
     private void mostrarReportes(LocalDate fecha) {
         BDUtils db = new BDUtils("reportes.db");
         System.out.println(fecha.toString());
-        Date date = Date.from(fecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        System.out.println(date.toString());
+        LocalDate date = fecha;
         Map<String, String> map = db.getMap();
         for(Map.Entry<String,String> entry :map.entrySet()){
             System.out.println(entry.getKey());
@@ -137,7 +136,7 @@ public class DocumentController implements Initializable{
         System.out.println(eventualidades.size());
         System.out.println(eventualidades.get(0).getEncargado());
         tablaReporte.setEditable(true);
-        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEventualidad"));
+        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
         residente.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("residente"));
         atendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
         descripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
