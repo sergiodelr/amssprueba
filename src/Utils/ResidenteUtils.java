@@ -5,10 +5,13 @@ import com.opencsv.CSVReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 public class ResidenteUtils {
     public static void altaMasiva(String file) throws IOException {
@@ -18,7 +21,7 @@ public class ResidenteUtils {
             for(String a : row){
                 System.out.println(a);
             }
-            Date date = new Date(Integer.parseInt(row[1]), Integer.parseInt(row[2]), Integer.parseInt(row[3]));
+            LocalDate date = LocalDate.of(Integer.parseInt(row[3]), Integer.parseInt(row[2]), Integer.parseInt(row[1]));
             Residente temp = new Residente(row[0], date, Integer.parseInt(row[4]), Integer.parseInt(row[5]), null, row[6], row[7], 1 );
                 List<String> contactos = new ArrayList<>(Arrays.asList(row[8].split(" , ")));
             List<String> numeros = new ArrayList<>(Arrays.asList(row[9].split(" , ")));

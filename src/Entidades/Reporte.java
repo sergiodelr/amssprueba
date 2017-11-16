@@ -2,6 +2,7 @@ package Entidades;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,15 +10,15 @@ import java.util.List;
 @XStreamAlias("message")
 public class Reporte {
     @XStreamAlias("type")
-    private Date date;
+    private LocalDate date;
     @XStreamAlias("type")
     private List<Eventualidad> eventualidades = new ArrayList<>();
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -29,7 +30,7 @@ public class Reporte {
         this.eventualidades = eventualidads;
     }
 
-    public Reporte(Date date, List<Eventualidad> eventualidads) {
+    public Reporte(LocalDate date, List<Eventualidad> eventualidads) {
         this.date = date;
         this.eventualidades = eventualidads;
     }

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -17,22 +18,22 @@ import javax.imageio.ImageIO;
 public class  Residente{
     private BufferedImage image;
     private String nombre;
-    private Date fechaDeNacimiento;
+    private LocalDate fechaDeNacimiento;
     private int numCuarto;
     private int numCama;
     private int status = 1;
     @Nullable
-    private Date fechaDefuncion = null;
+    private LocalDate fechaDefuncion = null;
     private String servicioEmergencia;
     private String numSeguro;
     private Map<String, String> contactos = new HashMap<>();
     private List<String> condiciones = new ArrayList<>();
     //TODO(@adanvillarreal, @javier96): Los siguientes atributos son de clases pendientes
     private List<ProductoGenerico> productos;
-    private List<Eventualidad> eventualidades;
+    private List<Eventualidad> eventualidades = new ArrayList<>();
     //TODO(@adanvillarreal): Investigar si es la manera adecuada de representar salidas
 
-    public Residente(String nombre, Date fechaDeNacimiento, int numCuarto, int numCama, Date fechaDefuncion, String servicioEmergencia, String numSeguro, int status) throws IOException {
+    public Residente(String nombre, LocalDate fechaDeNacimiento, int numCuarto, int numCama, LocalDate fechaDefuncion, String servicioEmergencia, String numSeguro, int status) throws IOException {
         /*
         try {
             this.image = ImageIO.read(new File(nombre + ".jpg"));
@@ -47,7 +48,7 @@ public class  Residente{
         this.servicioEmergencia = servicioEmergencia;
         this.numSeguro = numSeguro;
         this.status = status;
-        insertToMap("residentes2.db");
+        insertToMap("residentes.db");
     }
     public Residente(){}
 
@@ -91,11 +92,11 @@ public class  Residente{
         this.nombre = nombre;
     }
 
-    public Date getFechaDeNacimiento() {
+    public LocalDate getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
 
-    public void setFechaDeNacimiento(Date fechaDeNacimiento) {
+    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
@@ -115,11 +116,11 @@ public class  Residente{
         this.numCama = numCama;
     }
 
-    public Date getFechaDefuncion() {
+    public LocalDate getFechaDefuncion() {
         return fechaDefuncion;
     }
 
-    public void setFechaDefuncion(Date fechaDefuncion) {
+    public void setFechaDefuncion(LocalDate fechaDefuncion) {
         this.fechaDefuncion = fechaDefuncion;
     }
 

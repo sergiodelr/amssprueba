@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Entidades.Eventualidad;
+import Utils.ResidenteUtils;
 import Entidades.Reporte;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
@@ -25,6 +26,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -42,7 +45,7 @@ import Utils.EntidadSerializableUtils;
  * @author Adrian
  */
 public class DocumentController implements Initializable{
-    
+
     @FXML private AnchorPane root;
 
     @FXML public static AnchorPane rootP;
@@ -63,7 +66,11 @@ public class DocumentController implements Initializable{
     @FXML private  TextField residenteCama;
     @FXML private  TextField residenteSdE;
     @FXML private  TextField residenteNumSeguro;
-
+    @FXML private  TextField descripcionEventualidad;
+    @FXML private  TextField horaEventualidad;
+    @FXML private  TextField fechaEventualidad;
+    @FXML private  TextField atendidoPorEventualidad;
+    private String residenteActual;
     //Reportes
     @FXML private DatePicker diaReporte;
     @FXML private TableView tablaReporte;
@@ -79,7 +86,7 @@ public class DocumentController implements Initializable{
             loadSplashScreen();
         }
         rootP = root;*/
-        BDUtils db = new BDUtils("residentes2.db");
+        BDUtils db = new BDUtils("residentes.db");
 
         Map<String,String> dbMap = db.getMap();
         Set<String > sNombres = dbMap.keySet();
@@ -90,7 +97,8 @@ public class DocumentController implements Initializable{
         choiceBoxResidentes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-                mostrarInfo(choiceBoxResidentes.getItems().get((Integer) number2));
+                residenteActual = (String) choiceBoxResidentes.getItems().get((Integer) number2);
+                mostrarInfo(residenteActual);
             }
         });
         db.closeDB();
@@ -107,7 +115,7 @@ public class DocumentController implements Initializable{
     }
 
     private void mostrarReportes(LocalDate fecha) {
-        BDUtils db = new BDUtils("reportes2.db");
+        BDUtils db = new BDUtils("reportes.db");
         System.out.println(fecha.toString());
         Date date = Date.from(fecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         System.out.println(date.toString());
@@ -137,9 +145,9 @@ public class DocumentController implements Initializable{
 
     }
 
-    private void mostrarInfo(Object nombreResidente) {
-        BDUtils db = new BDUtils("residentes2.db");
-        String objRes = (String) db.getObject((String)nombreResidente);
+    private void mostrarInfo(String nombreResidente) {
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String) db.getObject(nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
         String fechaDeNacimiento = new SimpleDateFormat("dd-MM-yyyy").format(res.getFechaDeNacimiento());
         residenteFdN.setText(fechaDeNacimiento);
@@ -169,13 +177,13 @@ public class DocumentController implements Initializable{
             fadeOut.setFromValue(1);
             fadeOut.setToValue(0);
             fadeOut.setCycleCount(1);
-            
+
             fadeIn.play();
             System.out.println("22222");
             fadeIn.setOnFinished((e)->{
                 fadeOut.play();
             });
-            
+
             fadeOut.setOnFinished((e)->{
                 try {
                     AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("Interfaz General.fxml")));
@@ -186,7 +194,7 @@ public class DocumentController implements Initializable{
             });
         }
         catch(IOException ex) {
-                Logger.getLogger(DocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -211,6 +219,25 @@ public class DocumentController implements Initializable{
             nuevoResidenteNumSeguro.clear();
         }
     }
+    @FXML
+    void agregarEventualidad(ActionEvent event) throws ParseException {
+        if(!descripcionEventualidad.getText().isEmpty() &&
+                !horaEventualidad.getText().isEmpty() &&
+                !fechaEventualidad.getText().isEmpty() &&
+                !atendidoPorEventualidad.getText().isEmpty()){
+            SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+            Date date = dt.parse(fechaEventualidad.getText() + " " + horaEventualidad.getText());
+
+            Eventualidad eventualidad = new Eventualidad(atendidoPorEventualidad.getText(),descripcionEventualidad.getText(),residenteActual,date);
+
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String) db.getObject(residenteActual);
+            db.closeDB();
+            Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+            res.addEventualidad(eventualidad);
+            ResidenteUtils.modifyResidente(res);
+        }
+    }
 
     @FXML
     void diaAnterior(ActionEvent event){
@@ -226,5 +253,4 @@ public class DocumentController implements Initializable{
         mostrarReportes(diaReporte.getValue());
     }
 
-    
 }
