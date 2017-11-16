@@ -79,6 +79,12 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn descripcion = new TableColumn("Descripción");
     @FXML private TableColumn hora = new TableColumn("Hora");
     @FXML private TableColumn atendidoPor = new TableColumn("Atendido por");
+    @FXML private TableView tablaEventualidad;
+    @FXML private TableColumn eveDescripcion = new TableColumn("Descripción");
+    @FXML private TableColumn eveHora = new TableColumn("Hora");
+    @FXML private TableColumn eveAtendidoPor = new TableColumn("Atendido por");
+    @FXML private TableColumn eveFecha = new TableColumn("Fecha");
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*System.out.println("111111");
@@ -235,7 +241,28 @@ public class DocumentController implements Initializable{
             Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
             res.addEventualidad(eventualidad);
             ResidenteUtils.modifyResidente(res);
+            descripcionEventualidad.clear();
+            horaEventualidad.clear();
+            fechaEventualidad.clear();
+            atendidoPorEventualidad.clear();
         }
+    }
+
+    @FXML
+    void mostrarEventualidades(ActionEvent event){
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String) db.getObject(residenteActual);
+        db.closeDB();
+        Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+        ObservableList<Eventualidad> eventualidades = FXCollections.observableArrayList(res.getEventualidades());
+        System.out.println(eventualidades.size());
+        System.out.println(eventualidades.get(0).getEncargado());
+        tablaReporte.setEditable(true);
+        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
+        residente.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("residente"));
+        atendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
+        descripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
+        tablaReporte.setItems(eventualidades);
     }
 
     @FXML

@@ -128,6 +128,10 @@ public class  Residente{
         return servicioEmergencia;
     }
 
+    public List<Eventualidad> getEventualidades(){
+        return eventualidades;
+    }
+
     public void setServicioEmergencia(String servicioEmergencia) {
         this.servicioEmergencia = servicioEmergencia;
     }
