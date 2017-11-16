@@ -149,7 +149,7 @@ public class DocumentController implements Initializable{
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
-        String fechaDeNacimiento = new SimpleDateFormat("dd-MM-yyyy").format(res.getFechaDeNacimiento());
+        String fechaDeNacimiento = res.getFechaDeNacimiento().toString();
         residenteFdN.setText(fechaDeNacimiento);
         residenteCuarto.setText(Integer.toString(res.getNumCuarto()));
         residenteCama.setText(Integer.toString(res.getNumCama()));
@@ -208,7 +208,7 @@ public class DocumentController implements Initializable{
                 !nuevoResidenteSdE.getText().isEmpty() &&
                 !nuevoResidenteNumSeguro.getText().isEmpty()){
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-            Date date = format.parse(nuevoResidenteFdN.getText());
+            LocalDate date = LocalDate.parse(nuevoResidenteFdN.getText());
             new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
                     Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1);
             nuevoResidenteNombre.clear();
@@ -226,9 +226,9 @@ public class DocumentController implements Initializable{
                 !fechaEventualidad.getText().isEmpty() &&
                 !atendidoPorEventualidad.getText().isEmpty()){
             SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-            Date date = dt.parse(fechaEventualidad.getText() + " " + horaEventualidad.getText());
+            LocalDate date = LocalDate.parse(fechaEventualidad.getText());
 
-            Eventualidad eventualidad = new Eventualidad(atendidoPorEventualidad.getText(),descripcionEventualidad.getText(),residenteActual,date);
+            Eventualidad eventualidad = new Eventualidad(atendidoPorEventualidad.getText(),descripcionEventualidad.getText(),residenteActual,date,"12:15");
 
             BDUtils db = new BDUtils("residentes.db");
             String objRes = (String) db.getObject(residenteActual);
