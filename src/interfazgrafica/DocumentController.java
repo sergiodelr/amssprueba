@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Entidades.Eventualidad;
+import Entidades.Medicina;
 import Utils.ResidenteUtils;
 import Entidades.Reporte;
 import javafx.animation.FadeTransition;
@@ -58,6 +59,14 @@ public class DocumentController implements Initializable{
     @FXML private  TextField nuevoResidenteSdE;
     @FXML private  TextField nuevoResidenteNumSeguro;
 
+    //Medicinas
+    @FXML private TextField nMedNombre;
+    @FXML private TextField nMedDescripcion;
+    @FXML private TextField nMedDosis;
+    @FXML private TextField nMedDuracion;
+    @FXML private TextField nMedPrecauciones;
+    @FXML private TextField nMedRestantes;
+
     //Perfiles
     @FXML private ChoiceBox choiceBoxResidentes;
     @FXML private  TextField residenteNombre;
@@ -79,11 +88,21 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn descripcion = new TableColumn("Descripción");
     @FXML private TableColumn hora = new TableColumn("Hora");
     @FXML private TableColumn atendidoPor = new TableColumn("Atendido por");
+
+    //Eventualidades
     @FXML private TableView tablaEventualidades;
     @FXML private TableColumn eveDescripcion = new TableColumn("Descripcion");
     @FXML private TableColumn eveHora = new TableColumn("Hora");
     @FXML private TableColumn eveAtendidoPor = new TableColumn("Atendido por");
     @FXML private TableColumn eveFecha = new TableColumn("Fecha");
+
+    //Medicinas
+    @FXML private TableView tablaMedicina;
+    @FXML private TableColumn medNombre = new TableColumn("Nombre");
+    @FXML private TableColumn medDescripcion = new TableColumn("Descripcion");
+    @FXML private TableColumn medDosis = new TableColumn("Dosis");
+    @FXML private TableColumn medPrecauciones = new TableColumn("Precacuciones");
+    @FXML private TableColumn medRestantes = new TableColumn("Restantes");
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -281,6 +300,32 @@ public class DocumentController implements Initializable{
         mostrarReportes(diaReporte.getValue());
     }
     @FXML
-    void agregarMedicina(ActionEvent event){}
+    void mostrarMedicinas(){
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String)db.getObject(residenteActual);
+        db.closeDB();
+        Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+        ObservableList<Medicina> medicinas = FXCollections.observableArrayList(res.getMedicinas());
+        medDescripcion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("descripcion"));
+        medDosis.setCellValueFactory(new PropertyValueFactory<Medicina, String>("dosis"));
+        medNombre.setCellValueFactory(new PropertyValueFactory<Medicina, String>("nombre"));
+        medPrecauciones.setCellValueFactory(new PropertyValueFactory<Medicina, String>("precauciones"));
+        medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
+        tablaMedicina.setItems(medicinas);
+    }
+    @FXML
+    void agregarMedicina(ActionEvent event){
+        Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
+                Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
+                Integer.parseInt(nMedDuracion.getText())); //quite fecha de caducidad del constructor
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String)db.getObject(residenteActual);
+        db.closeDB();
+        Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+        System.out.println(medicina.getNombre());
+        res.addMedicina(medicina);
+        ResidenteUtils.modifyResidente(res);
+        mostrarMedicinas();
+    }
 
 }

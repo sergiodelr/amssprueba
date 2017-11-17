@@ -121,7 +121,7 @@
                                                       <TableColumn fx:id="medRestantes" prefWidth="122.0" text="Restantes" />
                                                    </columns>
                                                 </TableView>
-                                                <TextField layoutX="1062.0" layoutY="254.0" prefHeight="31.0" prefWidth="96.0" />
+                                                <TextField fx:id="nMedRestantes" layoutX="1062.0" layoutY="254.0" prefHeight="31.0" prefWidth="96.0" />
                                                 <TextField fx:id="nMedDuracion" layoutX="926.0" layoutY="254.0" prefHeight="31.0" prefWidth="110.0" />
                                                 <TextField fx:id="nMedPrecauciones" layoutX="665.0" layoutY="254.0" prefHeight="31.0" prefWidth="227.0" />
                                                 <TextField fx:id="nMedDescripcion" layoutX="211.0" layoutY="254.0" prefHeight="31.0" prefWidth="260.0" />

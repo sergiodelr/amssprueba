@@ -18,11 +18,11 @@ public class Medicina extends ProductoGenerico{
     @XStreamAlias("type")
     private Date fechaDeCaducidad;
 
-    public Medicina(String nombre, String descripcion, int cantidad, String precauciones, int duracionDias, Date fechaDeCaducidad) {
+    public Medicina(String nombre, String descripcion, int cantidad, String precauciones, int duracionDias) {
         super(nombre, descripcion, cantidad);
         this.precauciones = precauciones;
         this.duracionDias = duracionDias;
-        this.fechaDeCaducidad = fechaDeCaducidad;
+        //this.fechaDeCaducidad = fechaDeCaducidad;
     }
 
     public void modifyDosis(int i, boolean status){

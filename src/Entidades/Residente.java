@@ -2,6 +2,8 @@ package Entidades;
 import Utils.BDUtils;
 import Utils.EntidadSerializableUtils;
 import com.sun.istack.internal.Nullable;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import javafx.util.Pair;
 import com.thoughtworks.xstream.*;
 import java.awt.image.BufferedImage;
@@ -15,21 +17,35 @@ import java.util.*;
 import javax.imageio.ImageIO;
 
 /* para incluir la libreria: https://stackoverflow.com/questions/1051640/correct-way-to-add-external-jars-lib-jar-to-an-intellij-idea-project */
+@XStreamAlias("message")
 public class  Residente{
+    @XStreamAlias("type")
     private BufferedImage image;
+    @XStreamAlias("type")
     private String nombre;
+    @XStreamAlias("type")
     private LocalDate fechaDeNacimiento;
+    @XStreamAlias("type")
     private int numCuarto;
+    @XStreamAlias("type")
     private int numCama;
+    @XStreamAlias("type")
     private int status = 1;
     @Nullable
+    @XStreamAlias("type")
     private LocalDate fechaDefuncion = null;
+    @XStreamAlias("type")
     private String servicioEmergencia;
+    @XStreamAlias("type")
     private String numSeguro;
+    @XStreamImplicit
     private Map<String, String> contactos = new HashMap<>();
+    @XStreamImplicit
     private List<String> condiciones = new ArrayList<>();
     //TODO(@adanvillarreal, @javier96): Los siguientes atributos son de clases pendientes
-    private List<ProductoGenerico> productos;
+    @XStreamImplicit
+    private List<Medicina> medicinas = new ArrayList<>();
+    @XStreamImplicit
     private List<Eventualidad> eventualidades = new ArrayList<>();
     //TODO(@adanvillarreal): Investigar si es la manera adecuada de representar salidas
 
@@ -74,10 +90,6 @@ public class  Residente{
 
     public void addCondicion(String condicion) {
         this.condiciones.add(condicion);
-    }
-
-    public void addProducto(ProductoGenerico productoGenerico) {
-        this.productos.add(productoGenerico);
     }
 
     public void addEventualidad(Eventualidad eventualidad) {
@@ -131,7 +143,12 @@ public class  Residente{
     public List<Eventualidad> getEventualidades(){
         return eventualidades;
     }
-
+    public List<Medicina> getMedicinas(){
+        return this.medicinas;
+    }
+    public void addMedicina(Medicina medicina){
+        (this.medicinas).add(medicina);
+    }
     public void setServicioEmergencia(String servicioEmergencia) {
         this.servicioEmergencia = servicioEmergencia;
     }
