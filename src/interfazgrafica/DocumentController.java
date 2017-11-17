@@ -133,6 +133,7 @@ public class DocumentController implements Initializable{
             reporte = (Reporte) EntidadSerializableUtils.getEntidadFromXml(
                     (String) db.getObject(date.toString()));
         }catch(NullPointerException e){
+            tablaReporte.getItems().clear();
             tablaReporte.refresh();
             db.closeDB();
             return;
@@ -260,7 +261,7 @@ public class DocumentController implements Initializable{
         System.out.println(eventualidades.size());
         System.out.println("ASDASDASDASDASD");
         eveHora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
-        eveFecha.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEventualidad"));
+        eveFecha.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEv15entualidad"));
         eveAtendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
         eveDescripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
         tablaEventualidades.setItems(eventualidades);
@@ -279,5 +280,7 @@ public class DocumentController implements Initializable{
         tablaReporte.getItems().clear();
         mostrarReportes(diaReporte.getValue());
     }
+    @FXML
+    void agregarMedicina(ActionEvent event){}
 
 }
