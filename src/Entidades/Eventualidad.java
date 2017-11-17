@@ -4,6 +4,7 @@ import Utils.BDUtils;
 import Utils.EntidadSerializableUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,13 +18,15 @@ public class Eventualidad {
     @XStreamAlias("type")
     private String residente;
     @XStreamAlias("type")
-    private Date fechaDeEventualidad;
+    private String hora;
+    private LocalDate fechaDeEventualidad;
     public Eventualidad(){}
-    public Eventualidad(String encargado, String descripcion, String residente, Date fechaDeEventualidad) {
+    public Eventualidad(String encargado, String descripcion, String residente, LocalDate fechaDeEventualidad, String hora) {
         this.encargado = encargado;
         this.descripcion = descripcion;
         this.residente = residente;
         this.fechaDeEventualidad = fechaDeEventualidad;
+        this.hora = hora;
         insertToMap("reportes.db");
     }
 
@@ -69,11 +72,15 @@ public class Eventualidad {
         this.residente = residente;
     }
 
-    public Date getFechaDeEventualidad() {
+    public LocalDate getFechaDeEventualidad() {
         return fechaDeEventualidad;
     }
 
-    public void setFechaDeEventualidad(Date fechaDeEventualidad) {
+    public void setFechaDeEventualidad(LocalDate fechaDeEventualidad) {
         this.fechaDeEventualidad = fechaDeEventualidad;
+    }
+
+    public String getHora(){
+        return this.hora;
     }
 }

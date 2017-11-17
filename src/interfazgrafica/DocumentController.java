@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Entidades.Eventualidad;
+import Entidades.Medicina;
+import Utils.ResidenteUtils;
 import Entidades.Reporte;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
@@ -25,6 +27,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -42,18 +46,26 @@ import Utils.EntidadSerializableUtils;
  * @author Adrian
  */
 public class DocumentController implements Initializable{
-    
+
     @FXML private AnchorPane root;
-    
+
     @FXML public static AnchorPane rootP;
 
-    //Alta de resdientes
+    //Alta de residentes
     @FXML private  TextField nuevoResidenteNombre;
     @FXML private  TextField nuevoResidenteFdN;
     @FXML private  TextField nuevoResidenteCuarto;
     @FXML private  TextField nuevoResidenteCama;
     @FXML private  TextField nuevoResidenteSdE;
     @FXML private  TextField nuevoResidenteNumSeguro;
+
+    //Medicinas
+    @FXML private TextField nMedNombre;
+    @FXML private TextField nMedDescripcion;
+    @FXML private TextField nMedDosis;
+    @FXML private TextField nMedDuracion;
+    @FXML private TextField nMedPrecauciones;
+    @FXML private TextField nMedRestantes;
 
     //Perfiles
     @FXML private ChoiceBox choiceBoxResidentes;
@@ -63,7 +75,11 @@ public class DocumentController implements Initializable{
     @FXML private  TextField residenteCama;
     @FXML private  TextField residenteSdE;
     @FXML private  TextField residenteNumSeguro;
-
+    @FXML private  TextField descripcionEventualidad;
+    @FXML private  TextField horaEventualidad;
+    @FXML private  TextField fechaEventualidad;
+    @FXML private  TextField atendidoPorEventualidad;
+    private String residenteActual;
     //Reportes
     @FXML private DatePicker diaReporte;
     @FXML private TableView tablaReporte;
@@ -72,6 +88,22 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn descripcion = new TableColumn("Descripción");
     @FXML private TableColumn hora = new TableColumn("Hora");
     @FXML private TableColumn atendidoPor = new TableColumn("Atendido por");
+
+    //Eventualidades
+    @FXML private TableView tablaEventualidades;
+    @FXML private TableColumn eveDescripcion = new TableColumn("Descripcion");
+    @FXML private TableColumn eveHora = new TableColumn("Hora");
+    @FXML private TableColumn eveAtendidoPor = new TableColumn("Atendido por");
+    @FXML private TableColumn eveFecha = new TableColumn("Fecha");
+
+    //Medicinas
+    @FXML private TableView tablaMedicina;
+    @FXML private TableColumn medNombre = new TableColumn("Nombre");
+    @FXML private TableColumn medDescripcion = new TableColumn("Descripcion");
+    @FXML private TableColumn medDosis = new TableColumn("Dosis");
+    @FXML private TableColumn medPrecauciones = new TableColumn("Precacuciones");
+    @FXML private TableColumn medRestantes = new TableColumn("Restantes");
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*System.out.println("111111");
@@ -79,7 +111,7 @@ public class DocumentController implements Initializable{
             loadSplashScreen();
         }
         rootP = root;*/
-        BDUtils db = new BDUtils("residentes2.db");
+        BDUtils db = new BDUtils("residentes.db");
 
         Map<String,String> dbMap = db.getMap();
         Set<String > sNombres = dbMap.keySet();
@@ -90,7 +122,8 @@ public class DocumentController implements Initializable{
         choiceBoxResidentes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-                mostrarInfo(choiceBoxResidentes.getItems().get((Integer) number2));
+                residenteActual = (String) choiceBoxResidentes.getItems().get((Integer) number2);
+                mostrarInfo(residenteActual);
             }
         });
         db.closeDB();
@@ -107,10 +140,9 @@ public class DocumentController implements Initializable{
     }
 
     private void mostrarReportes(LocalDate fecha) {
-        BDUtils db = new BDUtils("reportes2.db");
+        BDUtils db = new BDUtils("reportes.db");
         System.out.println(fecha.toString());
-        Date date = Date.from(fecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        System.out.println(date.toString());
+        LocalDate date = fecha;
         Map<String, String> map = db.getMap();
         for(Map.Entry<String,String> entry :map.entrySet()){
             System.out.println(entry.getKey());
@@ -120,6 +152,8 @@ public class DocumentController implements Initializable{
             reporte = (Reporte) EntidadSerializableUtils.getEntidadFromXml(
                     (String) db.getObject(date.toString()));
         }catch(NullPointerException e){
+            tablaReporte.getItems().clear();
+            tablaReporte.refresh();
             db.closeDB();
             return;
         }
@@ -128,7 +162,7 @@ public class DocumentController implements Initializable{
         System.out.println(eventualidades.size());
         System.out.println(eventualidades.get(0).getEncargado());
         tablaReporte.setEditable(true);
-        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEventualidad"));
+        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
         residente.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("residente"));
         atendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
         descripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
@@ -136,11 +170,12 @@ public class DocumentController implements Initializable{
 
     }
 
-    private void mostrarInfo(Object nombreResidente) {
-        BDUtils db = new BDUtils("residentes2.db");
-        String objRes = (String) db.getObject((String)nombreResidente);
+    private void mostrarInfo(String nombreResidente) {
+        mostrarEventualidades();
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String) db.getObject(nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
-        String fechaDeNacimiento = new SimpleDateFormat("dd-MM-yyyy").format(res.getFechaDeNacimiento());
+        String fechaDeNacimiento = res.getFechaDeNacimiento().toString();
         residenteFdN.setText(fechaDeNacimiento);
         residenteCuarto.setText(Integer.toString(res.getNumCuarto()));
         residenteCama.setText(Integer.toString(res.getNumCama()));
@@ -168,13 +203,13 @@ public class DocumentController implements Initializable{
             fadeOut.setFromValue(1);
             fadeOut.setToValue(0);
             fadeOut.setCycleCount(1);
-            
+
             fadeIn.play();
             System.out.println("22222");
             fadeIn.setOnFinished((e)->{
                 fadeOut.play();
             });
-            
+
             fadeOut.setOnFinished((e)->{
                 try {
                     AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("Interfaz General.fxml")));
@@ -185,7 +220,7 @@ public class DocumentController implements Initializable{
             });
         }
         catch(IOException ex) {
-                Logger.getLogger(DocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -199,7 +234,7 @@ public class DocumentController implements Initializable{
                 !nuevoResidenteSdE.getText().isEmpty() &&
                 !nuevoResidenteNumSeguro.getText().isEmpty()){
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-            Date date = format.parse(nuevoResidenteFdN.getText());
+            LocalDate date = LocalDate.parse(nuevoResidenteFdN.getText());
             new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
                     Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1);
             nuevoResidenteNombre.clear();
@@ -210,6 +245,87 @@ public class DocumentController implements Initializable{
             nuevoResidenteNumSeguro.clear();
         }
     }
+    @FXML
+    void agregarEventualidad(ActionEvent event) throws ParseException {
+        if(!descripcionEventualidad.getText().isEmpty() &&
+                !horaEventualidad.getText().isEmpty() &&
+                !fechaEventualidad.getText().isEmpty() &&
+                !atendidoPorEventualidad.getText().isEmpty()){
+            SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+            LocalDate date = LocalDate.parse(fechaEventualidad.getText());
 
-    
+            Eventualidad eventualidad = new Eventualidad(atendidoPorEventualidad.getText(),descripcionEventualidad.getText(),residenteActual,date,horaEventualidad.getText());
+
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String) db.getObject(residenteActual);
+            db.closeDB();
+            Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+            res.addEventualidad(eventualidad);
+            ResidenteUtils.modifyResidente(res);
+            mostrarEventualidades();
+            descripcionEventualidad.clear();
+            horaEventualidad.clear();
+            fechaEventualidad.clear();
+            atendidoPorEventualidad.clear();
+        }
+    }
+
+    @FXML
+    void mostrarEventualidades(){
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String) db.getObject(residenteActual);
+        db.closeDB();
+        Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+        ObservableList<Eventualidad> eventualidades = FXCollections.observableArrayList(res.getEventualidades());
+        System.out.println(eventualidades.size());
+        System.out.println("ASDASDASDASDASD");
+        eveHora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
+        eveFecha.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEv15entualidad"));
+        eveAtendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
+        eveDescripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
+        tablaEventualidades.setItems(eventualidades);
+    }
+
+    @FXML
+    void diaAnterior(ActionEvent event){
+        diaReporte.setValue(diaReporte.getValue().minusDays(1L));
+        tablaReporte.getItems().clear();
+        mostrarReportes(diaReporte.getValue());
+    }
+
+    @FXML
+    void diaSiguiente(ActionEvent event){
+        diaReporte.setValue(diaReporte.getValue().plusDays(1L));
+        tablaReporte.getItems().clear();
+        mostrarReportes(diaReporte.getValue());
+    }
+    @FXML
+    void mostrarMedicinas(){
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String)db.getObject(residenteActual);
+        db.closeDB();
+        Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+        ObservableList<Medicina> medicinas = FXCollections.observableArrayList(res.getMedicinas());
+        medDescripcion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("descripcion"));
+        medDosis.setCellValueFactory(new PropertyValueFactory<Medicina, String>("dosis"));
+        medNombre.setCellValueFactory(new PropertyValueFactory<Medicina, String>("nombre"));
+        medPrecauciones.setCellValueFactory(new PropertyValueFactory<Medicina, String>("precauciones"));
+        medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
+        tablaMedicina.setItems(medicinas);
+    }
+    @FXML
+    void agregarMedicina(ActionEvent event){
+        Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
+                Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
+                Integer.parseInt(nMedDuracion.getText())); //quite fecha de caducidad del constructor
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String)db.getObject(residenteActual);
+        db.closeDB();
+        Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+        System.out.println(medicina.getNombre());
+        res.addMedicina(medicina);
+        ResidenteUtils.modifyResidente(res);
+        mostrarMedicinas();
+    }
+
 }

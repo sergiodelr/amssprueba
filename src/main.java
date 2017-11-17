@@ -18,9 +18,6 @@ import java.util.concurrent.ConcurrentMap;
 
 public class main {
     public static void main(String[] args) throws IOException {
-        ResidenteUtils.altaMasiva("src/altaMasiva.csv");
-        BDUtils db = new BDUtils("residentes.db");
-        System.out.println((String) db.getObject("Adan Villarreal"));
-        db.closeDB();
+        ResidenteUtils.altaMasiva("src/Utils/altaMasiva.csv");
     }
 }

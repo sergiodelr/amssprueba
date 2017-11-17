@@ -111,23 +111,23 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="38.0">
+                                                <TableView fx:id="tablaMedicina" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="38.0">
                                                    <columns>
-                                                      <TableColumn prefWidth="177.0" text="Nombre" />
-                                                      <TableColumn minWidth="0.0" prefWidth="285.0" text="Descripción" />
-                                                      <TableColumn prefWidth="162.0" text="Dosis" />
-                                                      <TableColumn prefWidth="261.0" text="Precauciones" />
-                                                      <TableColumn prefWidth="132.0" text="Duración" />
-                                                      <TableColumn prefWidth="122.0" text="Restantes" />
+                                                      <TableColumn fx:id="medNombre" prefWidth="177.0" text="Nombre" />
+                                                      <TableColumn fx:id="medDescripcion" minWidth="0.0" prefWidth="285.0" text="Descripción" />
+                                                      <TableColumn fx:id="medDosis" prefWidth="162.0" text="Dosis" />
+                                                      <TableColumn fx:id="medPrecauciones" prefWidth="261.0" text="Precauciones" />
+                                                      <TableColumn fx:id="medDuracion" prefWidth="132.0" text="Duración" />
+                                                      <TableColumn fx:id="medRestantes" prefWidth="122.0" text="Restantes" />
                                                    </columns>
                                                 </TableView>
-                                                <TextField layoutX="1062.0" layoutY="254.0" prefHeight="31.0" prefWidth="96.0" />
-                                                <TextField layoutX="926.0" layoutY="254.0" prefHeight="31.0" prefWidth="110.0" />
-                                                <TextField layoutX="665.0" layoutY="254.0" prefHeight="31.0" prefWidth="227.0" />
-                                                <TextField layoutX="211.0" layoutY="254.0" prefHeight="31.0" prefWidth="260.0" />
-                                                <TextField layoutX="39.0" layoutY="254.0" prefHeight="31.0" prefWidth="148.0" />
-                                                <TextField layoutX="497.0" layoutY="254.0" prefHeight="31.0" prefWidth="136.0" />
-                                                <Button layoutX="531.0" layoutY="313.0" mnemonicParsing="false" text="Agregar Medicina" />
+                                                <TextField fx:id="nMedRestantes" layoutX="1062.0" layoutY="254.0" prefHeight="31.0" prefWidth="96.0" />
+                                                <TextField fx:id="nMedDuracion" layoutX="926.0" layoutY="254.0" prefHeight="31.0" prefWidth="110.0" />
+                                                <TextField fx:id="nMedPrecauciones" layoutX="665.0" layoutY="254.0" prefHeight="31.0" prefWidth="227.0" />
+                                                <TextField fx:id="nMedDescripcion" layoutX="211.0" layoutY="254.0" prefHeight="31.0" prefWidth="260.0" />
+                                                <TextField fx:id="nMedNombre" layoutX="39.0" layoutY="254.0" prefHeight="31.0" prefWidth="148.0" />
+                                                <TextField fx:id="nMedDosis" layoutX="497.0" layoutY="254.0" prefHeight="31.0" prefWidth="136.0" />
+                                                <Button layoutX="531.0" layoutY="313.0" mnemonicParsing="false" onAction="#agregarMedicina" text="Agregar Medicina" />
                                              </children></AnchorPane>
                                        </content>
                                     </Tab>
@@ -135,25 +135,25 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView layoutX="37.0" layoutY="95.0" prefHeight="200.0" prefWidth="1141.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="40.0">
+                                                <TableView fx:id="tablaEventualidades" layoutX="37.0" layoutY="95.0" prefHeight="200.0" prefWidth="1141.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="40.0">
                                                    <columns>
-                                                      <TableColumn editable="false" minWidth="0.0" prefWidth="183.0" text="Número de eventualidad" />
-                                                      <TableColumn prefWidth="173.0" text="Residente" />
-                                                      <TableColumn prefWidth="342.0" text="Descripción" />
-                                                      <TableColumn prefWidth="129.0" text="Hora" />
-                                                      <TableColumn prefWidth="135.0" text="Fecha" />
-                                                      <TableColumn prefWidth="176.0" text="Atendido por" />
+                                                      <TableColumn fx:id="tablaEventualidad" editable="false" minWidth="0.0" prefWidth="183.0" text="Número de eventualidad" />
+                                                      <TableColumn fx:id="eveResidente" prefWidth="173.0" text="Residente" />
+                                                      <TableColumn fx:id="eveDescripcion" prefWidth="342.0" text="Descripción" />
+                                                      <TableColumn fx:id="eveHora" prefWidth="129.0" text="Hora" />
+                                                      <TableColumn fx:id="eveFecha" prefWidth="135.0" text="Fecha" />
+                                                      <TableColumn fx:id="eveAtendidoPor" prefWidth="176.0" text="Atendido por" />
                                                    </columns>
                                                 </TableView>
-                                                <Button layoutX="519.0" layoutY="318.0" mnemonicParsing="false" text="Agregar Eventualidad" />
-                                                <TextField layoutX="266.0" layoutY="271.0" prefHeight="31.0" prefWidth="222.0" />
-                                                <TextField layoutX="970.0" layoutY="272.0" prefHeight="31.0" prefWidth="176.0" />
+                                                <Button layoutX="519.0" layoutY="318.0" mnemonicParsing="false" onAction="#agregarEventualidad" text="Agregar Eventualidad" />
+                                                <TextField fx:id="descripcionEventualidad" layoutX="266.0" layoutY="271.0" prefHeight="31.0" prefWidth="222.0" />
+                                                <TextField fx:id="atendidoPorEventualidad" layoutX="970.0" layoutY="272.0" prefHeight="31.0" prefWidth="176.0" />
                                                 <Text layoutX="37.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción de la eventualidad: " />
                                                 <Text layoutX="863.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atendido por: " />
-                                                <TextField layoutX="571.0" layoutY="273.0" prefHeight="31.0" prefWidth="82.0" />
+                                                <TextField fx:id="horaEventualidad" layoutX="571.0" layoutY="273.0" prefHeight="31.0" prefWidth="82.0" />
                                                 <Text layoutX="519.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora: " />
                                                 <Text layoutX="682.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha: " />
-                                                <TextField layoutX="738.0" layoutY="272.0" prefHeight="31.0" prefWidth="108.0" />
+                                                <TextField fx:id="fechaEventualidad" layoutX="738.0" layoutY="272.0" prefHeight="31.0" prefWidth="108.0" />
                                                 <Text layoutX="555.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato - hh:mm">
                                                    <font>
                                                       <Font name="System Italic" size="15.0" />
@@ -278,8 +278,8 @@
                               <TableColumn fx:id="atendidoPor" prefWidth="272.0" text="Atendido por" />
                            </columns>
                         </TableView>
-                        <Button layoutX="30.0" layoutY="150.0" mnemonicParsing="false" text="Día anterior" AnchorPane.leftAnchor="30.0" />
-                        <Button layoutX="1063.0" layoutY="150.0" mnemonicParsing="false" text="Día siguiente" AnchorPane.rightAnchor="30.0" />
+                        <Button layoutX="30.0" layoutY="150.0" mnemonicParsing="false" onAction="#diaAnterior" text="Día anterior" AnchorPane.leftAnchor="30.0" />
+                        <Button layoutX="1063.0" layoutY="150.0" mnemonicParsing="false" onAction="#diaSiguiente" text="Día siguiente" AnchorPane.rightAnchor="30.0" />
                         <DatePicker fx:id="diaReporte" layoutX="144.0" layoutY="55.0" />
                      </children></AnchorPane>
                </content>

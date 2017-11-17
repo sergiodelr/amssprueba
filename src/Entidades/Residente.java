@@ -2,37 +2,54 @@ package Entidades;
 import Utils.BDUtils;
 import Utils.EntidadSerializableUtils;
 import com.sun.istack.internal.Nullable;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import javafx.util.Pair;
 import com.thoughtworks.xstream.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 
 
 import javax.imageio.ImageIO;
 
 /* para incluir la libreria: https://stackoverflow.com/questions/1051640/correct-way-to-add-external-jars-lib-jar-to-an-intellij-idea-project */
+@XStreamAlias("message")
 public class  Residente{
+    @XStreamAlias("type")
     private BufferedImage image;
+    @XStreamAlias("type")
     private String nombre;
-    private Date fechaDeNacimiento;
+    @XStreamAlias("type")
+    private LocalDate fechaDeNacimiento;
+    @XStreamAlias("type")
     private int numCuarto;
+    @XStreamAlias("type")
     private int numCama;
+    @XStreamAlias("type")
     private int status = 1;
     @Nullable
-    private Date fechaDefuncion = null;
+    @XStreamAlias("type")
+    private LocalDate fechaDefuncion = null;
+    @XStreamAlias("type")
     private String servicioEmergencia;
+    @XStreamAlias("type")
     private String numSeguro;
+    @XStreamImplicit
     private Map<String, String> contactos = new HashMap<>();
+    @XStreamImplicit
     private List<String> condiciones = new ArrayList<>();
     //TODO(@adanvillarreal, @javier96): Los siguientes atributos son de clases pendientes
-    private List<ProductoGenerico> productos;
-    private List<Eventualidad> eventualidades;
+    @XStreamImplicit
+    private List<Medicina> medicinas = new ArrayList<>();
+    @XStreamImplicit
+    private List<Eventualidad> eventualidades = new ArrayList<>();
     //TODO(@adanvillarreal): Investigar si es la manera adecuada de representar salidas
 
-    public Residente(String nombre, Date fechaDeNacimiento, int numCuarto, int numCama, Date fechaDefuncion, String servicioEmergencia, String numSeguro, int status) throws IOException {
+    public Residente(String nombre, LocalDate fechaDeNacimiento, int numCuarto, int numCama, LocalDate fechaDefuncion, String servicioEmergencia, String numSeguro, int status) throws IOException {
         /*
         try {
             this.image = ImageIO.read(new File(nombre + ".jpg"));
@@ -47,7 +64,7 @@ public class  Residente{
         this.servicioEmergencia = servicioEmergencia;
         this.numSeguro = numSeguro;
         this.status = status;
-        insertToMap("residentes2.db");
+        insertToMap("residentes.db");
     }
     public Residente(){}
 
@@ -75,10 +92,6 @@ public class  Residente{
         this.condiciones.add(condicion);
     }
 
-    public void addProducto(ProductoGenerico productoGenerico) {
-        this.productos.add(productoGenerico);
-    }
-
     public void addEventualidad(Eventualidad eventualidad) {
         this.eventualidades.add(eventualidad);
     }
@@ -91,11 +104,11 @@ public class  Residente{
         this.nombre = nombre;
     }
 
-    public Date getFechaDeNacimiento() {
+    public LocalDate getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
 
-    public void setFechaDeNacimiento(Date fechaDeNacimiento) {
+    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
@@ -115,11 +128,11 @@ public class  Residente{
         this.numCama = numCama;
     }
 
-    public Date getFechaDefuncion() {
+    public LocalDate getFechaDefuncion() {
         return fechaDefuncion;
     }
 
-    public void setFechaDefuncion(Date fechaDefuncion) {
+    public void setFechaDefuncion(LocalDate fechaDefuncion) {
         this.fechaDefuncion = fechaDefuncion;
     }
 
@@ -127,6 +140,15 @@ public class  Residente{
         return servicioEmergencia;
     }
 
+    public List<Eventualidad> getEventualidades(){
+        return eventualidades;
+    }
+    public List<Medicina> getMedicinas(){
+        return this.medicinas;
+    }
+    public void addMedicina(Medicina medicina){
+        (this.medicinas).add(medicina);
+    }
     public void setServicioEmergencia(String servicioEmergencia) {
         this.servicioEmergencia = servicioEmergencia;
     }
