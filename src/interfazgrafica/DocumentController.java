@@ -103,6 +103,8 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn medDosis = new TableColumn("Dosis");
     @FXML private TableColumn medPrecauciones = new TableColumn("Precacuciones");
     @FXML private TableColumn medRestantes = new TableColumn("Restantes");
+    @FXML private TableColumn medDuracion = new TableColumn("Duracion");
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -134,6 +136,7 @@ public class DocumentController implements Initializable{
             {
                 LocalDate fecha = diaReporte.getValue();
                 mostrarReportes(fecha);
+                mostrarMedicinas();
             }
         });
 
@@ -172,6 +175,7 @@ public class DocumentController implements Initializable{
 
     private void mostrarInfo(String nombreResidente) {
         mostrarEventualidades();
+        mostrarMedicinas();
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
@@ -310,14 +314,15 @@ public class DocumentController implements Initializable{
         medDosis.setCellValueFactory(new PropertyValueFactory<Medicina, String>("dosis"));
         medNombre.setCellValueFactory(new PropertyValueFactory<Medicina, String>("nombre"));
         medPrecauciones.setCellValueFactory(new PropertyValueFactory<Medicina, String>("precauciones"));
-        medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
+        medDuracion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
+        medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("cantidad"));
         tablaMedicina.setItems(medicinas);
     }
     @FXML
     void agregarMedicina(ActionEvent event){
         Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
                 Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
-                Integer.parseInt(nMedDuracion.getText())); //quite fecha de caducidad del constructor
+                Integer.parseInt(nMedDuracion.getText()), nMedDosis.getText()); //quite fecha de caducidad del constructor
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String)db.getObject(residenteActual);
         db.closeDB();

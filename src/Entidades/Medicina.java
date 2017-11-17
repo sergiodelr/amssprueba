@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 @XStreamAlias("message")
 public class Medicina extends ProductoGenerico{
-    @XStreamImplicit
-    private ArrayList<Boolean> Dosis = new ArrayList<>(3);
+    @XStreamAlias("type")
+    private String dosis;
     @XStreamAlias("type")
     private String precauciones;
     @Nullable
@@ -18,23 +18,21 @@ public class Medicina extends ProductoGenerico{
     @XStreamAlias("type")
     private Date fechaDeCaducidad;
 
-    public Medicina(String nombre, String descripcion, int cantidad, String precauciones, int duracionDias) {
+    public Medicina(String nombre, String descripcion, int cantidad, String precauciones, int duracionDias,
+                    String dosis) {
         super(nombre, descripcion, cantidad);
         this.precauciones = precauciones;
         this.duracionDias = duracionDias;
+        this.dosis = dosis;
         //this.fechaDeCaducidad = fechaDeCaducidad;
     }
 
-    public void modifyDosis(int i, boolean status){
-        Dosis.set(i, status);
+    public void setDosis(String dosis){
+        this.dosis = dosis;
     }
 
-    public ArrayList<Boolean> getDosis() {
-        return Dosis;
-    }
-
-    public void setDosis(ArrayList<Boolean> dosis) {
-        Dosis = dosis;
+    public String getDosis() {
+        return dosis;
     }
 
     public String getPrecauciones() {
