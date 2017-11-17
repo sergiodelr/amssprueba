@@ -79,8 +79,8 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn descripcion = new TableColumn("Descripción");
     @FXML private TableColumn hora = new TableColumn("Hora");
     @FXML private TableColumn atendidoPor = new TableColumn("Atendido por");
-    @FXML private TableView tablaEventualidad;
-    @FXML private TableColumn eveDescripcion = new TableColumn("Descripción");
+    @FXML private TableView tablaEventualidades;
+    @FXML private TableColumn eveDescripcion = new TableColumn("Descripcion");
     @FXML private TableColumn eveHora = new TableColumn("Hora");
     @FXML private TableColumn eveAtendidoPor = new TableColumn("Atendido por");
     @FXML private TableColumn eveFecha = new TableColumn("Fecha");
@@ -151,6 +151,7 @@ public class DocumentController implements Initializable{
     }
 
     private void mostrarInfo(String nombreResidente) {
+        mostrarEventualidades();
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
@@ -233,7 +234,7 @@ public class DocumentController implements Initializable{
             SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
             LocalDate date = LocalDate.parse(fechaEventualidad.getText());
 
-            Eventualidad eventualidad = new Eventualidad(atendidoPorEventualidad.getText(),descripcionEventualidad.getText(),residenteActual,date,"12:15");
+            Eventualidad eventualidad = new Eventualidad(atendidoPorEventualidad.getText(),descripcionEventualidad.getText(),residenteActual,date,horaEventualidad.getText());
 
             BDUtils db = new BDUtils("residentes.db");
             String objRes = (String) db.getObject(residenteActual);
@@ -241,6 +242,7 @@ public class DocumentController implements Initializable{
             Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
             res.addEventualidad(eventualidad);
             ResidenteUtils.modifyResidente(res);
+            mostrarEventualidades();
             descripcionEventualidad.clear();
             horaEventualidad.clear();
             fechaEventualidad.clear();
@@ -249,20 +251,19 @@ public class DocumentController implements Initializable{
     }
 
     @FXML
-    void mostrarEventualidades(ActionEvent event){
+    void mostrarEventualidades(){
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(residenteActual);
         db.closeDB();
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
         ObservableList<Eventualidad> eventualidades = FXCollections.observableArrayList(res.getEventualidades());
         System.out.println(eventualidades.size());
-        System.out.println(eventualidades.get(0).getEncargado());
-        tablaReporte.setEditable(true);
-        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
-        residente.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("residente"));
-        atendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
-        descripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
-        tablaReporte.setItems(eventualidades);
+        System.out.println("ASDASDASDASDASD");
+        eveHora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
+        eveFecha.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEventualidad"));
+        eveAtendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
+        eveDescripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
+        tablaEventualidades.setItems(eventualidades);
     }
 
     @FXML
