@@ -86,7 +86,7 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="tablaMedicina" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="38.0">
+                                                <TableView fx:id="tablaMedicina" editable="true" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="38.0">
                                                    <columns>
                                                       <TableColumn fx:id="medNombre" prefWidth="177.0" text="Nombre" />
                                                       <TableColumn fx:id="medDescripcion" minWidth="0.0" prefWidth="285.0" text="Descripción" />
@@ -112,12 +112,10 @@
                                              <children>
                                                 <TableView fx:id="tablaEventualidades" layoutX="37.0" layoutY="95.0" prefHeight="200.0" prefWidth="1141.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="40.0">
                                                    <columns>
-                                                      <TableColumn fx:id="tablaEventualidad" editable="false" minWidth="0.0" prefWidth="183.0" text="Número de eventualidad" />
-                                                      <TableColumn fx:id="eveResidente" prefWidth="173.0" text="Residente" />
-                                                      <TableColumn fx:id="eveDescripcion" prefWidth="342.0" text="Descripción" />
-                                                      <TableColumn fx:id="eveHora" prefWidth="129.0" text="Hora" />
-                                                      <TableColumn fx:id="eveFecha" prefWidth="135.0" text="Fecha" />
-                                                      <TableColumn fx:id="eveAtendidoPor" prefWidth="176.0" text="Atendido por" />
+                                                      <TableColumn fx:id="eveDescripcion" prefWidth="518.9999923706055" text="Descripción" />
+                                                      <TableColumn fx:id="eveHora" prefWidth="99.0" text="Hora" />
+                                                      <TableColumn fx:id="eveFecha" prefWidth="175.0" text="Fecha" />
+                                                      <TableColumn fx:id="eveAtendidoPor" prefWidth="343.0" text="Atendido por" />
                                                    </columns>
                                                 </TableView>
                                                 <TextField fx:id="descripcionEventualidad" layoutX="266.0" layoutY="271.0" prefHeight="31.0" prefWidth="222.0" />
@@ -129,12 +127,12 @@
                                                 <Text layoutX="863.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atendido por: " />
                                                 <Text layoutX="519.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora: " />
                                                 <Text layoutX="682.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha: " />
-                                                <Text layoutX="555.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato - hh:mm">
+                                                <Text layoutX="555.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="      hh:mm">
                                                    <font>
                                                       <Font name="System Italic" size="15.0" />
                                                    </font>
                                                 </Text>
-                                                <Text layoutX="713.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato - dd/mm/aaaa">
+                                                <Text layoutX="713.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     aaaa-mm-dd">
                                                    <font>
                                                       <Font name="System Italic" size="15.0" />
                                                    </font>
