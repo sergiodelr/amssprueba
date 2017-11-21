@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.ConcurrentMap;
@@ -79,6 +80,7 @@ public class DocumentController implements Initializable{
     @FXML private  TextField horaEventualidad;
     @FXML private  TextField fechaEventualidad;
     @FXML private  TextField atendidoPorEventualidad;
+    @FXML private TextField residenteCondiciones;
     private String residenteActual;
     //Reportes
     @FXML private DatePicker diaReporte;
@@ -179,12 +181,15 @@ public class DocumentController implements Initializable{
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
-        String fechaDeNacimiento = res.getFechaDeNacimiento().toString();
+        Period period = Period.between(res.getFechaDeNacimiento(), LocalDate.now());
+        String fechaDeNacimiento = String.valueOf(period.getYears());
         residenteFdN.setText(fechaDeNacimiento);
         residenteCuarto.setText(Integer.toString(res.getNumCuarto()));
         residenteCama.setText(Integer.toString(res.getNumCama()));
         residenteSdE.setText(res.getServicioEmergencia());
         residenteNumSeguro.setText(res.getNumSeguro());
+        String condiciones = Arrays.toString(res.getCondiciones().toArray());
+        residenteCondiciones.setText(condiciones.substring(1, condiciones.length()-1));
         db.closeDB();
     }
 
