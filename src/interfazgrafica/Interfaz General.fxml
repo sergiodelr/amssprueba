@@ -28,16 +28,16 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="1200.0">
                      <children>
                         <Text layoutX="30.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Días para que se acabe el medicamento" wrappingWidth="263.6708984375" />
-                        <TextField layoutX="329.0" layoutY="50.0" prefHeight="31.0" prefWidth="56.0" />
-                        <TableView layoutX="30.0" layoutY="138.0" prefHeight="200.0" prefWidth="526.0" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                        <TextField fx:id="diasConsulta" layoutX="329.0" layoutY="50.0" prefHeight="31.0" prefWidth="56.0" />
+                        <TableView fx:id="tablaNotificacion" layoutX="30.0" layoutY="138.0" prefHeight="200.0" prefWidth="526.0" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
                           <columns>
-                            <TableColumn prefWidth="219.0" text="Nombre" />
-                            <TableColumn minWidth="0.0" prefWidth="130.0" text="Cuarto" />
-                              <TableColumn prefWidth="144.0" text="Cama" />
-                              <TableColumn prefWidth="226.0" text="Días Restantes" />
-                              <TableColumn prefWidth="152.0" text="Contacto" />
-                              <TableColumn prefWidth="156.0" text="Teléfono" />
-                              <TableColumn prefWidth="112.0" text="Llamada" />
+                            <TableColumn fx:id="conResidente" prefWidth="219.0" text="Nombre" />
+                              <TableColumn fx:id="conMedicamento" prefWidth="112.0" text="Medicamento" />
+                            <TableColumn fx:id="conCuarto" minWidth="0.0" prefWidth="130.0" text="Cuarto" />
+                              <TableColumn fx:id="conCama" prefWidth="144.0" text="Cama" />
+                              <TableColumn fx:id="conDiasRestantes" prefWidth="226.0" text="Días Restantes" />
+                              <TableColumn fx:id="conContacto" prefWidth="152.0" text="Contacto" />
+                              <TableColumn fx:id="conTelefono" prefWidth="156.0" text="Teléfono" />
                           </columns>
                         </TableView>
                      </children>
@@ -106,7 +106,7 @@
                                                 <Button layoutX="531.0" layoutY="313.0" mnemonicParsing="false" onAction="#agregarMedicina" text="Agregar Medicina" />
                                                 <Label layoutX="38.0" layoutY="244.0" text="Nombre:" />
                                                 <Label layoutX="214.0" layoutY="244.0" text="Descripción:" />
-                                                <Label layoutX="497.0" layoutY="244.0" text="Dosis (Mañana,Tarde,Noche):" />
+                                                <Label layoutX="497.0" layoutY="244.0" text="Dosis (M T N):" />
                                                 <Label layoutX="669.0" layoutY="244.0" text="Precauciones:" />
                                                 <Label layoutX="926.0" layoutY="244.0" text="Duración (Días):" />
                                                 <Label layoutX="1064.0" layoutY="244.0" text="Cantidad:" />
@@ -270,7 +270,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="34.0" layoutY="90.0" mnemonicParsing="false" text="Alta masiva" AnchorPane.leftAnchor="34.0" />
+                        <Button layoutX="34.0" layoutY="90.0" mnemonicParsing="false" onAction="#altaMasiva" text="Alta masiva" AnchorPane.leftAnchor="34.0" />
                         <GridPane layoutX="34.0" layoutY="210.0" prefHeight="398.0" prefWidth="875.0" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="34.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="NEVER" maxWidth="204.0" minWidth="10.0" prefWidth="204.0" />
