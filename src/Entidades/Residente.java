@@ -56,6 +56,7 @@ public class  Residente{
         } catch(IOException e){
             this.image = ImageIO.read(new File("generic.jpg"));
         }*/
+        System.out.println("residente constructor");
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.numCuarto = numCuarto;
@@ -141,7 +142,7 @@ public class  Residente{
     }
 
     public List<Eventualidad> getEventualidades(){
-        return eventualidades;
+        return this.eventualidades;
     }
     public List<Medicina> getMedicinas(){
         return this.medicinas;
@@ -159,5 +160,17 @@ public class  Residente{
 
     public void setNumSeguro(String numSeguro) {
         this.numSeguro = numSeguro;
+    }
+
+    public String getFirstContacto(){
+        Map.Entry<String,String> entry = contactos.entrySet().iterator().next();
+        String key = entry.getKey();
+        return key;
+    }
+
+    public String getFirstTelefono() {
+        Map.Entry<String,String> entry = contactos.entrySet().iterator().next();
+        String value = entry.getValue();
+        return value;
     }
 }

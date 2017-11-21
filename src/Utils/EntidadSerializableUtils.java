@@ -10,7 +10,7 @@ public class EntidadSerializableUtils {
     }
     public static Object getEntidadFromXml(String xml){
        XStream xstream = new XStream((new StaxDriver()));
-        System.out.println("xml"+xml);
+       //System.out.println(xml);
        return xstream.fromXML(xml);
     }
 
