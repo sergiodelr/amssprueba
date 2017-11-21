@@ -1,6 +1,9 @@
 package interfazgrafica;
 
 import static interfazgrafica.DocumentController.rootP;
+import static java.time.temporal.ChronoUnit.DAYS;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -14,10 +17,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Entidades.Eventualidad;
-import Entidades.Medicina;
+import Entidades.*;
 import Utils.ResidenteUtils;
-import Entidades.Reporte;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,10 +35,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 import javafx.event.ActionEvent;
-import Entidades.Residente;
 
 import Utils.BDUtils;
 import Utils.EntidadSerializableUtils;
@@ -107,14 +108,30 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn medRestantes = new TableColumn("Restantes");
     @FXML private TableColumn medDuracion = new TableColumn("Duracion");
 
+    //Notificaciones
+    @FXML private TableView tablaNotificacion;
+    @FXML private TextField diasConsulta;
+    @FXML private TableColumn conResidente = new TableColumn("Residente");
+    @FXML private TableColumn conMedicamento = new TableColumn("Medicamento");
+    @FXML private TableColumn conCuarto = new TableColumn("Cuarto");
+    @FXML private TableColumn conCama = new TableColumn("Cama");
+    @FXML private TableColumn conDiasRestantes = new TableColumn("Días Restantes");
+    @FXML private TableColumn conContacto = new TableColumn("Contacto");
+    @FXML private TableColumn conTelefono = new TableColumn("Telefono");
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        /*System.out.println("111111");
-        if(!InterfazGrafica.isLoaded){
-            loadSplashScreen();
-        }
-        rootP = root;*/
+    public void actualizarMedicinas(){
+        mostrarMedicinas();
+        nMedNombre.clear();
+        nMedDescripcion.clear();
+        nMedDosis.clear();
+        nMedPrecauciones.clear();
+        nMedDuracion.clear();
+        nMedRestantes.clear();
+    }
+
+    public void initializeUtils(){
+        System.out.println("initializeUtils");
+
         BDUtils db = new BDUtils("residentes.db");
 
         Map<String,String> dbMap = db.getMap();
@@ -123,22 +140,45 @@ public class DocumentController implements Initializable{
         ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
 
         choiceBoxResidentes.setItems(olNombres);
-        choiceBoxResidentes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-                residenteActual = (String) choiceBoxResidentes.getItems().get((Integer) number2);
-                mostrarInfo(residenteActual);
-            }
-        });
+
         db.closeDB();
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        /*System.out.println("111111");
+        if(!InterfazGrafica.isLoaded){
+            loadSplashScreen();
+        }
+        rootP = root;*/
+        initializeUtils();
+
         diaReporte.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
             {
+                System.out.println("diaReporte: handle");
                 LocalDate fecha = diaReporte.getValue();
                 mostrarReportes(fecha);
-                mostrarMedicinas();
+                //mostrarMedicinas(); //para que?
+            }
+        });
+
+        diasConsulta.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                int a = Integer.parseInt(diasConsulta.getText());
+                consultaGeneral(a);
+            }
+        });
+
+        choiceBoxResidentes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                residenteActual = (String) choiceBoxResidentes.getItems().get((Integer) number2);
+                mostrarInfo(residenteActual);
             }
         });
 
@@ -149,9 +189,11 @@ public class DocumentController implements Initializable{
         System.out.println(fecha.toString());
         LocalDate date = fecha;
         Map<String, String> map = db.getMap();
+        System.out.println("todas las fechas son");
         for(Map.Entry<String,String> entry :map.entrySet()){
-            System.out.println(entry.getKey());
+            System.out.print(entry.getKey()+" ");
         }
+        System.out.println();
         Reporte reporte;
         try {
             reporte = (Reporte) EntidadSerializableUtils.getEntidadFromXml(
@@ -159,15 +201,14 @@ public class DocumentController implements Initializable{
         }catch(NullPointerException e){
             tablaReporte.getItems().clear();
             tablaReporte.refresh();
-            db.closeDB();
+            db.closeDB(); //esto es necesario?
             return;
         }
         db.closeDB();
         ObservableList<Eventualidad> eventualidades = FXCollections.observableArrayList(reporte.getEventualidads());
-        System.out.println(eventualidades.size());
-        System.out.println(eventualidades.get(0).getEncargado());
+        System.out.println("Tamaño de reportes" + eventualidades.size());
         tablaReporte.setEditable(true);
-        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
+        hora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora")); //NOMBRES DE VARIABLES
         residente.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("residente"));
         atendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
         descripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
@@ -178,6 +219,7 @@ public class DocumentController implements Initializable{
     private void mostrarInfo(String nombreResidente) {
         mostrarEventualidades();
         mostrarMedicinas();
+        //mostrarPendientes()
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
@@ -236,7 +278,7 @@ public class DocumentController implements Initializable{
     @FXML
     void altaIndividual(ActionEvent event) throws ParseException, IOException {
 
-        System.out.println("click");
+        System.out.println("altaIndividual");
         if(!nuevoResidenteNombre.getText().isEmpty() && !nuevoResidenteFdN.getText().isEmpty() &&
                 !nuevoResidenteCuarto.getText().isEmpty() &&
                 !nuevoResidenteCama.getText().isEmpty() &&
@@ -283,13 +325,13 @@ public class DocumentController implements Initializable{
     void mostrarEventualidades(){
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(residenteActual);
+        System.out.println("mostrar eventualidades " + residenteActual);
         db.closeDB();
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
         ObservableList<Eventualidad> eventualidades = FXCollections.observableArrayList(res.getEventualidades());
-        System.out.println(eventualidades.size());
-        System.out.println("ASDASDASDASDASD");
+        System.out.println("Numero de eventualidades " + eventualidades.size());
         eveHora.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("hora"));
-        eveFecha.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEv15entualidad"));
+        eveFecha.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("fechaDeEventualidad"));
         eveAtendidoPor.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("encargado"));
         eveDescripcion.setCellValueFactory(new PropertyValueFactory<Eventualidad, String>("descripcion"));
         tablaEventualidades.setItems(eventualidades);
@@ -327,7 +369,7 @@ public class DocumentController implements Initializable{
     void agregarMedicina(ActionEvent event){
         Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
                 Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
-                Integer.parseInt(nMedDuracion.getText()), nMedDosis.getText()); //quite fecha de caducidad del constructor
+                Integer.parseInt(nMedDuracion.getText()), nMedDosis.getText(), residenteActual); //quite fecha de caducidad del constructor
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String)db.getObject(residenteActual);
         db.closeDB();
@@ -335,7 +377,104 @@ public class DocumentController implements Initializable{
         System.out.println(medicina.getNombre());
         res.addMedicina(medicina);
         ResidenteUtils.modifyResidente(res);
-        mostrarMedicinas();
+
+        //actualizar y limpiar (Se usará en Modificar y Eliminar)
+        actualizarMedicinas();
+
+    }
+
+    //modificar medicina
+    @FXML
+    void modificarMedicina(ActionEvent event){ //recibe un index
+        System.out.println("modificar medicina");
+        if(tablaMedicina.getSelectionModel().getSelectedItem() != null){
+            System.out.println();
+            Medicina med = (Medicina) tablaNotificacion.getSelectionModel().getSelectedItem();
+            System.out.println(med.getResidente());
+        }else{
+            System.out.println("No hay nada seleccionado");
+        }
+    }
+    //eliminar medicina
+    @FXML
+    void eliminarMedicina(ActionEvent event){ //recibe un index
+
+    }
+
+    @FXML
+    void altaMasiva(ActionEvent event){
+        System.out.println("file Browser");
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files","*.csv"));
+        File f = fc.showOpenDialog(null);
+
+        if(f != null){
+            //System.out.println(f.getAbsolutePath());
+            String aux = f.getAbsolutePath();
+            System.out.println(aux);
+            try{
+                ResidenteUtils.altaMasiva(aux);
+            }catch(IOException e){
+                System.out.println("Error");
+            }
+        }
+        initializeUtils(); // para que se updatee la tabla de residentes en Perfiles
+    }
+
+    @FXML
+    void consultaGeneral(int a){
+        System.out.println("consulta de medicinas dias = " + a);
+
+        BDUtils db = new BDUtils("residentes.db");
+
+        Map<String,String> dbMap = db.getMap();
+        List<String> residentesXML = new ArrayList<String>(); //XML de los residentes
+        String aux, aux2;
+
+        for(Map.Entry<String,String> entry :dbMap.entrySet()){
+            aux = (String)entry.getValue();
+            residentesXML.add(aux);
+        }
+
+        db.closeDB();
+
+        Residente res;
+        Medicina med;
+        List<Medicina> medicinas = new ArrayList<>();
+        List<Notificacion> notificaciones = new ArrayList<>();
+
+        for(int i= 0; i<residentesXML.size(); i++){
+            aux = residentesXML.get(i);
+            res = (Residente) EntidadSerializableUtils.getEntidadFromXml(aux);
+
+            medicinas = res.getMedicinas();
+            //System.out.println(res.getNombre() + " " + medicinas.size());
+            for(int j = 0; j < medicinas.size(); j++){
+                med = medicinas.get(j);
+
+                long diasRestantes = med.getDiasRestantes();
+
+                if(diasRestantes <= a){ //si se acaba antes de 'a' días
+                    System.out.println();
+                    aux = res.getFirstContacto();
+                    aux2 = res.getFirstTelefono();
+                    Notificacion not = new Notificacion(res.getNombre(), med.getNombre(), res.getNumCama(), res.getNumCuarto(), diasRestantes, aux, aux2);
+                    notificaciones.add(not);
+                }
+            }
+        }
+
+        ObservableList<Notificacion> notTabla = FXCollections.observableArrayList(notificaciones);
+        tablaNotificacion.setEditable(true);
+        conResidente.setCellValueFactory(new PropertyValueFactory<Notificacion, String>("residente")); //NOMBRES DE VARIABLES
+        conMedicamento.setCellValueFactory(new PropertyValueFactory<Notificacion, String>("medicamento"));
+        conCuarto.setCellValueFactory(new PropertyValueFactory<Notificacion, Integer>("cuarto"));
+        conCama.setCellValueFactory(new PropertyValueFactory<Notificacion, Integer>("cama"));
+        conDiasRestantes.setCellValueFactory(new PropertyValueFactory<Notificacion, Long>("diasRestantes"));
+        conContacto.setCellValueFactory(new PropertyValueFactory<Notificacion, String>("contacto"));
+        conTelefono.setCellValueFactory(new PropertyValueFactory<Notificacion, String>("telefono"));
+        tablaNotificacion.setItems(notTabla);
+
     }
 
 }

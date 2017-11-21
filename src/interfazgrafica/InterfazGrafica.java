@@ -5,7 +5,10 @@
  */
 package interfazgrafica;
 
+import Entidades.Medicina;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +29,7 @@ import Utils.BDUtils;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
@@ -37,30 +41,24 @@ import java.util.concurrent.ConcurrentMap;
  * @author Adrian
  */
 public class InterfazGrafica extends Application {
-    
-    public static Boolean isLoaded = false;
-    
-   @Override
-    public void start(Stage stage) throws Exception {
-        System.out.println("00000");
 
+    public static Boolean isLoaded = false;
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        System.out.println("start");
         Parent root = FXMLLoader.load(getClass().getResource("Interfaz General.fxml"));
-       System.out.println("KHA");
+        System.out.println("start2");
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.setTitle("Prototipo Beta");
-
         stage.show();
-        
-
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException{
-
         launch(args);
     }
 
