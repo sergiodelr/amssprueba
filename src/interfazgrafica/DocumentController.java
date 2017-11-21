@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.ConcurrentMap;
@@ -79,6 +80,7 @@ public class DocumentController implements Initializable{
     @FXML private  TextField horaEventualidad;
     @FXML private  TextField fechaEventualidad;
     @FXML private  TextField atendidoPorEventualidad;
+    @FXML private TextField residenteCondiciones;
     private String residenteActual;
     //Reportes
     @FXML private DatePicker diaReporte;
@@ -103,6 +105,8 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn medDosis = new TableColumn("Dosis");
     @FXML private TableColumn medPrecauciones = new TableColumn("Precacuciones");
     @FXML private TableColumn medRestantes = new TableColumn("Restantes");
+    @FXML private TableColumn medDuracion = new TableColumn("Duracion");
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -134,6 +138,7 @@ public class DocumentController implements Initializable{
             {
                 LocalDate fecha = diaReporte.getValue();
                 mostrarReportes(fecha);
+                mostrarMedicinas();
             }
         });
 
@@ -172,15 +177,19 @@ public class DocumentController implements Initializable{
 
     private void mostrarInfo(String nombreResidente) {
         mostrarEventualidades();
+        mostrarMedicinas();
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(nombreResidente);
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
-        String fechaDeNacimiento = res.getFechaDeNacimiento().toString();
+        Period period = Period.between(res.getFechaDeNacimiento(), LocalDate.now());
+        String fechaDeNacimiento = String.valueOf(period.getYears());
         residenteFdN.setText(fechaDeNacimiento);
         residenteCuarto.setText(Integer.toString(res.getNumCuarto()));
         residenteCama.setText(Integer.toString(res.getNumCama()));
         residenteSdE.setText(res.getServicioEmergencia());
         residenteNumSeguro.setText(res.getNumSeguro());
+        String condiciones = Arrays.toString(res.getCondiciones().toArray());
+        residenteCondiciones.setText(condiciones.substring(1, condiciones.length()-1));
         db.closeDB();
     }
 
@@ -310,14 +319,15 @@ public class DocumentController implements Initializable{
         medDosis.setCellValueFactory(new PropertyValueFactory<Medicina, String>("dosis"));
         medNombre.setCellValueFactory(new PropertyValueFactory<Medicina, String>("nombre"));
         medPrecauciones.setCellValueFactory(new PropertyValueFactory<Medicina, String>("precauciones"));
-        medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
+        medDuracion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
+        medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("cantidad"));
         tablaMedicina.setItems(medicinas);
     }
     @FXML
     void agregarMedicina(ActionEvent event){
         Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
                 Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
-                Integer.parseInt(nMedDuracion.getText())); //quite fecha de caducidad del constructor
+                Integer.parseInt(nMedDuracion.getText()), nMedDosis.getText()); //quite fecha de caducidad del constructor
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String)db.getObject(residenteActual);
         db.closeDB();

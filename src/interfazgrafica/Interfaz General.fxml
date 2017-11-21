@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -60,7 +61,7 @@
                         </ImageView>
                         <AnchorPane layoutX="5.0" layoutY="333.0" prefHeight="200.0" prefWidth="1194.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
                            <children>
-                              <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TabPane layoutY="-42.0" prefHeight="463.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-42.0">
                                 <tabs>
                                   <Tab text="Pendientes">
                                        <content>
@@ -82,52 +83,33 @@
                                              </children>
                                           </AnchorPane>
                                        </content></Tab>
-                                  <Tab text="Productos">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <TableView layoutX="30.0" layoutY="38.0" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="38.0">
-                                                   <columns>
-                                                      <TableColumn prefWidth="177.0" text="Nombre" />
-                                                      <TableColumn minWidth="0.0" prefWidth="285.0" text="Descripción" />
-                                                      <TableColumn prefWidth="162.0" text="Dosis" />
-                                                      <TableColumn prefWidth="261.0" text="Precauciones" />
-                                                      <TableColumn prefWidth="132.0" text="Duración" />
-                                                      <TableColumn prefWidth="122.0" text="Restantes" />
-                                                   </columns>
-                                                </TableView>
-                                                <TextField layoutX="45.0" layoutY="257.0" prefHeight="31.0" prefWidth="148.0" />
-                                                <TextField layoutX="216.0" layoutY="257.0" prefHeight="31.0" prefWidth="262.0" />
-                                                <TextField layoutX="664.0" layoutY="257.0" prefHeight="31.0" prefWidth="239.0" />
-                                                <TextField layoutX="930.0" layoutY="257.0" prefHeight="31.0" prefWidth="105.0" />
-                                                <TextField layoutX="1059.0" layoutY="257.0" prefHeight="31.0" prefWidth="101.0" />
-                                                <Button layoutX="531.0" layoutY="314.0" mnemonicParsing="false" text="Agregar Producto" />
-                                                <TextField layoutX="502.0" layoutY="257.0" prefHeight="31.0" prefWidth="136.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                  </Tab>
                                     <Tab text="Medicinas">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="tablaMedicina" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="38.0">
+                                                <TableView fx:id="tablaMedicina" editable="true" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="38.0">
                                                    <columns>
                                                       <TableColumn fx:id="medNombre" prefWidth="177.0" text="Nombre" />
                                                       <TableColumn fx:id="medDescripcion" minWidth="0.0" prefWidth="285.0" text="Descripción" />
-                                                      <TableColumn fx:id="medDosis" prefWidth="162.0" text="Dosis" />
+                                                      <TableColumn fx:id="medDosis" prefWidth="162.0" text="Dosis (M T N)" />
                                                       <TableColumn fx:id="medPrecauciones" prefWidth="261.0" text="Precauciones" />
-                                                      <TableColumn fx:id="medDuracion" prefWidth="132.0" text="Duración" />
-                                                      <TableColumn fx:id="medRestantes" prefWidth="122.0" text="Restantes" />
+                                                      <TableColumn fx:id="medDuracion" prefWidth="132.0" text="Duración (Dias)" />
+                                                      <TableColumn fx:id="medRestantes" prefWidth="122.0" text="Cantidad" />
                                                    </columns>
                                                 </TableView>
-                                                <TextField fx:id="nMedRestantes" layoutX="1062.0" layoutY="254.0" prefHeight="31.0" prefWidth="96.0" />
-                                                <TextField fx:id="nMedDuracion" layoutX="926.0" layoutY="254.0" prefHeight="31.0" prefWidth="110.0" />
-                                                <TextField fx:id="nMedPrecauciones" layoutX="665.0" layoutY="254.0" prefHeight="31.0" prefWidth="227.0" />
-                                                <TextField fx:id="nMedDescripcion" layoutX="211.0" layoutY="254.0" prefHeight="31.0" prefWidth="260.0" />
-                                                <TextField fx:id="nMedNombre" layoutX="39.0" layoutY="254.0" prefHeight="31.0" prefWidth="148.0" />
-                                                <TextField fx:id="nMedDosis" layoutX="497.0" layoutY="254.0" prefHeight="31.0" prefWidth="136.0" />
+                                                <TextField fx:id="nMedNombre" layoutX="38.0" layoutY="270.0" prefHeight="31.0" prefWidth="148.0" />
+                                                <TextField fx:id="nMedDescripcion" layoutX="214.0" layoutY="270.0" prefHeight="31.0" prefWidth="260.0" />
+                                                <TextField fx:id="nMedDosis" layoutX="497.0" layoutY="270.0" prefHeight="31.0" prefWidth="136.0" />
+                                                <TextField fx:id="nMedPrecauciones" layoutX="669.0" layoutY="270.0" prefHeight="31.0" prefWidth="227.0" />
+                                                <TextField fx:id="nMedDuracion" layoutX="926.0" layoutY="270.0" prefHeight="31.0" prefWidth="110.0" />
+                                                <TextField fx:id="nMedRestantes" layoutX="1064.0" layoutY="270.0" prefHeight="31.0" prefWidth="96.0" />
                                                 <Button layoutX="531.0" layoutY="313.0" mnemonicParsing="false" onAction="#agregarMedicina" text="Agregar Medicina" />
+                                                <Label layoutX="38.0" layoutY="244.0" text="Nombre:" />
+                                                <Label layoutX="214.0" layoutY="244.0" text="Descripción:" />
+                                                <Label layoutX="497.0" layoutY="244.0" text="Dosis (Mañana,Tarde,Noche):" />
+                                                <Label layoutX="669.0" layoutY="244.0" text="Precauciones:" />
+                                                <Label layoutX="926.0" layoutY="244.0" text="Duración (Días):" />
+                                                <Label layoutX="1064.0" layoutY="244.0" text="Cantidad:" />
                                              </children></AnchorPane>
                                        </content>
                                     </Tab>
@@ -137,29 +119,27 @@
                                              <children>
                                                 <TableView fx:id="tablaEventualidades" layoutX="37.0" layoutY="95.0" prefHeight="200.0" prefWidth="1141.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="40.0">
                                                    <columns>
-                                                      <TableColumn fx:id="tablaEventualidad" editable="false" minWidth="0.0" prefWidth="183.0" text="Número de eventualidad" />
-                                                      <TableColumn fx:id="eveResidente" prefWidth="173.0" text="Residente" />
-                                                      <TableColumn fx:id="eveDescripcion" prefWidth="342.0" text="Descripción" />
-                                                      <TableColumn fx:id="eveHora" prefWidth="129.0" text="Hora" />
-                                                      <TableColumn fx:id="eveFecha" prefWidth="135.0" text="Fecha" />
-                                                      <TableColumn fx:id="eveAtendidoPor" prefWidth="176.0" text="Atendido por" />
+                                                      <TableColumn fx:id="eveDescripcion" prefWidth="518.9999923706055" text="Descripción" />
+                                                      <TableColumn fx:id="eveHora" prefWidth="99.0" text="Hora" />
+                                                      <TableColumn fx:id="eveFecha" prefWidth="175.0" text="Fecha" />
+                                                      <TableColumn fx:id="eveAtendidoPor" prefWidth="343.0" text="Atendido por" />
                                                    </columns>
                                                 </TableView>
-                                                <Button layoutX="519.0" layoutY="318.0" mnemonicParsing="false" onAction="#agregarEventualidad" text="Agregar Eventualidad" />
                                                 <TextField fx:id="descripcionEventualidad" layoutX="266.0" layoutY="271.0" prefHeight="31.0" prefWidth="222.0" />
+                                                <TextField fx:id="horaEventualidad" layoutX="571.0" layoutY="273.0" prefHeight="31.0" prefWidth="82.0" />
+                                                <TextField fx:id="fechaEventualidad" layoutX="738.0" layoutY="272.0" prefHeight="31.0" prefWidth="108.0" />
                                                 <TextField fx:id="atendidoPorEventualidad" layoutX="970.0" layoutY="272.0" prefHeight="31.0" prefWidth="176.0" />
+                                                <Button layoutX="519.0" layoutY="318.0" mnemonicParsing="false" onAction="#agregarEventualidad" text="Agregar Eventualidad" />
                                                 <Text layoutX="37.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción de la eventualidad: " />
                                                 <Text layoutX="863.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atendido por: " />
-                                                <TextField fx:id="horaEventualidad" layoutX="571.0" layoutY="273.0" prefHeight="31.0" prefWidth="82.0" />
                                                 <Text layoutX="519.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora: " />
                                                 <Text layoutX="682.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha: " />
-                                                <TextField fx:id="fechaEventualidad" layoutX="738.0" layoutY="272.0" prefHeight="31.0" prefWidth="108.0" />
-                                                <Text layoutX="555.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato - hh:mm">
+                                                <Text layoutX="555.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="      hh:mm">
                                                    <font>
                                                       <Font name="System Italic" size="15.0" />
                                                    </font>
                                                 </Text>
-                                                <Text layoutX="713.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato - dd/mm/aaaa">
+                                                <Text layoutX="713.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     aaaa-mm-dd">
                                                    <font>
                                                       <Font name="System Italic" size="15.0" />
                                                    </font>
@@ -167,11 +147,30 @@
                                              </children></AnchorPane>
                                        </content>
                                     </Tab>
+                                    <Tab text="Familiares">
+                                       <content>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <TableView layoutX="100.0" layoutY="98.0" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="40.0">
+                                                   <columns>
+                                                      <TableColumn prefWidth="437.0" text="Familiar" />
+                                                      <TableColumn prefWidth="262.0" text="Teléfono" />
+                                                   </columns>
+                                                </TableView>
+                                                <Button layoutX="521.0" layoutY="317.0" mnemonicParsing="false" text="Agregar Familiar" />
+                                                <Label layoutX="264.0" layoutY="278.0" text="Familiar:" />
+                                                <Label layoutX="640.0" layoutY="278.0" text="Teléfono:" />
+                                                <TextField layoutX="339.0" layoutY="271.0" prefHeight="31.0" prefWidth="261.0" />
+                                                <TextField layoutX="725.0" layoutY="271.0" prefHeight="31.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </Tab>
                                 </tabs>
                               </TabPane>
                            </children>
                         </AnchorPane>
-                        <GridPane layoutX="38.0" layoutY="89.0" prefHeight="191.0" prefWidth="760.0">
+                        <GridPane layoutX="39.0" layoutY="88.0" prefHeight="132.0" prefWidth="760.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="NEVER" maxWidth="204.0" minWidth="10.0" prefWidth="115.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="243.0" />
@@ -179,7 +178,6 @@
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="195.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -205,32 +203,23 @@
                                     <Insets right="40.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Familiar:" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" />
-                                 </GridPane.margin>
-                              </Text>
                               <TextField fx:id="residenteFdN" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets right="40.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="residenteNumSeguro" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <TextField fx:id="residenteSdE" GridPane.columnIndex="3" />
+                              <TextField fx:id="residenteNumSeguro" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="3">
+                              <TextField fx:id="residenteCondiciones" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seguro:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seguro:" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
@@ -240,26 +229,19 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono:" GridPane.columnIndex="2">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Servicio de emergencia: " GridPane.columnIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
-                              <TextField GridPane.columnIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Servicio de emergencia: " GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" />
-                                 </GridPane.margin>
-                              </Text>
-                              <TextField fx:id="residenteSdE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condiciones:" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condiciones:" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
                            </children>
                         </GridPane>
-                        <Button disable="true" layoutX="337.0" layoutY="300.0" mnemonicParsing="false" text="Guardar cambios" />
+                        <Button disable="true" layoutX="336.0" layoutY="227.0" mnemonicParsing="false" text="Guardar cambios" />
                      </children>
                   </AnchorPane>
             </content>
@@ -337,11 +319,6 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Servicio de emergencia:" GridPane.rowIndex="4" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de nacimiento:" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seguro:" GridPane.rowIndex="5" />
-                              <Button mnemonicParsing="false" onAction="#altaIndividual" text="Alta individual" GridPane.rowIndex="6">
-                                 <GridPane.margin>
-                                    <Insets top="10.0" />
-                                 </GridPane.margin>
-                              </Button>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Familiar responsable:" GridPane.columnIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
@@ -353,6 +330,11 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
+                              <Button mnemonicParsing="false" onAction="#altaIndividual" text="Alta individual" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets top="10.0" />
+                                 </GridPane.margin>
+                              </Button>
                               <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>

@@ -56,6 +56,7 @@ public class  Residente{
         } catch(IOException e){
             this.image = ImageIO.read(new File("generic.jpg"));
         }*/
+        System.out.println("Residente");
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.numCuarto = numCuarto;
@@ -159,5 +160,9 @@ public class  Residente{
 
     public void setNumSeguro(String numSeguro) {
         this.numSeguro = numSeguro;
+    }
+
+    public List<String> getCondiciones(){
+        return this.condiciones;
     }
 }
