@@ -50,12 +50,12 @@ public class  Residente{
     //TODO(@adanvillarreal): Investigar si es la manera adecuada de representar salidas
 
     public Residente(String nombre, LocalDate fechaDeNacimiento, int numCuarto, int numCama, LocalDate fechaDefuncion, String servicioEmergencia, String numSeguro, int status) throws IOException {
-        /*
+
         try {
             this.image = ImageIO.read(new File(nombre + ".jpg"));
         } catch(IOException e){
             this.image = ImageIO.read(new File("generic.jpg"));
-        }*/
+        }
         System.out.println("Residente");
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
