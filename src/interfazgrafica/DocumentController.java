@@ -194,6 +194,7 @@ public class DocumentController implements Initializable{
     }
 
 
+
     private void loadSplashScreen() {
         System.out.println("112111");
 
