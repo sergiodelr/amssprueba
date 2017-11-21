@@ -57,6 +57,7 @@ public class  Residente{
             this.image = ImageIO.read(new File("generic.jpg"));
         }*/
         System.out.println("residente constructor");
+
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.numCuarto = numCuarto;
@@ -172,5 +173,9 @@ public class  Residente{
         Map.Entry<String,String> entry = contactos.entrySet().iterator().next();
         String value = entry.getValue();
         return value;
+    }
+    public List<String> getCondiciones(){
+        return this.condiciones;
+
     }
 }

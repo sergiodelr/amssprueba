@@ -214,7 +214,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <TextField fx:id="residenteCondiciones" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>

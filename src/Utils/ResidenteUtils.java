@@ -29,6 +29,10 @@ public class ResidenteUtils {
             for(int i = 0; i < contactos.size(); i++){
                 temp.addContacto(contactos.get(i), numeros.get(i));
             }
+            List<String> condiciones = new ArrayList<>(Arrays.asList(row[10].split(",")));
+            for(int i = 0; i < condiciones.size(); i++){
+                temp.addCondicion(condiciones.get(i));
+            }
             modifyResidente(temp);
         }
     }
