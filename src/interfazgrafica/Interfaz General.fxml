@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazgrafica.DocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazgrafica.DocumentController">
    <children>
       <TabPane prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -138,11 +138,11 @@
                                                       <TableColumn fx:id="famTelefono" prefWidth="262.0" text="Teléfono" />
                                                    </columns>
                                                 </TableView>
-                                                <Button layoutX="521.0" layoutY="317.0" mnemonicParsing="false" text="Agregar Familiar" />
+                                                <Button layoutX="521.0" layoutY="317.0" mnemonicParsing="false" onAction="#agregarFamiliar" text="Agregar Familiar" />
                                                 <Label layoutX="264.0" layoutY="278.0" text="Familiar:" />
                                                 <Label layoutX="640.0" layoutY="278.0" text="Teléfono:" />
-                                                <TextField layoutX="339.0" layoutY="271.0" prefHeight="31.0" prefWidth="261.0" />
-                                                <TextField layoutX="725.0" layoutY="271.0" prefHeight="31.0" />
+                                                <TextField fx:id="nFamNombre" layoutX="339.0" layoutY="271.0" prefHeight="31.0" prefWidth="261.0" />
+                                                <TextField fx:id="nFamTelefono" layoutX="725.0" layoutY="271.0" prefHeight="31.0" />
                                              </children>
                                           </AnchorPane>
                                        </content>
@@ -222,6 +222,7 @@
                               </Text>
                            </children>
                         </GridPane>
+                        <Button layoutX="356.0" layoutY="266.0" mnemonicParsing="false" onAction="#modificarResidente" text="Guardar Cambios" />
                      </children>
                   </AnchorPane>
                </content>

@@ -47,6 +47,8 @@ import javafx.event.ActionEvent;
 import Utils.BDUtils;
 import Utils.EntidadSerializableUtils;
 
+import javax.swing.*;
+
 
 /**
  *
@@ -123,6 +125,8 @@ public class DocumentController implements Initializable{
     @FXML private TableView tablaFamiliares;
     @FXML private TableColumn famNombre = new TableColumn("Nombre");
     @FXML private TableColumn famTelefono = new TableColumn("Teléfono");
+    @FXML private TextField nFamNombre;
+    @FXML private TextField nFamTelefono;
 
     //Notificaciones
     @FXML private TableView tablaNotificacion;
@@ -660,4 +664,54 @@ public class DocumentController implements Initializable{
         ResidenteUtils.modifyResidente(res);
         actualizarMedicinas();
     }
+
+
+    @FXML
+    void agregarFamiliar(){
+        System.out.println("hola");
+        if(nFamNombre.getText().isEmpty() || nFamTelefono.getText().isEmpty()){ //alguno esta vacio
+            System.out.println("Llene todos los campos");
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+        }else{
+
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String)db.getObject(residenteActual);
+            db.closeDB();
+
+            Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+            res.addContacto(nFamNombre.getText(), nFamTelefono.getText());
+            ResidenteUtils.modifyResidente(res);
+
+            mostrarFamiliares();
+            nFamNombre.clear();
+            nFamTelefono.clear();
+        }
+    }
+
+    @FXML
+    void modificarResidente(){
+        if(residenteCuarto.getText().isEmpty() || residenteCama.getText().isEmpty() || residenteSdE.getText().isEmpty() ||
+                residenteNumSeguro.getText().isEmpty() || residenteCondiciones.getText().isEmpty()    ){ //alguno esta vacio
+            System.out.println("Llene todos los campos");
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+        }else{
+
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String)db.getObject(residenteActual);
+            db.closeDB();
+
+            Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+            res.setNumCuarto( Integer.parseInt(residenteCuarto.getText()) );
+            res.setNumCama( Integer.parseInt(residenteCama.getText()) );
+            res.setServicioEmergencia(residenteSdE.getText());
+            res.setNumSeguro(residenteNumSeguro.getText() );
+            res.setCondiciones(residenteCondiciones.getText() );
+            ResidenteUtils.modifyResidente(res);
+
+        }
+    }
+
+
+
+
 }
