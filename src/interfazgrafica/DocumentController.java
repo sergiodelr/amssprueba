@@ -679,7 +679,6 @@ public class DocumentController implements Initializable{
             System.out.println("dar de baja a " + residenteActual);
             BDUtils db = new BDUtils("residentes.db");
 
-
             residenteActual = "";
             residenteCuarto.clear();
             residenteCama.clear();
@@ -700,8 +699,6 @@ public class DocumentController implements Initializable{
             db.deleteObject(residenteActual);
             choiceBoxResidentes.setItems(olNombres);
             db.closeDB();
-
-
         }else{
             System.out.println("Seleccione un residente para dar de baja");
             JOptionPane.showMessageDialog(null, "Seleccione un residente para dar de baja");

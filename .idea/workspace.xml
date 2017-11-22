@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$11.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$9.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reportes.db" afterPath="$PROJECT_DIR$/reportes.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/residentes.db" afterPath="$PROJECT_DIR$/residentes.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" afterPath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -105,8 +97,8 @@
       <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="700" column="12" lean-forward="false" selection-start-line="700" selection-start-column="12" selection-end-line="700" selection-end-column="12" />
+            <state relative-caret-position="142">
+              <caret line="698" column="45" lean-forward="true" selection-start-line="698" selection-start-column="45" selection-end-line="698" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5992#6000#0" expanded="true" />
@@ -114,7 +106,7 @@
                 <element signature="e#22357#22365#0" expanded="true" />
                 <element signature="e#22436#22446#0" expanded="true" />
                 <element signature="e#24016#24024#0" expanded="true" />
-                <element signature="e#30134#30142#0" expanded="true" />
+                <element signature="e#30133#30141#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -724,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511368350786</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Dar de baja semifuncional">
+      <created>1511376171930</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1511376171930</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -850,7 +849,8 @@
     <MESSAGE value="Intento de mergear" />
     <MESSAGE value="Agregar Familiar&#10;Modificar datos de Residente&#10;Dialog Boxes" />
     <MESSAGE value="Agregar Familiar&#10;Modificar datos de Residente&#10;Dialog Boxes&#10;&#10;Más actualizado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregar Familiar&#10;Modificar datos de Residente&#10;Dialog Boxes&#10;&#10;Más actualizado" />
+    <MESSAGE value="Dar de baja semifuncional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dar de baja semifuncional" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -900,7 +900,7 @@
             <element signature="e#22357#22365#0" expanded="true" />
             <element signature="e#22436#22446#0" expanded="true" />
             <element signature="e#24016#24024#0" expanded="true" />
-            <element signature="e#30134#30142#0" expanded="true" />
+            <element signature="e#30133#30141#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -959,7 +959,7 @@
             <element signature="e#22357#22365#0" expanded="true" />
             <element signature="e#22436#22446#0" expanded="true" />
             <element signature="e#24016#24024#0" expanded="true" />
-            <element signature="e#30134#30142#0" expanded="true" />
+            <element signature="e#30133#30141#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1278,8 +1278,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="700" column="12" lean-forward="false" selection-start-line="700" selection-start-column="12" selection-end-line="700" selection-end-column="12" />
+        <state relative-caret-position="142">
+          <caret line="698" column="45" lean-forward="true" selection-start-line="698" selection-start-column="45" selection-end-line="698" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5992#6000#0" expanded="true" />
@@ -1287,7 +1287,7 @@
             <element signature="e#22357#22365#0" expanded="true" />
             <element signature="e#22436#22446#0" expanded="true" />
             <element signature="e#24016#24024#0" expanded="true" />
-            <element signature="e#30134#30142#0" expanded="true" />
+            <element signature="e#30133#30141#0" expanded="true" />
           </folding>
         </state>
       </provider>
