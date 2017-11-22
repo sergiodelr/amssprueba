@@ -448,8 +448,8 @@ public class DocumentController implements Initializable{
     }
 
     @FXML
-    void consultaGeneral(int a){
-        System.out.println("consulta de medicinas dias = " + a);
+    void consultaGeneral(int numDias){
+        System.out.println("consulta de medicinas dias = " + numDias);
 
         BDUtils db = new BDUtils("residentes.db");
 
@@ -480,7 +480,7 @@ public class DocumentController implements Initializable{
 
                 long diasRestantes = med.getDiasRestantes();
 
-                if(diasRestantes <= a){ //si se acaba antes de 'a' días
+                if(diasRestantes <= numDias){ //si se acaba antes de 'a' días
                     System.out.println();
                     aux = res.getFirstContacto();
                     aux2 = res.getFirstTelefono();
