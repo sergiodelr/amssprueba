@@ -34,7 +34,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableColumn.CellEditEvent;
+
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -383,10 +386,78 @@ public class DocumentController implements Initializable{
         Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
         ObservableList<Medicina> medicinas = FXCollections.observableArrayList(res.getMedicinas());
         medDescripcion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("descripcion"));
+
+        medDescripcion.setCellFactory(TextFieldTableCell.forTableColumn());
+        medDescripcion.setOnEditCommit(
+                new EventHandler<CellEditEvent<Medicina, String>>() {
+                    @Override
+                    public void handle(CellEditEvent<Medicina, String> t) {
+                        System.out.println("commit");
+                        Medicina m = (Medicina) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow());
+                        m.setDescripcion(t.getNewValue());
+                        System.out.println(m.getDescripcion());
+                        res.deleteMedicina(m.getNombre());
+                        res.addMedicina(m);
+                        ResidenteUtils.modifyResidente(res);
+                    }
+                }
+        );
+
         medDosis.setCellValueFactory(new PropertyValueFactory<Medicina, String>("dosis"));
+
+        medDosis.setCellFactory(TextFieldTableCell.forTableColumn());
+        medDosis.setOnEditCommit(
+                new EventHandler<CellEditEvent<Medicina, String>>() {
+                    @Override
+                    public void handle(CellEditEvent<Medicina, String> t) {
+                        System.out.println("commit");
+                        Medicina m = (Medicina) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow());
+                        m.setDosis(t.getNewValue());
+                        res.deleteMedicina(m.getNombre());
+                        res.addMedicina(m);
+                        ResidenteUtils.modifyResidente(res);
+                    }
+                }
+        );
+
         medNombre.setCellValueFactory(new PropertyValueFactory<Medicina, String>("nombre"));
         medPrecauciones.setCellValueFactory(new PropertyValueFactory<Medicina, String>("precauciones"));
+
+        medPrecauciones.setCellFactory(TextFieldTableCell.forTableColumn());
+        medPrecauciones.setOnEditCommit(
+                new EventHandler<CellEditEvent<Medicina, String>>() {
+                    @Override
+                    public void handle(CellEditEvent<Medicina, String> t) {
+                        System.out.println("commit");
+                        Medicina m = (Medicina) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow());
+                        m.setPrecauciones(t.getNewValue());
+                        res.deleteMedicina(m.getNombre());
+                        res.addMedicina(m);
+                        ResidenteUtils.modifyResidente(res);
+                    }
+                }
+        );
+
         medDuracion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
+
+        /*medDuracion.setCellFactory(TextFieldTableCell.forTableColumn());
+        medDuracion.setOnEditCommit(
+                new EventHandler<CellEditEvent<Medicina, String>>() {
+                    @Override
+                    public void handle(CellEditEvent<Medicina, String> t) {
+                        System.out.println("commit");
+                        Medicina m = (Medicina) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow());
+                        m.setDuracionDias(Integer.parseInt(t.getNewValue()));
+                        res.deleteMedicina(m.getNombre());
+                        res.addMedicina(m);
+                        ResidenteUtils.modifyResidente(res);
+                    }
+                }
+        );*/
         medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("cantidad"));
         tablaMedicina.setItems(medicinas);
     }
