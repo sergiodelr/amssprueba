@@ -1,3 +1,4 @@
+//Tradicional
 package interfazgrafica;
 
 import static interfazgrafica.DocumentController.rootP;
@@ -95,7 +96,7 @@ public class DocumentController implements Initializable{
     @FXML private  TextField atendidoPorEventualidad;
     @FXML private TextField residenteCondiciones;
     @FXML private ImageView imgResidente;
-    private String residenteActual;
+    private String residenteActual = "";
     //Reportes
     @FXML private DatePicker diaReporte;
     @FXML private TableView tablaReporte;
@@ -154,14 +155,11 @@ public class DocumentController implements Initializable{
         System.out.println("initializeUtils");
 
         BDUtils db = new BDUtils("residentes.db");
-
         Map<String,String> dbMap = db.getMap();
         Set<String > sNombres = dbMap.keySet();
         ArrayList<String> nombres = new ArrayList<String>(sNombres);
         ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
-
         choiceBoxResidentes.setItems(olNombres);
-
         db.closeDB();
     }
     @Override
@@ -266,45 +264,6 @@ public class DocumentController implements Initializable{
             System.out.println("excepcion: sin imagen");
         }
 
-        residenteCama.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                res.setNumCama(Integer.parseInt(residenteCama.getText()));
-                ResidenteUtils.modifyResidente(res);
-            }
-        });
-
-        residenteCuarto.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                res.setNumCuarto(Integer.parseInt(residenteCuarto.getText()));
-                ResidenteUtils.modifyResidente(res);
-            }
-        });
-
-        residenteNumSeguro.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                res.setNumSeguro(residenteNumSeguro.getText());
-                ResidenteUtils.modifyResidente(res);
-            }
-        });
-
-        residenteSdE.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                res.setServicioEmergencia(residenteSdE.getText());
-                ResidenteUtils.modifyResidente(res);
-            }
-        });
-
-        residenteCondiciones.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                res.setCondiciones(residenteCondiciones.getText());
-                ResidenteUtils.modifyResidente(res);
-            }
-        });
     }
 
     private void loadSplashScreen() {
@@ -514,7 +473,7 @@ public class DocumentController implements Initializable{
     void agregarMedicina(ActionEvent event){
 
         if(nMedNombre.getText().isEmpty() || nMedDescripcion.getText().isEmpty() || nMedDuracion.getText().isEmpty() ||
-                nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty() || nMedDuracion.getText().isEmpty()){
+                nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty() || nMedRestantes.getText().isEmpty()){
             System.out.println("Llene todos los campos");
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }else {
@@ -711,7 +670,41 @@ public class DocumentController implements Initializable{
             res.setNumSeguro(residenteNumSeguro.getText() );
             res.setCondiciones(residenteCondiciones.getText() );
             ResidenteUtils.modifyResidente(res);
+        }
+    }
 
+    @FXML
+    void bajaResidente(){
+        if(residenteActual != ""){
+            System.out.println("dar de baja a " + residenteActual);
+            BDUtils db = new BDUtils("residentes.db");
+
+
+            residenteActual = "";
+            residenteCuarto.clear();
+            residenteCama.clear();
+            residenteFdN.clear();
+            residenteSdE.clear();
+            residenteNumSeguro.clear();
+            residenteCondiciones.clear();
+            tablaMedicina.getItems().clear();
+            tablaNotificacion.getItems().clear();
+            tablaFamiliares.getItems().clear();
+            imgResidente.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
+            //choiceBoxResidentes.getItems().clear();
+            Map<String,String> dbMap = db.getMap();
+            Set<String > sNombres = dbMap.keySet();
+            ArrayList<String> nombres = new ArrayList<String>(sNombres);
+            ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
+            choiceBoxResidentes.getItems().clear();
+            db.deleteObject(residenteActual);
+            choiceBoxResidentes.setItems(olNombres);
+            db.closeDB();
+
+
+        }else{
+            System.out.println("Seleccione un residente para dar de baja");
+            JOptionPane.showMessageDialog(null, "Seleccione un residente para dar de baja");
         }
     }
 
