@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazgrafica.DocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazgrafica.DocumentController">
    <children>
       <TabPane prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -90,7 +90,6 @@
                                                 <Label layoutX="669.0" layoutY="244.0" text="Precauciones:" />
                                                 <Label layoutX="926.0" layoutY="244.0" text="Duración (Días):" />
                                                 <Label layoutX="1064.0" layoutY="244.0" text="Cantidad:" />
-                                                <Button layoutX="530.0" layoutY="339.0" mnemonicParsing="false" text="Modificar" />
                                                 <Button layoutX="769.0" layoutY="339.0" mnemonicParsing="false" text="Eliminar" />
                                              </children></AnchorPane>
                                        </content>
@@ -152,7 +151,7 @@
                               </TabPane>
                            </children>
                         </AnchorPane>
-                        <GridPane layoutX="39.0" layoutY="88.0" prefHeight="132.0" prefWidth="760.0">
+                        <GridPane layoutX="41.0" layoutY="98.0" prefHeight="132.0" prefWidth="760.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="NEVER" maxWidth="204.0" minWidth="10.0" prefWidth="115.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="243.0" />
@@ -223,7 +222,6 @@
                               </Text>
                            </children>
                         </GridPane>
-                        <Button disable="true" layoutX="336.0" layoutY="227.0" mnemonicParsing="false" text="Guardar cambios" />
                      </children>
                   </AnchorPane>
                </content>

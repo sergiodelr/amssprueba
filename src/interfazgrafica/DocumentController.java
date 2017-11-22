@@ -278,7 +278,21 @@ public class DocumentController implements Initializable{
             }
         });
 
+        residenteSdE.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                res.setServicioEmergencia(residenteSdE.getText());
+                ResidenteUtils.modifyResidente(res);
+            }
+        });
 
+        residenteCondiciones.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                res.setCondiciones(residenteCondiciones.getText());
+                ResidenteUtils.modifyResidente(res);
+            }
+        });
     }
 
     private void loadSplashScreen() {
