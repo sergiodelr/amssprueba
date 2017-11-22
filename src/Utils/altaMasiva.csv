@@ -1,15 +1,15 @@
-Nombre,D�a,Mes,A�o,Cuarto,Cama,Servicio de Emergencia,N�mero de Seguro,Contactos,N�meros de Contactos,Condiciones
-Javier De la Garza,25,4,1996,1,2,EME,12364918,Pedro,8446598245,"Asma, Cancer"
-Adri�n Silva M�ndez,8,8,1998,2,1,EME,9698423,Hal,8446598744,Artritis
-Hector Morales,6,6,1996,3,1,ABBA,23849283,"Antonio, Javier","8446598145, 8446998745","Artritis, Cancer"
-Huitzilopochtli,7,7,1997,4,1,ABBA,20347239,Jos� Mar�a,8436598745,"Sinusitis, arritmia"
-Sor Juana In�s de la Cruz,1,1,1991,5,1,AIG,197987323,Benito,9827342398,"Alergia, hipersensibilidad"
-Miguel de Cervantes,2,2,1992,6,1,AXA,9823492,Roberto G�mez,823492347,Depresion
-Plutarco El�as Calles,3,3,1993,7,2,AXA,283740297,Eduardo,2565624563,
-Cuitlahuac,4,4,1994,8,2,INBURSA,25465673,Jaime,245627626,
-Jos� Mar�a Morelos,5,5,1995,9,1,INBURSA,9273762,Mauricio,73652573672,
-L�zaro C�rdenas,6,6,1996,10,1,ATLAS,12349356,Martha,256153652,
-Diego Rivera,7,7,1997,12,1,ATLAS,453828265,Yolanda,26543652736,
-Frida Kahlo,8,8,1998,13,1,AIG,2456245625,Olga,2456367256,
-Jos� Ibarg�engoitia,9,9,1999,14,1,AIG,467836573,Nora,465154256,
-Emiliano Zapata,10,10,1990,15,1,EMME,589451873,Diana,2562573652,
+Nombre,D�a,Mes,A�o,Cuarto,Cama,Servicio de Emergencia,N�mero de Seguro,Contactos,N�meros de Contactos,Condiciones,Imagen
+Javier De la Garza,25,4,1996,1,2,EME,12364918,Pedro,8446598245,"Asma, Cancer",/home/avillarreal/Documents/me.png
+Adri�n Silva M�ndez,8,8,1998,2,1,EME,9698423,Hal,8446598744,Artritis,/home/avillarreal/Documents/me.png
+Hector Morales,6,6,1996,3,1,ABBA,23849283,"Antonio, Javier","8446598145, 8446998745","Artritis, Cancer",
+Huitzilopochtli,7,7,1997,4,1,ABBA,20347239,Jos� Mar�a,8436598745,"Sinusitis, arritmia",
+Sor Juana In�s de la Cruz,1,1,1991,5,1,AIG,197987323,Benito,9827342398,"Alergia, hipersensibilidad",
+Miguel de Cervantes,2,2,1992,6,1,AXA,9823492,Roberto G�mez,823492347,Depresion,
+Plutarco El�as Calles,3,3,1993,7,2,AXA,283740297,Eduardo,2565624563,,
+Cuitlahuac,4,4,1994,8,2,INBURSA,25465673,Jaime,245627626,,
+Jos� Mar�a Morelos,5,5,1995,9,1,INBURSA,9273762,Mauricio,73652573672,,
+L�zaro C�rdenas,6,6,1996,10,1,ATLAS,12349356,Martha,256153652,,
+Diego Rivera,7,7,1997,12,1,ATLAS,453828265,Yolanda,26543652736,,
+Frida Kahlo,8,8,1998,13,1,AIG,2456245625,Olga,2456367256,,
+Jos� Ibarg�engoitia,9,9,1999,14,1,AIG,467836573,Nora,465154256,,
+Emiliano Zapata,10,10,1990,15,1,EMME,589451873,Diana,2562573652,,

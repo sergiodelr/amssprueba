@@ -17,6 +17,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.ImageView;
 import Entidades.*;
 import Utils.ResidenteUtils;
 import javafx.animation.FadeTransition;
@@ -33,6 +35,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -42,6 +45,7 @@ import javafx.event.ActionEvent;
 
 import Utils.BDUtils;
 import Utils.EntidadSerializableUtils;
+
 
 /**
  *
@@ -54,6 +58,8 @@ public class DocumentController implements Initializable{
     @FXML public static AnchorPane rootP;
 
     //Alta de residentes
+    private String imgPath = "";
+    @FXML private ImageView imagenPreview;
     @FXML private  TextField nuevoResidenteNombre;
     @FXML private  TextField nuevoResidenteFdN;
     @FXML private  TextField nuevoResidenteCuarto;
@@ -82,6 +88,7 @@ public class DocumentController implements Initializable{
     @FXML private  TextField fechaEventualidad;
     @FXML private  TextField atendidoPorEventualidad;
     @FXML private TextField residenteCondiciones;
+    @FXML private ImageView imgResidente;
     private String residenteActual;
     //Reportes
     @FXML private DatePicker diaReporte;
@@ -118,6 +125,7 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn conDiasRestantes = new TableColumn("Días Restantes");
     @FXML private TableColumn conContacto = new TableColumn("Contacto");
     @FXML private TableColumn conTelefono = new TableColumn("Telefono");
+
 
     public void actualizarMedicinas(){
         mostrarMedicinas();
@@ -174,6 +182,7 @@ public class DocumentController implements Initializable{
             }
         });
 
+
         choiceBoxResidentes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
@@ -222,6 +231,7 @@ public class DocumentController implements Initializable{
         //mostrarPendientes()
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(nombreResidente);
+        db.closeDB();
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
         Period period = Period.between(res.getFechaDeNacimiento(), LocalDate.now());
         String fechaDeNacimiento = String.valueOf(period.getYears());
@@ -232,7 +242,13 @@ public class DocumentController implements Initializable{
         residenteNumSeguro.setText(res.getNumSeguro());
         String condiciones = Arrays.toString(res.getCondiciones().toArray());
         residenteCondiciones.setText(condiciones.substring(1, condiciones.length()-1));
-        db.closeDB();
+        try {
+            imgResidente.setImage(SwingFXUtils.toFXImage(res.getImage(), null));
+        }catch(Exception e){
+            imgResidente.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
+            System.out.println("CACHA ESTaaaaa");
+        }
+
     }
 
 
@@ -287,14 +303,22 @@ public class DocumentController implements Initializable{
                 !nuevoResidenteNumSeguro.getText().isEmpty()){
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             LocalDate date = LocalDate.parse(nuevoResidenteFdN.getText());
-            new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
-                    Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1);
+            if(!imgPath.isEmpty()) {
+                Residente residente = new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
+                        Integer.parseInt(nuevoResidenteCama.getText()), null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(), 1, imgPath);
+            }
+            else {
+                Residente residente = new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
+                        Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1, "Old Man.jpg");
+            }
+
             nuevoResidenteNombre.clear();
             nuevoResidenteFdN.clear();
             nuevoResidenteCuarto.clear();
             nuevoResidenteCama.clear();
             nuevoResidenteSdE.clear();
             nuevoResidenteNumSeguro.clear();
+            initializeUtils();
         }
     }
     @FXML
@@ -402,6 +426,7 @@ public class DocumentController implements Initializable{
 
     }
 
+
     @FXML
     void altaMasiva(ActionEvent event){
         System.out.println("file Browser");
@@ -477,5 +502,21 @@ public class DocumentController implements Initializable{
         tablaNotificacion.setItems(notTabla);
 
     }
+    @FXML
+    void seleccionarImagen(){
+        System.out.println("file Browser");
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("ImageFiles","*.jpg","*.png", "*.jpeg"));
+        File f = fc.showOpenDialog(null);
 
+        if(f != null){
+            //System.out.println(f.getAbsolutePath());
+            String aux = f.getAbsolutePath();
+            System.out.println(aux);
+            Image image = new Image(new File(aux).toURI().toString());
+            imgPath = aux;
+            imagenPreview.setImage(image);
+
+        }
+    }
 }
