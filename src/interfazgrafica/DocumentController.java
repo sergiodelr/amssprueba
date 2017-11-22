@@ -442,6 +442,7 @@ public class DocumentController implements Initializable{
         tablaReporte.getItems().clear();
         mostrarReportes(diaReporte.getValue());
     }
+
     @FXML
     void mostrarMedicinas(){
         BDUtils db = new BDUtils("residentes.db");
@@ -513,7 +514,7 @@ public class DocumentController implements Initializable{
     void agregarMedicina(ActionEvent event){
 
         if(nMedNombre.getText().isEmpty() || nMedDescripcion.getText().isEmpty() || nMedDuracion.getText().isEmpty() ||
-                nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty()){
+                nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty() || nMedDuracion.getText().isEmpty()){
             System.out.println("Llene todos los campos");
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }else {
@@ -533,25 +534,6 @@ public class DocumentController implements Initializable{
             actualizarMedicinas();
 
         }
-
-    }
-
-    //modificar medicina
-    @FXML
-    void modificarMedicina(ActionEvent event){ //recibe un index
-        System.out.println("modificar medicina");
-        if(tablaMedicina.getSelectionModel().getSelectedItem() != null){
-            System.out.println();
-            Medicina med = (Medicina) tablaNotificacion.getSelectionModel().getSelectedItem();
-            System.out.println(med.getResidente());
-        }else{
-            System.out.println("No hay nada seleccionado");
-            JOptionPane.showMessageDialog(null, "No hay nada seleccionado");
-        }
-    }
-    //eliminar medicina
-    @FXML
-    void eliminarMedicina(ActionEvent event){ //recibe un index
 
     }
 
@@ -732,8 +714,5 @@ public class DocumentController implements Initializable{
 
         }
     }
-
-
-
 
 }
