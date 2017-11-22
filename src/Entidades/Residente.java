@@ -41,23 +41,22 @@ public class  Residente{
     private String numSeguro;
     @XStreamImplicit
     private Map<String, String> contactos = new HashMap<>();
-    @XStreamImplicit
-    private List<String> condiciones = new ArrayList<>();
-    //TODO(@adanvillarreal, @javier96): Los siguientes atributos son de clases pendientes
+    @XStreamAlias("type")
+    private String condiciones = "";
     @XStreamImplicit
     private List<Medicina> medicinas = new ArrayList<>();
     @XStreamImplicit
     private List<Eventualidad> eventualidades = new ArrayList<>();
-    //TODO(@adanvillarreal): Investigar si es la manera adecuada de representar salidas
 
-    public Residente(String nombre, LocalDate fechaDeNacimiento, int numCuarto, int numCama, LocalDate fechaDefuncion, String servicioEmergencia, String numSeguro, int status) throws IOException {
+    public Residente(String nombre, LocalDate fechaDeNacimiento, int numCuarto, int numCama, LocalDate fechaDefuncion,
+                     String servicioEmergencia, String numSeguro, int status) throws IOException {
         /*
         try {
             this.image = ImageIO.read(new File(nombre + ".jpg"));
         } catch(IOException e){
             this.image = ImageIO.read(new File("generic.jpg"));
         }*/
-        System.out.println("residente constructor");
+        System.out.println("residente constructor2");
 
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
@@ -69,7 +68,9 @@ public class  Residente{
         this.status = status;
         insertToMap("residentes.db");
     }
-    public Residente(String nombre, LocalDate fechaDeNacimiento, int numCuarto, int numCama, LocalDate fechaDefuncion, String servicioEmergencia, String numSeguro, int status, String image) throws IOException {
+    public Residente(String nombre, LocalDate fechaDeNacimiento, int numCuarto, int numCama, LocalDate fechaDefuncion,
+                     String servicioEmergencia, String numSeguro, int status, String image, String condiciones,
+                     String contactos, String telefonos) throws IOException {
         System.out.println(image);
         this.image = ImageIO.read(new File(image).toURI().toURL());
         System.out.println("residente constructor");
@@ -82,6 +83,18 @@ public class  Residente{
         this.servicioEmergencia = servicioEmergencia;
         this.numSeguro = numSeguro;
         this.status = status;
+
+
+        List<String> Lcontactos = new ArrayList<>(Arrays.asList(contactos.split(" , ")));
+        List<String> Lnumeros = new ArrayList<>(Arrays.asList(telefonos.split(" , ")));
+
+        for(int i = 0; i < Lcontactos.size(); i++){
+            this.addContacto(Lcontactos.get(i), Lnumeros.get(i));
+        }
+
+        this.setCondiciones(condiciones);
+
+
         insertToMap("residentes.db");
     }
     public Residente(){}
@@ -106,9 +119,10 @@ public class  Residente{
         this.contactos.put(contacto, telefono);
     }
 
-    public void addCondicion(String condicion) {
-        this.condiciones.add(condicion);
+    public void setCondiciones(String condiciones) {
+        this.condiciones = condiciones;
     }
+
 
     public void addEventualidad(Eventualidad eventualidad) {
         this.eventualidades.add(eventualidad);
@@ -179,6 +193,10 @@ public class  Residente{
         this.numSeguro = numSeguro;
     }
 
+    public Map<String,String> getContactos(){
+        return contactos;
+    }
+
     public String getFirstContacto(){
         Map.Entry<String,String> entry = contactos.entrySet().iterator().next();
         String key = entry.getKey();
@@ -190,7 +208,7 @@ public class  Residente{
         String value = entry.getValue();
         return value;
     }
-    public List<String> getCondiciones(){
+    public String getCondiciones(){
         return this.condiciones;
     }
     public BufferedImage getImage(){

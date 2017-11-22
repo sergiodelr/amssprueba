@@ -63,26 +63,6 @@
                            <children>
                               <TabPane layoutY="-42.0" prefHeight="463.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-42.0">
                                 <tabs>
-                                  <Tab text="Pendientes">
-                                       <content>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Text layoutX="133.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En uso:" wrappingWidth="95.6708984375">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Text>
-                                                <TableView layoutX="100.0" layoutY="98.0" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="80.0">
-                                                   <columns>
-                                                      <TableColumn prefWidth="302.0" text="Producto" />
-                                                      <TableColumn prefWidth="211.0" text="Días restantes" />
-                                                      <TableColumn prefWidth="186.0" text="Notificado" />
-                                                   </columns>
-                                                </TableView>
-                                                <Button layoutX="563.0" layoutY="300.0" mnemonicParsing="false" text="Guardar" />
-                                             </children>
-                                          </AnchorPane>
-                                       </content></Tab>
                                     <Tab text="Medicinas">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -103,13 +83,15 @@
                                                 <TextField fx:id="nMedPrecauciones" layoutX="669.0" layoutY="270.0" prefHeight="31.0" prefWidth="227.0" />
                                                 <TextField fx:id="nMedDuracion" layoutX="926.0" layoutY="270.0" prefHeight="31.0" prefWidth="110.0" />
                                                 <TextField fx:id="nMedRestantes" layoutX="1064.0" layoutY="270.0" prefHeight="31.0" prefWidth="96.0" />
-                                                <Button layoutX="531.0" layoutY="313.0" mnemonicParsing="false" onAction="#agregarMedicina" text="Agregar Medicina" />
+                                                <Button layoutX="295.0" layoutY="339.0" mnemonicParsing="false" onAction="#agregarMedicina" text="Agregar" />
                                                 <Label layoutX="38.0" layoutY="244.0" text="Nombre:" />
                                                 <Label layoutX="214.0" layoutY="244.0" text="Descripción:" />
                                                 <Label layoutX="497.0" layoutY="244.0" text="Dosis (M T N):" />
                                                 <Label layoutX="669.0" layoutY="244.0" text="Precauciones:" />
                                                 <Label layoutX="926.0" layoutY="244.0" text="Duración (Días):" />
                                                 <Label layoutX="1064.0" layoutY="244.0" text="Cantidad:" />
+                                                <Button layoutX="530.0" layoutY="339.0" mnemonicParsing="false" text="Modificar" />
+                                                <Button layoutX="769.0" layoutY="339.0" mnemonicParsing="false" text="Eliminar" />
                                              </children></AnchorPane>
                                        </content>
                                     </Tab>
@@ -151,10 +133,10 @@
                                        <content>
                                           <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                              <children>
-                                                <TableView layoutX="100.0" layoutY="98.0" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="40.0">
+                                                <TableView fx:id="tablaFamiliares" layoutX="100.0" layoutY="98.0" prefHeight="200.0" prefWidth="526.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="40.0">
                                                    <columns>
-                                                      <TableColumn prefWidth="437.0" text="Familiar" />
-                                                      <TableColumn prefWidth="262.0" text="Teléfono" />
+                                                      <TableColumn fx:id="famNombre" prefWidth="437.0" text="Familiar" />
+                                                      <TableColumn fx:id="famTelefono" prefWidth="262.0" text="Teléfono" />
                                                    </columns>
                                                 </TableView>
                                                 <Button layoutX="521.0" layoutY="317.0" mnemonicParsing="false" text="Agregar Familiar" />
@@ -324,7 +306,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Text>
-                              <TextField GridPane.columnIndex="3" />
+                              <TextField fx:id="nuevoResidenteFamiliar" GridPane.columnIndex="3" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono del familiar:" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
@@ -335,13 +317,15 @@
                                     <Insets top="10.0" />
                                  </GridPane.margin>
                               </Button>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <Button mnemonicParsing="false" onAction="#seleccionarImagen" text="Agregar imagen" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <ImageView fx:id="imagenPreview" fitHeight="211.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <TextField fx:id="nuevoResidenteTelefono" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Button mnemonicParsing="false" onAction="#seleccionarImagen" text="Agregar imagen" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <ImageView fx:id="imagenPreview" fitHeight="211.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                  <image>
                                     <Image url="@Old%20Man.jpg" />
                                  </image>
                               </ImageView>
+                              <Label prefHeight="21.0" prefWidth="141.0" text="   Condiciones" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField fx:id="nuevoResidenteCondiciones" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children></AnchorPane>
