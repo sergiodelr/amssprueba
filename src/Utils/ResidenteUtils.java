@@ -23,7 +23,7 @@ public class ResidenteUtils {
             }
             System.out.println();
             LocalDate date = LocalDate.of(Integer.parseInt(row[3]), Integer.parseInt(row[2]), Integer.parseInt(row[1]));
-            Residente temp = new Residente(row[0], date, Integer.parseInt(row[4]), Integer.parseInt(row[5]), null, row[6], row[7], 1 );
+            Residente temp = new Residente(row[0], date, Integer.parseInt(row[4]), Integer.parseInt(row[5]), null, row[6], row[7], 1 , row[11]);
             List<String> contactos = new ArrayList<>(Arrays.asList(row[8].split(" , ")));
             List<String> numeros = new ArrayList<>(Arrays.asList(row[9].split(" , ")));
             for(int i = 0; i < contactos.size(); i++){
@@ -33,6 +33,7 @@ public class ResidenteUtils {
             for(int i = 0; i < condiciones.size(); i++){
                 temp.addCondicion(condiciones.get(i));
             }
+
             modifyResidente(temp);
         }
     }
