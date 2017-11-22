@@ -443,7 +443,7 @@ public class DocumentController implements Initializable{
 
         medDuracion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
 
-        /*medDuracion.setCellFactory(TextFieldTableCell.forTableColumn());
+        medDuracion.setCellFactory(TextFieldTableCell.forTableColumn());
         medDuracion.setOnEditCommit(
                 new EventHandler<CellEditEvent<Medicina, String>>() {
                     @Override
@@ -451,13 +451,13 @@ public class DocumentController implements Initializable{
                         System.out.println("commit");
                         Medicina m = (Medicina) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow());
-                        m.setDuracionDias(Integer.parseInt(t.getNewValue()));
+                        //m.setDuracionDias(Integer.parseInt(t.getNewValue()));
                         res.deleteMedicina(m.getNombre());
                         res.addMedicina(m);
                         ResidenteUtils.modifyResidente(res);
                     }
                 }
-        );*/
+        );
         medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("cantidad"));
         tablaMedicina.setItems(medicinas);
     }
