@@ -73,6 +73,7 @@ public class DocumentController implements Initializable{
     @FXML private  TextField nuevoResidenteFamiliar;
     @FXML private  TextField nuevoResidenteTelefono;
     @FXML private  TextField nuevoResidenteCondiciones;
+    @FXML private DatePicker diaNacimiento;
 
     //Medicinas
     @FXML private TextField nMedNombre;
@@ -315,15 +316,15 @@ public class DocumentController implements Initializable{
     void altaIndividual(ActionEvent event) throws ParseException, IOException {
 
         System.out.println("altaIndividual");
-        if(!nuevoResidenteNombre.getText().isEmpty() && !nuevoResidenteFdN.getText().isEmpty() &&
+        if(!nuevoResidenteNombre.getText().isEmpty() &&
                 !nuevoResidenteCuarto.getText().isEmpty() &&
                 !nuevoResidenteCama.getText().isEmpty() &&
                 !nuevoResidenteSdE.getText().isEmpty() &&
                 !nuevoResidenteNumSeguro.getText().isEmpty() &&
                 !nuevoResidenteFamiliar.getText().isEmpty() &&
                 !nuevoResidenteTelefono.getText().isEmpty()){
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-            LocalDate date = LocalDate.parse(nuevoResidenteFdN.getText());
+
+            LocalDate date = diaNacimiento.getValue();
             if(!imgPath.isEmpty()) {
                 Residente residente = new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
                         Integer.parseInt(nuevoResidenteCama.getText()), null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(), 1, imgPath, nuevoResidenteCondiciones.getText(), nuevoResidenteFamiliar.getText(), nuevoResidenteTelefono.getText());
@@ -334,7 +335,6 @@ public class DocumentController implements Initializable{
             }
 
             nuevoResidenteNombre.clear();
-            nuevoResidenteFdN.clear();
             nuevoResidenteCuarto.clear();
             nuevoResidenteCama.clear();
             nuevoResidenteSdE.clear();
@@ -342,6 +342,7 @@ public class DocumentController implements Initializable{
             nuevoResidenteFamiliar.clear();
             nuevoResidenteTelefono.clear();
             nuevoResidenteCondiciones.clear();
+            diaNacimiento.getEditor().clear();
 
             imagenPreview.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
             initializeUtils();

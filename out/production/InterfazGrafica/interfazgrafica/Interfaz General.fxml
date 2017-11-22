@@ -277,10 +277,6 @@
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin></TextField>
-                              <TextField fx:id="nuevoResidenteFdN" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets right="40.0" />
-                                 </GridPane.margin></TextField>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cuarto:" GridPane.rowIndex="2" />
                               <TextField fx:id="nuevoResidenteCuarto" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
@@ -327,6 +323,7 @@
                               </ImageView>
                               <Label prefHeight="21.0" prefWidth="141.0" text="   Condiciones" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                               <TextField fx:id="nuevoResidenteCondiciones" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <DatePicker fx:id="diaNacimiento" prefHeight="31.0" prefWidth="241.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children></AnchorPane>

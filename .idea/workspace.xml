@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reportes.db" afterPath="" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Datepicker en alta individual&#10;Ya jala todo&#10;Corre en tiempo O(NlogN)">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$1.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$2.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$3.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$3.class" />
@@ -10,11 +9,13 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$5.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$6.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/DocumentController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/InterfazGrafica.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/InterfazGrafica.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/residentes.db" afterPath="$PROJECT_DIR$/residentes.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/Interfaz General.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" afterPath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java" afterPath="$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,21 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="altaMasiva.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Utils/altaMasiva.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="79" lean-forward="false" selection-start-line="6" selection-start-column="79" selection-end-line="6" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="178" column="39" lean-forward="true" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
+            <state relative-caret-position="116">
+              <caret line="337" column="0" lean-forward="false" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,14 +111,50 @@
         <entry file="file://$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="173">
-              <caret line="313" column="5" lean-forward="false" selection-start-line="313" selection-start-column="5" selection-end-line="313" selection-end-column="5" />
+              <caret line="308" column="5" lean-forward="false" selection-start-line="308" selection-start-column="5" selection-end-line="308" selection-end-column="5" />
               <folding>
-                <marker date="1511376921842" expanded="true" signature="12886:13146" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="12886:13146" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="20372:26911" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="20397:26892" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="20496:26866" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="20528:26853" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="20852:26820" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="20899:21427" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="21471:22366" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="22404:26784" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="22593:22768" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="22644:22756" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="23001:23176" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="23052:23164" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="23292:23467" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="23343:23455" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="23582:23757" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="23633:23745" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="23878:24053" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="23929:24041" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="24670:24870" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="24721:24832" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="25123:25323" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="25174:25285" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="25458:25659" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="25509:25619" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="26132:26325" ph="..." />
+                <marker date="1511381166056" expanded="true" signature="26173:26282" ph="..." />
               </folding>
             </state>
           </provider>
           <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InterfazGrafica.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -141,10 +168,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductoGenerico.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProductoGenerico.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Entidades/ProductoGenerico.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
+            <state relative-caret-position="508">
               <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
@@ -162,7 +189,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>click</find>
       <find>residentes</find>
       <find>Date</find>
       <find>residenteActual</find>
@@ -172,7 +198,6 @@
       <find>tablaReporte</find>
       <find>image</find>
       <find>residenteCondiciones</find>
-      <find>diaReporte</find>
       <find>initializ</find>
       <find>mostrarFamiliares</find>
       <find>agregarMedica</find>
@@ -191,7 +216,9 @@
       <find>pane</find>
       <find>overri</find>
       <find>eliminar</find>
+      <find>diaReporte</find>
       <find>reporte</find>
+      <find>altaIn</find>
     </findStrings>
     <replaceStrings>
       <replace>);</replace>
@@ -224,7 +251,6 @@
         <option value="$PROJECT_DIR$/tests/Entidades/ResidenteTest.java" />
         <option value="$PROJECT_DIR$/InterfazGrafica.iml" />
         <option value="$PROJECT_DIR$/src/Utils/BDUtils.java" />
-        <option value="$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java" />
         <option value="$PROJECT_DIR$/src/main.java" />
         <option value="$PROJECT_DIR$/src/Entidades/Reporte.java" />
         <option value="$PROJECT_DIR$/src/Entidades/Eventualidad.java" />
@@ -233,8 +259,9 @@
         <option value="$PROJECT_DIR$/src/Entidades/Residente.java" />
         <option value="$PROJECT_DIR$/src/Utils/altaMasiva.csv" />
         <option value="$PROJECT_DIR$/src/Utils/ResidenteUtils.java" />
-        <option value="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" />
+        <option value="$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java" />
         <option value="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" />
+        <option value="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" />
       </list>
     </option>
   </component>
@@ -712,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511376311137</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Baja funcional&#10;Da mensajes">
+      <created>1511379273869</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1511379273869</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -730,7 +764,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34437087" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50772625" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -839,7 +873,8 @@
     <MESSAGE value="Agregar Familiar&#10;Modificar datos de Residente&#10;Dialog Boxes" />
     <MESSAGE value="Agregar Familiar&#10;Modificar datos de Residente&#10;Dialog Boxes&#10;&#10;Más actualizado" />
     <MESSAGE value="Dar de baja semifuncional" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dar de baja semifuncional" />
+    <MESSAGE value="Baja funcional&#10;Da mensajes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Baja funcional&#10;Da mensajes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -892,6 +927,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="69" column="24" lean-forward="false" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -944,6 +980,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="69" column="24" lean-forward="false" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1135,18 +1172,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entidades/ProductoGenerico.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entidades/Medicina.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="661">
           <caret line="52" column="28" lean-forward="false" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1453#1454#0" expanded="false" />
+            <element signature="e#1501#1502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1154,13 +1188,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1190,6 +1217,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfazgrafica/InterfazGrafica.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -1198,12 +1233,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="337" column="0" lean-forward="false" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="173">
-          <caret line="313" column="5" lean-forward="false" selection-start-line="313" selection-start-column="5" selection-end-line="313" selection-end-column="5" />
+          <caret line="308" column="5" lean-forward="false" selection-start-line="308" selection-start-column="5" selection-end-line="308" selection-end-column="5" />
           <folding>
-            <marker date="1511376921842" expanded="true" signature="12886:13146" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="12886:13146" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="20372:26911" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="20397:26892" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="20496:26866" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="20528:26853" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="20852:26820" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="20899:21427" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="21471:22366" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="22404:26784" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="22593:22768" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="22644:22756" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="23001:23176" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="23052:23164" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="23292:23467" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="23343:23455" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="23582:23757" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="23633:23745" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="23878:24053" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="23929:24041" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="24670:24870" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="24721:24832" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="25123:25323" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="25174:25285" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="25458:25659" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="25509:25619" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="26132:26325" ph="..." />
+            <marker date="1511381166056" expanded="true" signature="26173:26282" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1211,13 +1282,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
+    <entry file="file://$PROJECT_DIR$/src/Entidades/ProductoGenerico.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="178" column="39" lean-forward="true" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="508">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

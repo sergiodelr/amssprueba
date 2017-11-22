@@ -46,12 +46,10 @@ public class InterfazGrafica extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        System.out.println("start");
         Parent root = FXMLLoader.load(getClass().getResource("Interfaz General.fxml"));
-        System.out.println("start2");
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Prototipo Beta");
+        stage.setTitle("Paradise City");
         stage.show();
     }
 
