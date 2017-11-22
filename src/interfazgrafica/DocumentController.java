@@ -169,11 +169,9 @@ public class DocumentController implements Initializable{
         rootP = root;*/
         initializeUtils();
 
-        diaReporte.setOnAction(new EventHandler<ActionEvent>()
-        {
+        diaReporte.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
+            public void handle(ActionEvent event) {
                 System.out.println("diaReporte: handle");
                 LocalDate fecha = diaReporte.getValue();
                 mostrarReportes(fecha);
@@ -181,11 +179,9 @@ public class DocumentController implements Initializable{
             }
         });
 
-        diasConsulta.setOnAction(new EventHandler<ActionEvent>()
-        {
+        diasConsulta.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
+            public void handle(ActionEvent event) {
                 int a = Integer.parseInt(diasConsulta.getText());
                 consultaGeneral(a);
             }
@@ -199,8 +195,8 @@ public class DocumentController implements Initializable{
                 mostrarInfo(residenteActual);
             }
         });
-
     }
+
 
     private void mostrarReportes(LocalDate fecha) {
         BDUtils db = new BDUtils("reportes.db");
@@ -257,6 +253,31 @@ public class DocumentController implements Initializable{
             imgResidente.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
             System.out.println("excepcion: sin imagen");
         }
+
+        residenteCama.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                res.setNumCama(Integer.parseInt(residenteCama.getText()));
+                ResidenteUtils.modifyResidente(res);
+            }
+        });
+
+        residenteCuarto.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                res.setNumCuarto(Integer.parseInt(residenteCuarto.getText()));
+                ResidenteUtils.modifyResidente(res);
+            }
+        });
+
+        residenteNumSeguro.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                res.setNumSeguro(residenteNumSeguro.getText());
+                ResidenteUtils.modifyResidente(res);
+            }
+        });
+
 
     }
 
