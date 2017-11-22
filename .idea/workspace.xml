@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/Utils/ResidenteUtils.class" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/Utils/ResidenteUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reportes.db" afterPath="$PROJECT_DIR$/reportes.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/Utils/altaMasiva.csv" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/Utils/altaMasiva.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/out/production/InterfazGrafica/interfazgrafica/Interfaz General.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entidades/Residente.java" afterPath="$PROJECT_DIR$/src/Entidades/Residente.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utils/altaMasiva.csv" afterPath="$PROJECT_DIR$/src/Utils/altaMasiva.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" afterPath="$PROJECT_DIR$/src/interfazgrafica/DocumentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" afterPath="$PROJECT_DIR$/src/interfazgrafica/Interfaz General.fxml" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -82,8 +71,8 @@
       <file leaf-file-name="Medicina.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entidades/Medicina.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="61" column="15" lean-forward="false" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
+            <state relative-caret-position="140">
+              <caret line="52" column="28" lean-forward="true" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="438" column="60" lean-forward="true" selection-start-line="438" selection-start-column="60" selection-end-line="438" selection-end-column="60" />
+            <state relative-caret-position="119">
+              <caret line="441" column="10" lean-forward="true" selection-start-line="441" selection-start-column="10" selection-end-line="441" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -115,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Residente.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Residente.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Entidades/Residente.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="281">
-              <caret line="202" column="46" lean-forward="true" selection-start-line="202" selection-start-column="46" selection-end-line="202" selection-end-column="46" />
+              <caret line="202" column="46" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="209" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -646,7 +635,7 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="810" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="810" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1163,31 +1152,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entidades/Residente.java">
+    <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="202" column="46" lean-forward="true" selection-start-line="202" selection-start-column="46" selection-end-line="202" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="119">
+          <caret line="441" column="10" lean-forward="true" selection-start-line="441" selection-start-column="10" selection-end-line="441" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entidades/Medicina.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="61" column="15" lean-forward="false" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
+        <state relative-caret-position="140">
+          <caret line="52" column="28" lean-forward="true" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfazgrafica/DocumentController.java">
+    <entry file="file://$PROJECT_DIR$/src/Entidades/Residente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="438" column="60" lean-forward="true" selection-start-line="438" selection-start-column="60" selection-end-line="438" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="281">
+          <caret line="202" column="46" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="209" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
