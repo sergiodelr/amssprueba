@@ -688,7 +688,7 @@ public class DocumentController implements Initializable{
     @FXML
     void modificarResidente(){
         if(residenteCuarto.getText().isEmpty() || residenteCama.getText().isEmpty() || residenteSdE.getText().isEmpty() ||
-                residenteNumSeguro.getText().isEmpty() || residenteCondiciones.getText().isEmpty()    ){ //alguno esta vacio
+                residenteNumSeguro.getText().isEmpty() ){ //alguno esta vacio
             System.out.println("Llene todos los campos");
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Cuidado");
@@ -737,7 +737,8 @@ public class DocumentController implements Initializable{
                 System.out.println("dar de baja a " + residenteActual);
                 BDUtils db = new BDUtils("residentes.db");
 
-                residenteActual = "";
+                db.deleteObject(residenteActual);
+
                 residenteCuarto.clear();
                 residenteCama.clear();
                 residenteFdN.clear();
