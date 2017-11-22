@@ -34,10 +34,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableColumn.CellEditEvent;
-
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -69,6 +66,9 @@ public class DocumentController implements Initializable{
     @FXML private  TextField nuevoResidenteCama;
     @FXML private  TextField nuevoResidenteSdE;
     @FXML private  TextField nuevoResidenteNumSeguro;
+    @FXML private  TextField nuevoResidenteFamiliar;
+    @FXML private  TextField nuevoResidenteTelefono;
+    @FXML private  TextField nuevoResidenteCondiciones;
 
     //Medicinas
     @FXML private TextField nMedNombre;
@@ -117,6 +117,11 @@ public class DocumentController implements Initializable{
     @FXML private TableColumn medPrecauciones = new TableColumn("Precacuciones");
     @FXML private TableColumn medRestantes = new TableColumn("Restantes");
     @FXML private TableColumn medDuracion = new TableColumn("Duracion");
+
+    //Familiares
+    @FXML private TableView tablaFamiliares;
+    @FXML private TableColumn famNombre = new TableColumn("Nombre");
+    @FXML private TableColumn famTelefono = new TableColumn("Teléfono");
 
     //Notificaciones
     @FXML private TableView tablaNotificacion;
@@ -231,7 +236,8 @@ public class DocumentController implements Initializable{
     private void mostrarInfo(String nombreResidente) {
         mostrarEventualidades();
         mostrarMedicinas();
-        //mostrarPendientes()
+        mostrarFamiliares();
+
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(nombreResidente);
         db.closeDB();
@@ -243,18 +249,15 @@ public class DocumentController implements Initializable{
         residenteCama.setText(Integer.toString(res.getNumCama()));
         residenteSdE.setText(res.getServicioEmergencia());
         residenteNumSeguro.setText(res.getNumSeguro());
-        String condiciones = Arrays.toString(res.getCondiciones().toArray());
-        residenteCondiciones.setText(condiciones.substring(1, condiciones.length()-1));
+        residenteCondiciones.setText(res.getCondiciones());
         try {
             imgResidente.setImage(SwingFXUtils.toFXImage(res.getImage(), null));
         }catch(Exception e){
             imgResidente.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
-            System.out.println("CACHA ESTaaaaa");
+            System.out.println("excepcion: sin imagen");
         }
 
     }
-
-
 
     private void loadSplashScreen() {
         System.out.println("112111");
@@ -303,17 +306,21 @@ public class DocumentController implements Initializable{
                 !nuevoResidenteCuarto.getText().isEmpty() &&
                 !nuevoResidenteCama.getText().isEmpty() &&
                 !nuevoResidenteSdE.getText().isEmpty() &&
-                !nuevoResidenteNumSeguro.getText().isEmpty()){
+                !nuevoResidenteNumSeguro.getText().isEmpty() &&
+                !nuevoResidenteFamiliar.getText().isEmpty() &&
+                !nuevoResidenteTelefono.getText().isEmpty()){
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             LocalDate date = LocalDate.parse(nuevoResidenteFdN.getText());
             if(!imgPath.isEmpty()) {
                 Residente residente = new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
-                        Integer.parseInt(nuevoResidenteCama.getText()), null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(), 1, imgPath);
+                        Integer.parseInt(nuevoResidenteCama.getText()), null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(), 1, imgPath, nuevoResidenteCondiciones.getText(), nuevoResidenteFamiliar.getText(), nuevoResidenteTelefono.getText());
             }
             else {
                 Residente residente = new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
-                        Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1, "Old Man.jpg");
+                        Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1, "Old Man.jpg", nuevoResidenteCondiciones.getText(), nuevoResidenteFamiliar.getText(), nuevoResidenteTelefono.getText());
             }
+
+
 
             nuevoResidenteNombre.clear();
             nuevoResidenteFdN.clear();
@@ -321,6 +328,11 @@ public class DocumentController implements Initializable{
             nuevoResidenteCama.clear();
             nuevoResidenteSdE.clear();
             nuevoResidenteNumSeguro.clear();
+            nuevoResidenteFamiliar.clear();
+            nuevoResidenteTelefono.clear();
+            nuevoResidenteCondiciones.clear();
+
+            imagenPreview.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
             initializeUtils();
         }
     }
@@ -386,78 +398,10 @@ public class DocumentController implements Initializable{
         Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
         ObservableList<Medicina> medicinas = FXCollections.observableArrayList(res.getMedicinas());
         medDescripcion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("descripcion"));
-
-        medDescripcion.setCellFactory(TextFieldTableCell.forTableColumn());
-        medDescripcion.setOnEditCommit(
-                new EventHandler<CellEditEvent<Medicina, String>>() {
-                    @Override
-                    public void handle(CellEditEvent<Medicina, String> t) {
-                        System.out.println("commit");
-                        Medicina m = (Medicina) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow());
-                        m.setDescripcion(t.getNewValue());
-                        System.out.println(m.getDescripcion());
-                        res.deleteMedicina(m.getNombre());
-                        res.addMedicina(m);
-                        ResidenteUtils.modifyResidente(res);
-                    }
-                }
-        );
-
         medDosis.setCellValueFactory(new PropertyValueFactory<Medicina, String>("dosis"));
-
-        medDosis.setCellFactory(TextFieldTableCell.forTableColumn());
-        medDosis.setOnEditCommit(
-                new EventHandler<CellEditEvent<Medicina, String>>() {
-                    @Override
-                    public void handle(CellEditEvent<Medicina, String> t) {
-                        System.out.println("commit");
-                        Medicina m = (Medicina) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow());
-                        m.setDosis(t.getNewValue());
-                        res.deleteMedicina(m.getNombre());
-                        res.addMedicina(m);
-                        ResidenteUtils.modifyResidente(res);
-                    }
-                }
-        );
-
         medNombre.setCellValueFactory(new PropertyValueFactory<Medicina, String>("nombre"));
         medPrecauciones.setCellValueFactory(new PropertyValueFactory<Medicina, String>("precauciones"));
-
-        medPrecauciones.setCellFactory(TextFieldTableCell.forTableColumn());
-        medPrecauciones.setOnEditCommit(
-                new EventHandler<CellEditEvent<Medicina, String>>() {
-                    @Override
-                    public void handle(CellEditEvent<Medicina, String> t) {
-                        System.out.println("commit");
-                        Medicina m = (Medicina) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow());
-                        m.setPrecauciones(t.getNewValue());
-                        res.deleteMedicina(m.getNombre());
-                        res.addMedicina(m);
-                        ResidenteUtils.modifyResidente(res);
-                    }
-                }
-        );
-
         medDuracion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
-
-        /*medDuracion.setCellFactory(TextFieldTableCell.forTableColumn());
-        medDuracion.setOnEditCommit(
-                new EventHandler<CellEditEvent<Medicina, String>>() {
-                    @Override
-                    public void handle(CellEditEvent<Medicina, String> t) {
-                        System.out.println("commit");
-                        Medicina m = (Medicina) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow());
-                        m.setDuracionDias(Integer.parseInt(t.getNewValue()));
-                        res.deleteMedicina(m.getNombre());
-                        res.addMedicina(m);
-                        ResidenteUtils.modifyResidente(res);
-                    }
-                }
-        );*/
         medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("cantidad"));
         tablaMedicina.setItems(medicinas);
     }
@@ -494,6 +438,33 @@ public class DocumentController implements Initializable{
     //eliminar medicina
     @FXML
     void eliminarMedicina(ActionEvent event){ //recibe un index
+
+    }
+
+    @FXML
+    void mostrarFamiliares(){
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String) db.getObject(residenteActual);
+        System.out.println("mostrar familiares " + residenteActual);
+        db.closeDB();
+        Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+
+        Map<String,String> contactos = res.getContactos();
+
+        List<String> nombres = new ArrayList<String>(contactos.keySet());
+        List<String> telefonos = new ArrayList<String>(contactos.values());
+        List<Familiar> familiares = new ArrayList<Familiar>();
+
+        for(int i = 0; i < nombres.size() && i < telefonos.size(); i++){
+            Familiar fam = new Familiar(nombres.get(i), telefonos.get(i));
+            familiares.add(fam);
+            System.out.println(fam.getNombre()+" "+fam.getTelefono());
+        }
+
+        ObservableList<Familiar> familiaresTabla = FXCollections.observableArrayList(familiares);
+        famNombre.setCellValueFactory(new PropertyValueFactory<Familiar, String>("nombre"));
+        famTelefono.setCellValueFactory(new PropertyValueFactory<Familiar, String>("telefono"));
+        tablaFamiliares.setItems(familiaresTabla);
 
     }
 
@@ -587,7 +558,6 @@ public class DocumentController implements Initializable{
             Image image = new Image(new File(aux).toURI().toString());
             imgPath = aux;
             imagenPreview.setImage(image);
-
         }
     }
 }
