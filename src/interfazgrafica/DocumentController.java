@@ -441,17 +441,17 @@ public class DocumentController implements Initializable{
                 }
         );
 
-        medDuracion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
+        medDuracion.setCellValueFactory(new PropertyValueFactory<Medicina, Integer>("duracionDias"));
 
         medDuracion.setCellFactory(TextFieldTableCell.forTableColumn());
         medDuracion.setOnEditCommit(
-                new EventHandler<CellEditEvent<Medicina, String>>() {
+                new EventHandler<CellEditEvent<Medicina, Integer>>() {
                     @Override
-                    public void handle(CellEditEvent<Medicina, String> t) {
+                    public void handle(CellEditEvent<Medicina, Integer> t) {
                         System.out.println("commit");
                         Medicina m = (Medicina) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow());
-                        //m.setDuracionDias(Integer.parseInt(t.getNewValue()));
+                        m.setDuracionDias(t.getNewValue());
                         res.deleteMedicina(m.getNombre());
                         res.addMedicina(m);
                         ResidenteUtils.modifyResidente(res);
