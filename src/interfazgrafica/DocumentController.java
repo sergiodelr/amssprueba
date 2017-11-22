@@ -183,11 +183,19 @@ public class DocumentController implements Initializable{
             }
         });
 
-        diasConsulta.setOnAction(new EventHandler<ActionEvent>() {
+        diasConsulta.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
-            public void handle(ActionEvent event) {
-                int a = Integer.parseInt(diasConsulta.getText());
-                consultaGeneral(a);
+            public void handle(ActionEvent event)
+            {
+                try{
+                    int a = Integer.parseInt(diasConsulta.getText());
+                    consultaGeneral(a);
+                }catch (NumberFormatException e) {
+                    //Not an integer
+                    System.out.println("Ingrese un número");
+                    JOptionPane.showMessageDialog(null, "Ingrese un número");
+                }
             }
         });
 
@@ -360,8 +368,6 @@ public class DocumentController implements Initializable{
                         Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1, "Old Man.jpg", nuevoResidenteCondiciones.getText(), nuevoResidenteFamiliar.getText(), nuevoResidenteTelefono.getText());
             }
 
-
-
             nuevoResidenteNombre.clear();
             nuevoResidenteFdN.clear();
             nuevoResidenteCuarto.clear();
@@ -374,6 +380,9 @@ public class DocumentController implements Initializable{
 
             imagenPreview.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
             initializeUtils();
+        }else{
+            System.out.println("Llene todos los campos");
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
     }
     @FXML
@@ -398,6 +407,9 @@ public class DocumentController implements Initializable{
             horaEventualidad.clear();
             fechaEventualidad.clear();
             atendidoPorEventualidad.clear();
+        }else{
+            System.out.println("Llene todos los campos");
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
     }
 
@@ -499,19 +511,28 @@ public class DocumentController implements Initializable{
     }
     @FXML
     void agregarMedicina(ActionEvent event){
-        Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
-                Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
-                Integer.parseInt(nMedDuracion.getText()), nMedDosis.getText(), residenteActual); //quite fecha de caducidad del constructor
-        BDUtils db = new BDUtils("residentes.db");
-        String objRes = (String)db.getObject(residenteActual);
-        db.closeDB();
-        Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
-        System.out.println(medicina.getNombre());
-        res.addMedicina(medicina);
-        ResidenteUtils.modifyResidente(res);
 
-        //actualizar y limpiar (Se usará en Modificar y Eliminar)
-        actualizarMedicinas();
+        if(nMedNombre.getText().isEmpty() || nMedDescripcion.getText().isEmpty() || nMedDuracion.getText().isEmpty() ||
+                nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty()){
+            System.out.println("Llene todos los campos");
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+        }else {
+
+            Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
+                    Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
+                    Integer.parseInt(nMedDuracion.getText()), nMedDosis.getText(), residenteActual); //quite fecha de caducidad del constructor
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String) db.getObject(residenteActual);
+            db.closeDB();
+            Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+            System.out.println(medicina.getNombre());
+            res.addMedicina(medicina);
+            ResidenteUtils.modifyResidente(res);
+
+            //actualizar y limpiar (Se usará en Modificar y Eliminar)
+            actualizarMedicinas();
+
+        }
 
     }
 
@@ -525,6 +546,7 @@ public class DocumentController implements Initializable{
             System.out.println(med.getResidente());
         }else{
             System.out.println("No hay nada seleccionado");
+            JOptionPane.showMessageDialog(null, "No hay nada seleccionado");
         }
     }
     //eliminar medicina
