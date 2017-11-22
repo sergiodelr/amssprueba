@@ -192,7 +192,11 @@ public class DocumentController implements Initializable{
                 }catch (NumberFormatException e) {
                     //Not an integer
                     System.out.println("Ingrese un número");
-                    JOptionPane.showMessageDialog(null, "Ingrese un número");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Cuidado");
+                    String s = "Ingrese un número";
+                    alert.setContentText(s);
+                    alert.showAndWait();
                 }
             }
         });
@@ -201,8 +205,10 @@ public class DocumentController implements Initializable{
         choiceBoxResidentes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-                residenteActual = (String) choiceBoxResidentes.getItems().get((Integer) number2);
-                mostrarInfo(residenteActual);
+                if(!number2.equals(-1)) {
+                    residenteActual = (String) choiceBoxResidentes.getItems().get((Integer) number2);
+                    mostrarInfo(residenteActual);
+                }
             }
         });
     }
@@ -341,7 +347,11 @@ public class DocumentController implements Initializable{
             initializeUtils();
         }else{
             System.out.println("Llene todos los campos");
-            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
         }
     }
     @FXML
@@ -368,7 +378,11 @@ public class DocumentController implements Initializable{
             atendidoPorEventualidad.clear();
         }else{
             System.out.println("Llene todos los campos");
-            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
         }
     }
 
@@ -475,7 +489,11 @@ public class DocumentController implements Initializable{
         if(nMedNombre.getText().isEmpty() || nMedDescripcion.getText().isEmpty() || nMedDuracion.getText().isEmpty() ||
                 nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty() || nMedRestantes.getText().isEmpty()){
             System.out.println("Llene todos los campos");
-            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
         }else {
 
             Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
@@ -618,14 +636,25 @@ public class DocumentController implements Initializable{
 
     @FXML
     void borrarMedicina(){
-        Medicina medicina = (Medicina) tablaMedicina.getSelectionModel().getSelectedItem();
-        BDUtils db = new BDUtils("residentes.db");
-        String objRes = (String) db.getObject(residenteActual);
-        db.closeDB();
-        Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
-        res.deleteMedicina(medicina.getNombre());
-        ResidenteUtils.modifyResidente(res);
-        actualizarMedicinas();
+
+        if(nMedNombre.getText().isEmpty() || nMedDescripcion.getText().isEmpty() || nMedDuracion.getText().isEmpty() ||
+                nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty() || nMedRestantes.getText().isEmpty()){
+            System.out.println("Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
+        }else {
+            Medicina medicina = (Medicina) tablaMedicina.getSelectionModel().getSelectedItem();
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String) db.getObject(residenteActual);
+            db.closeDB();
+            Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+            res.deleteMedicina(medicina.getNombre());
+            ResidenteUtils.modifyResidente(res);
+            actualizarMedicinas();
+        }
     }
 
 
@@ -634,7 +663,11 @@ public class DocumentController implements Initializable{
         System.out.println("hola");
         if(nFamNombre.getText().isEmpty() || nFamTelefono.getText().isEmpty()){ //alguno esta vacio
             System.out.println("Llene todos los campos");
-            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
         }else{
 
             BDUtils db = new BDUtils("residentes.db");
@@ -656,52 +689,82 @@ public class DocumentController implements Initializable{
         if(residenteCuarto.getText().isEmpty() || residenteCama.getText().isEmpty() || residenteSdE.getText().isEmpty() ||
                 residenteNumSeguro.getText().isEmpty() || residenteCondiciones.getText().isEmpty()    ){ //alguno esta vacio
             System.out.println("Llene todos los campos");
-            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
         }else{
 
-            BDUtils db = new BDUtils("residentes.db");
-            String objRes = (String)db.getObject(residenteActual);
-            db.closeDB();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Cuidado");
+            String s = "Desea modificar los datos de " + residenteActual;
+            alert.setContentText(s);
 
-            Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
-            res.setNumCuarto( Integer.parseInt(residenteCuarto.getText()) );
-            res.setNumCama( Integer.parseInt(residenteCama.getText()) );
-            res.setServicioEmergencia(residenteSdE.getText());
-            res.setNumSeguro(residenteNumSeguro.getText() );
-            res.setCondiciones(residenteCondiciones.getText() );
-            ResidenteUtils.modifyResidente(res);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+                BDUtils db = new BDUtils("residentes.db");
+                String objRes = (String)db.getObject(residenteActual);
+                db.closeDB();
+
+                Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+                res.setNumCuarto( Integer.parseInt(residenteCuarto.getText()) );
+                res.setNumCama( Integer.parseInt(residenteCama.getText()) );
+                res.setServicioEmergencia(residenteSdE.getText());
+                res.setNumSeguro(residenteNumSeguro.getText() );
+                res.setCondiciones(residenteCondiciones.getText() );
+                ResidenteUtils.modifyResidente(res);
+            }else{
+                mostrarInfo(residenteActual);
+            }
         }
     }
 
     @FXML
     void bajaResidente(){
         if(residenteActual != ""){
-            System.out.println("dar de baja a " + residenteActual);
-            BDUtils db = new BDUtils("residentes.db");
 
-            residenteActual = "";
-            residenteCuarto.clear();
-            residenteCama.clear();
-            residenteFdN.clear();
-            residenteSdE.clear();
-            residenteNumSeguro.clear();
-            residenteCondiciones.clear();
-            tablaMedicina.getItems().clear();
-            tablaNotificacion.getItems().clear();
-            tablaFamiliares.getItems().clear();
-            imgResidente.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
-            //choiceBoxResidentes.getItems().clear();
-            Map<String,String> dbMap = db.getMap();
-            Set<String > sNombres = dbMap.keySet();
-            ArrayList<String> nombres = new ArrayList<String>(sNombres);
-            ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
-            choiceBoxResidentes.getItems().clear();
-            db.deleteObject(residenteActual);
-            choiceBoxResidentes.setItems(olNombres);
-            db.closeDB();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Cuidado");
+            String s = "Desea dar de baja a " + residenteActual;
+            alert.setContentText(s);
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+                System.out.println("dar de baja a " + residenteActual);
+                BDUtils db = new BDUtils("residentes.db");
+
+                residenteActual = "";
+                residenteCuarto.clear();
+                residenteCama.clear();
+                residenteFdN.clear();
+                residenteSdE.clear();
+                residenteNumSeguro.clear();
+                residenteCondiciones.clear();
+                tablaMedicina.getItems().clear();
+                tablaNotificacion.getItems().clear();
+                tablaFamiliares.getItems().clear();
+                imgResidente.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
+                Map<String,String> dbMap = db.getMap();
+                Set<String > sNombres = dbMap.keySet();
+                ArrayList<String> nombres = new ArrayList<String>(sNombres);
+                ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
+                db.deleteObject(residenteActual);
+                choiceBoxResidentes.setItems(olNombres);
+                db.closeDB();
+            }
+
+
         }else{
             System.out.println("Seleccione un residente para dar de baja");
-            JOptionPane.showMessageDialog(null, "Seleccione un residente para dar de baja");
+            //JOptionPane.showMessageDialog(null, "Ingrese un número"); //modo alterno de poner mensajes
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Seleccione un residente para dar de baja";
+            alert.setContentText(s);
+            alert.showAndWait();
         }
     }
 
