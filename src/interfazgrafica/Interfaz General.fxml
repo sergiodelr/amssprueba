@@ -90,7 +90,7 @@
                                                 <Label layoutX="669.0" layoutY="244.0" text="Precauciones:" />
                                                 <Label layoutX="926.0" layoutY="244.0" text="Duración (Días):" />
                                                 <Label layoutX="1064.0" layoutY="244.0" text="Cantidad:" />
-                                                <Button layoutX="769.0" layoutY="339.0" mnemonicParsing="false" text="Eliminar" />
+                                                <Button layoutX="769.0" layoutY="339.0" mnemonicParsing="false" onAction="#borrarMedicina" text="Eliminar" />
                                              </children></AnchorPane>
                                        </content>
                                     </Tab>

@@ -648,4 +648,16 @@ public class DocumentController implements Initializable{
             imagenPreview.setImage(image);
         }
     }
+
+    @FXML
+    void borrarMedicina(){
+        Medicina medicina = (Medicina) tablaMedicina.getSelectionModel().getSelectedItem();
+        BDUtils db = new BDUtils("residentes.db");
+        String objRes = (String) db.getObject(residenteActual);
+        db.closeDB();
+        Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+        res.deleteMedicina(medicina.getNombre());
+        ResidenteUtils.modifyResidente(res);
+        actualizarMedicinas();
+    }
 }
