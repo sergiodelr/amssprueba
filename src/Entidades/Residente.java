@@ -214,4 +214,18 @@ public class  Residente{
     public BufferedImage getImage(){
         return this.image;
     }
+
+    public void deleteMedicina(String nombre){
+        Iterator<Medicina> it = this.medicinas.iterator();
+        boolean encontrado = false;
+        while (it.hasNext() && !encontrado) {
+            if (it.next().getNombre().equals(nombre)) {
+                it.remove();
+                encontrado = true;
+                System.out.println("borrado alv");
+            }
+        }
+    }
+
+
 }

@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import Entidades.*;
 import Utils.ResidenteUtils;
@@ -398,9 +399,61 @@ public class DocumentController implements Initializable{
         Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
         ObservableList<Medicina> medicinas = FXCollections.observableArrayList(res.getMedicinas());
         medDescripcion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("descripcion"));
+
+        medDescripcion.setCellFactory(TextFieldTableCell.forTableColumn());
+        medDescripcion.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Medicina, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Medicina, String> t) {
+                        System.out.println("commit");
+                        Medicina m = (Medicina) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow());
+                        m.setDescripcion(t.getNewValue());
+                        System.out.println(m.getDescripcion());
+                        res.deleteMedicina(m.getNombre());
+                        res.addMedicina(m);
+                        ResidenteUtils.modifyResidente(res);
+                    }
+                }
+        );
+
         medDosis.setCellValueFactory(new PropertyValueFactory<Medicina, String>("dosis"));
+
+        medDosis.setCellFactory(TextFieldTableCell.forTableColumn());
+        medDosis.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Medicina, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Medicina, String> t) {
+                        System.out.println("commit");
+                        Medicina m = (Medicina) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow());
+                        m.setDosis(t.getNewValue());
+                        res.deleteMedicina(m.getNombre());
+                        res.addMedicina(m);
+                        ResidenteUtils.modifyResidente(res);
+                    }
+                }
+        );
+
         medNombre.setCellValueFactory(new PropertyValueFactory<Medicina, String>("nombre"));
         medPrecauciones.setCellValueFactory(new PropertyValueFactory<Medicina, String>("precauciones"));
+
+        medPrecauciones.setCellFactory(TextFieldTableCell.forTableColumn());
+        medPrecauciones.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Medicina, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Medicina, String> t) {
+                        System.out.println("commit");
+                        Medicina m = (Medicina) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow());
+                        m.setPrecauciones(t.getNewValue());
+                        res.deleteMedicina(m.getNombre());
+                        res.addMedicina(m);
+                        ResidenteUtils.modifyResidente(res);
+                    }
+                }
+        );
+
         medDuracion.setCellValueFactory(new PropertyValueFactory<Medicina, String>("duracionDias"));
         medRestantes.setCellValueFactory(new PropertyValueFactory<Medicina, String>("cantidad"));
         tablaMedicina.setItems(medicinas);
