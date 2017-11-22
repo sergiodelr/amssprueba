@@ -24,7 +24,8 @@ public class ResidenteUtils {
             System.out.println();
 
             LocalDate date = LocalDate.of(Integer.parseInt(row[3]), Integer.parseInt(row[2]), Integer.parseInt(row[1]));
-            Residente temp = new Residente(row[0], date, Integer.parseInt(row[4]), Integer.parseInt(row[5]), null, row[6], row[7], 1 , row[11], row[10], row[8], row[9] );
+            Residente temp = new Residente(row[0], date, Integer.parseInt(row[4]), Integer.parseInt(row[5]), null, row[6], row[7], 1 , row[11], row[10], row[8], row[9]);
+
 
             modifyResidente(temp);
 

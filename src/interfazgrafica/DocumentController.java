@@ -330,6 +330,7 @@ public class DocumentController implements Initializable{
             nuevoResidenteNumSeguro.clear();
             nuevoResidenteFamiliar.clear();
             nuevoResidenteTelefono.clear();
+            nuevoResidenteCondiciones.clear();
 
             imagenPreview.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
             initializeUtils();
@@ -444,7 +445,7 @@ public class DocumentController implements Initializable{
     void mostrarFamiliares(){
         BDUtils db = new BDUtils("residentes.db");
         String objRes = (String) db.getObject(residenteActual);
-        System.out.println("mostrar eventualidades " + residenteActual);
+        System.out.println("mostrar familiares " + residenteActual);
         db.closeDB();
         Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
 
@@ -453,11 +454,11 @@ public class DocumentController implements Initializable{
         List<String> nombres = new ArrayList<String>(contactos.keySet());
         List<String> telefonos = new ArrayList<String>(contactos.values());
         List<Familiar> familiares = new ArrayList<Familiar>();
-        Familiar fam = new Familiar("","");
+
         for(int i = 0; i < nombres.size() && i < telefonos.size(); i++){
-            fam.setNombre(nombres.get(i));
-            fam.setTelefono(nombres.get(i));
+            Familiar fam = new Familiar(nombres.get(i), telefonos.get(i));
             familiares.add(fam);
+            System.out.println(fam.getNombre()+" "+fam.getTelefono());
         }
 
         ObservableList<Familiar> familiaresTabla = FXCollections.observableArrayList(familiares);

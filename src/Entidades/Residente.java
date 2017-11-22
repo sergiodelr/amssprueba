@@ -85,8 +85,8 @@ public class  Residente{
         this.status = status;
 
 
-        List<String> Lcontactos = new ArrayList<>(Arrays.asList(contactos.split(" , ")));
-        List<String> Lnumeros = new ArrayList<>(Arrays.asList(telefonos.split(" , ")));
+        List<String> Lcontactos = new ArrayList<>(Arrays.asList(contactos.split(",")));
+        List<String> Lnumeros = new ArrayList<>(Arrays.asList(telefonos.split(",")));
 
         for(int i = 0; i < Lcontactos.size(); i++){
             this.addContacto(Lcontactos.get(i), Lnumeros.get(i));
