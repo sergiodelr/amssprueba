@@ -4,6 +4,7 @@ import Utils.EntidadSerializableUtils;
 import com.sun.istack.internal.Nullable;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import javafx.scene.image.Image;
 import javafx.util.Pair;
 import com.thoughtworks.xstream.*;
 import java.awt.image.BufferedImage;
@@ -56,6 +57,21 @@ public class  Residente{
         } catch(IOException e){
             this.image = ImageIO.read(new File("generic.jpg"));
         }*/
+        System.out.println("residente constructor");
+
+        this.nombre = nombre;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+        this.numCuarto = numCuarto;
+        this.numCama = numCama;
+        this.fechaDefuncion = null;
+        this.servicioEmergencia = servicioEmergencia;
+        this.numSeguro = numSeguro;
+        this.status = status;
+        insertToMap("residentes.db");
+    }
+    public Residente(String nombre, LocalDate fechaDeNacimiento, int numCuarto, int numCama, LocalDate fechaDefuncion, String servicioEmergencia, String numSeguro, int status, String image) throws IOException {
+        System.out.println(image);
+        this.image = ImageIO.read(new File(image).toURI().toURL());
         System.out.println("residente constructor");
 
         this.nombre = nombre;
@@ -176,6 +192,8 @@ public class  Residente{
     }
     public List<String> getCondiciones(){
         return this.condiciones;
-
+    }
+    public BufferedImage getImage(){
+        return this.image;
     }
 }

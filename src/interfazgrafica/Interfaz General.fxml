@@ -54,7 +54,7 @@
                               <Font size="24.0" />
                            </font>
                         </Text>
-                        <ImageView fitHeight="258.0" fitWidth="276.0" layoutX="870.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgResidente" fitHeight="258.0" fitWidth="276.0" layoutX="870.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Old Man.jpg" />
                            </image>
@@ -336,6 +336,12 @@
                                  </GridPane.margin>
                               </Button>
                               <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Button mnemonicParsing="false" onAction="#seleccionarImagen" text="Agregar imagen" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <ImageView fx:id="imagenPreview" fitHeight="211.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@Old%20Man.jpg" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </GridPane>
                      </children></AnchorPane>
