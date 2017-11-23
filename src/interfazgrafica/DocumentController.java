@@ -1,3 +1,4 @@
+//Tradicional
 package interfazgrafica;
 
 import static interfazgrafica.DocumentController.rootP;
@@ -47,6 +48,8 @@ import javafx.event.ActionEvent;
 import Utils.BDUtils;
 import Utils.EntidadSerializableUtils;
 
+import javax.swing.*;
+
 
 /**
  *
@@ -70,6 +73,7 @@ public class DocumentController implements Initializable{
     @FXML private  TextField nuevoResidenteFamiliar;
     @FXML private  TextField nuevoResidenteTelefono;
     @FXML private  TextField nuevoResidenteCondiciones;
+    @FXML private DatePicker diaNacimiento;
 
     //Medicinas
     @FXML private TextField nMedNombre;
@@ -93,7 +97,7 @@ public class DocumentController implements Initializable{
     @FXML private  TextField atendidoPorEventualidad;
     @FXML private TextField residenteCondiciones;
     @FXML private ImageView imgResidente;
-    private String residenteActual;
+    private String residenteActual = "";
     //Reportes
     @FXML private DatePicker diaReporte;
     @FXML private TableView tablaReporte;
@@ -123,6 +127,8 @@ public class DocumentController implements Initializable{
     @FXML private TableView tablaFamiliares;
     @FXML private TableColumn famNombre = new TableColumn("Nombre");
     @FXML private TableColumn famTelefono = new TableColumn("Teléfono");
+    @FXML private TextField nFamNombre;
+    @FXML private TextField nFamTelefono;
 
     //Notificaciones
     @FXML private TableView tablaNotificacion;
@@ -150,14 +156,11 @@ public class DocumentController implements Initializable{
         System.out.println("initializeUtils");
 
         BDUtils db = new BDUtils("residentes.db");
-
         Map<String,String> dbMap = db.getMap();
         Set<String > sNombres = dbMap.keySet();
         ArrayList<String> nombres = new ArrayList<String>(sNombres);
         ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
-
         choiceBoxResidentes.setItems(olNombres);
-
         db.closeDB();
     }
     @Override
@@ -169,11 +172,9 @@ public class DocumentController implements Initializable{
         rootP = root;*/
         initializeUtils();
 
-        diaReporte.setOnAction(new EventHandler<ActionEvent>()
-        {
+        diaReporte.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
+            public void handle(ActionEvent event) {
                 System.out.println("diaReporte: handle");
                 LocalDate fecha = diaReporte.getValue();
                 mostrarReportes(fecha);
@@ -186,8 +187,18 @@ public class DocumentController implements Initializable{
             @Override
             public void handle(ActionEvent event)
             {
-                int a = Integer.parseInt(diasConsulta.getText());
-                consultaGeneral(a);
+                try{
+                    int a = Integer.parseInt(diasConsulta.getText());
+                    consultaGeneral(a);
+                }catch (NumberFormatException e) {
+                    //Not an integer
+                    System.out.println("Ingrese un número");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Cuidado");
+                    String s = "Ingrese un número";
+                    alert.setContentText(s);
+                    alert.showAndWait();
+                }
             }
         });
 
@@ -195,12 +206,14 @@ public class DocumentController implements Initializable{
         choiceBoxResidentes.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-                residenteActual = (String) choiceBoxResidentes.getItems().get((Integer) number2);
-                mostrarInfo(residenteActual);
+                if(!number2.equals(-1)) {
+                    residenteActual = (String) choiceBoxResidentes.getItems().get((Integer) number2);
+                    mostrarInfo(residenteActual);
+                }
             }
         });
-
     }
+
 
     private void mostrarReportes(LocalDate fecha) {
         BDUtils db = new BDUtils("reportes.db");
@@ -303,15 +316,15 @@ public class DocumentController implements Initializable{
     void altaIndividual(ActionEvent event) throws ParseException, IOException {
 
         System.out.println("altaIndividual");
-        if(!nuevoResidenteNombre.getText().isEmpty() && !nuevoResidenteFdN.getText().isEmpty() &&
+        if(!nuevoResidenteNombre.getText().isEmpty() &&
                 !nuevoResidenteCuarto.getText().isEmpty() &&
                 !nuevoResidenteCama.getText().isEmpty() &&
                 !nuevoResidenteSdE.getText().isEmpty() &&
                 !nuevoResidenteNumSeguro.getText().isEmpty() &&
                 !nuevoResidenteFamiliar.getText().isEmpty() &&
                 !nuevoResidenteTelefono.getText().isEmpty()){
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-            LocalDate date = LocalDate.parse(nuevoResidenteFdN.getText());
+
+            LocalDate date = diaNacimiento.getValue();
             if(!imgPath.isEmpty()) {
                 Residente residente = new Residente(nuevoResidenteNombre.getText(), date, Integer.parseInt(nuevoResidenteCuarto.getText()),
                         Integer.parseInt(nuevoResidenteCama.getText()), null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(), 1, imgPath, nuevoResidenteCondiciones.getText(), nuevoResidenteFamiliar.getText(), nuevoResidenteTelefono.getText());
@@ -321,10 +334,7 @@ public class DocumentController implements Initializable{
                         Integer.parseInt(nuevoResidenteCama.getText()),null, nuevoResidenteSdE.getText(), nuevoResidenteNumSeguro.getText(),1, "Old Man.jpg", nuevoResidenteCondiciones.getText(), nuevoResidenteFamiliar.getText(), nuevoResidenteTelefono.getText());
             }
 
-
-
             nuevoResidenteNombre.clear();
-            nuevoResidenteFdN.clear();
             nuevoResidenteCuarto.clear();
             nuevoResidenteCama.clear();
             nuevoResidenteSdE.clear();
@@ -332,9 +342,17 @@ public class DocumentController implements Initializable{
             nuevoResidenteFamiliar.clear();
             nuevoResidenteTelefono.clear();
             nuevoResidenteCondiciones.clear();
+            diaNacimiento.getEditor().clear();
 
             imagenPreview.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
             initializeUtils();
+        }else{
+            System.out.println("Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
         }
     }
     @FXML
@@ -359,6 +377,13 @@ public class DocumentController implements Initializable{
             horaEventualidad.clear();
             fechaEventualidad.clear();
             atendidoPorEventualidad.clear();
+        }else{
+            System.out.println("Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
         }
     }
 
@@ -391,6 +416,7 @@ public class DocumentController implements Initializable{
         tablaReporte.getItems().clear();
         mostrarReportes(diaReporte.getValue());
     }
+
     @FXML
     void mostrarMedicinas(){
         BDUtils db = new BDUtils("residentes.db");
@@ -460,37 +486,32 @@ public class DocumentController implements Initializable{
     }
     @FXML
     void agregarMedicina(ActionEvent event){
-        Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
-                Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
-                Integer.parseInt(nMedDuracion.getText()), nMedDosis.getText(), residenteActual); //quite fecha de caducidad del constructor
-        BDUtils db = new BDUtils("residentes.db");
-        String objRes = (String)db.getObject(residenteActual);
-        db.closeDB();
-        Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
-        System.out.println(medicina.getNombre());
-        res.addMedicina(medicina);
-        ResidenteUtils.modifyResidente(res);
 
-        //actualizar y limpiar (Se usará en Modificar y Eliminar)
-        actualizarMedicinas();
+        if(nMedNombre.getText().isEmpty() || nMedDescripcion.getText().isEmpty() || nMedDuracion.getText().isEmpty() ||
+                nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty() || nMedRestantes.getText().isEmpty()){
+            System.out.println("Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
+        }else {
 
-    }
+            Medicina medicina = new Medicina(nMedNombre.getText(), nMedDescripcion.getText(),
+                    Integer.parseInt(nMedRestantes.getText()), nMedPrecauciones.getText(),
+                    Integer.parseInt(nMedDuracion.getText()), nMedDosis.getText(), residenteActual); //quite fecha de caducidad del constructor
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String) db.getObject(residenteActual);
+            db.closeDB();
+            Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+            System.out.println(medicina.getNombre());
+            res.addMedicina(medicina);
+            ResidenteUtils.modifyResidente(res);
 
-    //modificar medicina
-    @FXML
-    void modificarMedicina(ActionEvent event){ //recibe un index
-        System.out.println("modificar medicina");
-        if(tablaMedicina.getSelectionModel().getSelectedItem() != null){
-            System.out.println();
-            Medicina med = (Medicina) tablaNotificacion.getSelectionModel().getSelectedItem();
-            System.out.println(med.getResidente());
-        }else{
-            System.out.println("No hay nada seleccionado");
+            //actualizar y limpiar (Se usará en Modificar y Eliminar)
+            actualizarMedicinas();
+
         }
-    }
-    //eliminar medicina
-    @FXML
-    void eliminarMedicina(ActionEvent event){ //recibe un index
 
     }
 
@@ -613,4 +634,140 @@ public class DocumentController implements Initializable{
             imagenPreview.setImage(image);
         }
     }
+
+    @FXML
+    void borrarMedicina(){
+
+        if(nMedNombre.getText().isEmpty() || nMedDescripcion.getText().isEmpty() || nMedDuracion.getText().isEmpty() ||
+                nMedDosis.getText().isEmpty() || nMedPrecauciones.getText().isEmpty() || nMedRestantes.getText().isEmpty()){
+            System.out.println("Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
+        }else {
+            Medicina medicina = (Medicina) tablaMedicina.getSelectionModel().getSelectedItem();
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String) db.getObject(residenteActual);
+            db.closeDB();
+            Residente res = (Residente) EntidadSerializableUtils.getEntidadFromXml(objRes);
+            res.deleteMedicina(medicina.getNombre());
+            ResidenteUtils.modifyResidente(res);
+            actualizarMedicinas();
+        }
+    }
+
+
+    @FXML
+    void agregarFamiliar(){
+        System.out.println("hola");
+        if(nFamNombre.getText().isEmpty() || nFamTelefono.getText().isEmpty()){ //alguno esta vacio
+            System.out.println("Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
+        }else{
+
+            BDUtils db = new BDUtils("residentes.db");
+            String objRes = (String)db.getObject(residenteActual);
+            db.closeDB();
+
+            Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+            res.addContacto(nFamNombre.getText(), nFamTelefono.getText());
+            ResidenteUtils.modifyResidente(res);
+
+            mostrarFamiliares();
+            nFamNombre.clear();
+            nFamTelefono.clear();
+        }
+    }
+
+    @FXML
+    void modificarResidente(){
+        if(residenteCuarto.getText().isEmpty() || residenteCama.getText().isEmpty() || residenteSdE.getText().isEmpty() ||
+                residenteNumSeguro.getText().isEmpty() ){ //alguno esta vacio
+            System.out.println("Llene todos los campos");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Llene todos los campos";
+            alert.setContentText(s);
+            alert.showAndWait();
+        }else{
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Cuidado");
+            String s = "Desea modificar los datos de " + residenteActual;
+            alert.setContentText(s);
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+                BDUtils db = new BDUtils("residentes.db");
+                String objRes = (String)db.getObject(residenteActual);
+                db.closeDB();
+
+                Residente res = (Residente)EntidadSerializableUtils.getEntidadFromXml(objRes);
+                res.setNumCuarto( Integer.parseInt(residenteCuarto.getText()) );
+                res.setNumCama( Integer.parseInt(residenteCama.getText()) );
+                res.setServicioEmergencia(residenteSdE.getText());
+                res.setNumSeguro(residenteNumSeguro.getText() );
+                res.setCondiciones(residenteCondiciones.getText() );
+                ResidenteUtils.modifyResidente(res);
+            }else{
+                mostrarInfo(residenteActual);
+            }
+        }
+    }
+
+    @FXML
+    void bajaResidente(){
+        if(residenteActual != ""){
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Cuidado");
+            String s = "Desea dar de baja a " + residenteActual;
+            alert.setContentText(s);
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+                System.out.println("dar de baja a " + residenteActual);
+                BDUtils db = new BDUtils("residentes.db");
+
+                db.deleteObject(residenteActual);
+
+                residenteCuarto.clear();
+                residenteCama.clear();
+                residenteFdN.clear();
+                residenteSdE.clear();
+                residenteNumSeguro.clear();
+                residenteCondiciones.clear();
+                tablaMedicina.getItems().clear();
+                tablaNotificacion.getItems().clear();
+                tablaFamiliares.getItems().clear();
+                imgResidente.setImage(new Image(new File ("Old Man.jpg").toURI().toString()));
+                Map<String,String> dbMap = db.getMap();
+                Set<String > sNombres = dbMap.keySet();
+                ArrayList<String> nombres = new ArrayList<String>(sNombres);
+                ObservableList<String> olNombres = FXCollections.observableArrayList(nombres);
+                db.deleteObject(residenteActual);
+                choiceBoxResidentes.setItems(olNombres);
+                db.closeDB();
+            }
+
+
+        }else{
+            System.out.println("Seleccione un residente para dar de baja");
+            //JOptionPane.showMessageDialog(null, "Ingrese un número"); //modo alterno de poner mensajes
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cuidado");
+            String s = "Seleccione un residente para dar de baja";
+            alert.setContentText(s);
+            alert.showAndWait();
+        }
+    }
+
 }
